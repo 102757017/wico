@@ -127,12 +127,12 @@ class DemoApp(MDApp):
 
     def start_cam(self):
         self.root.current = 'camera'
-        self.on_start()
+        #self.on_start()
 
 
     def goback(self):       
         self.root.current = 'main'
-        self.on_stop()
+        #self.on_stop()
 
         #self.root.EnterNgIfo.ids.PartType1.text="电动滑轨"
         #self.root.EnterNgIfo.ids.WicoPartNumber1.text="23-4739141-2"
@@ -144,7 +144,7 @@ class DemoApp(MDApp):
         if len(args[0])!=0:
             self.root.EnterNgIfo.ids.Lot1.text=args[0]
             self.root.current = 'main'
-            self.on_stop()
+            #self.on_stop()
 
         
     
