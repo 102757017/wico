@@ -19,7 +19,7 @@ from kivy.config import Config
 from kivy.clock import Clock
 from kivy.clock import mainthread
 from android_permissions import AndroidPermissions
-
+from kivy.core.window import Window
 
 #不设置此项,图片将无法显示
 os.environ['SSL_CERT_FILE'] = certifi.where()
