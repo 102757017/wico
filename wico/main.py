@@ -12,14 +12,15 @@ from synch import sync_all
 from kivy.logger import Logger
 from pathlib import Path
 from kivy.core.window import WindowBase
-WindowBase.softinput_mode='below_target'
 import threading
 import certifi
 from kivy.config import Config
 from kivy.clock import Clock
 from kivy.clock import mainthread
 from android_permissions import AndroidPermissions
-from kivy.core.window import Window
+
+#避免输入法挡住ui输入框
+WindowBase.softinput_mode='below_target'
 
 #不设置此项,图片将无法显示
 os.environ['SSL_CERT_FILE'] = certifi.where()
@@ -48,7 +49,9 @@ if platform == "android":
     Logger.info("外部存储路径:"+appwd)
     #设置log的存储路径
     #Config.set('kivy', 'log_dir', appwd)
-
+elif platform != 'ios':
+    # Dispose of that nasty red dot, required for gestures4kivy.
+    Config.set('input', 'mouse', 'mouse, disable_multitouch')
 
 '''
 Kv 语言特有的三个关键字：
@@ -95,6 +98,7 @@ class ScreenManager(ScreenManager):
     def sync(self):
         f=sync_all()
         if f==True:
+            #使用Clock.schedule_once在主线程中执行toast
             Clock.schedule_once(lambda a: toast("数据已上传到服务器"))
         else:
             Clock.schedule_once(lambda a: toast("数据上传到服务器失败，稍后重新启动app将再次尝试上传"))
@@ -102,8 +106,6 @@ class ScreenManager(ScreenManager):
 
 class DemoApp(MDApp):
     def build(self):
-        if platform == 'android':
-            Window.bind(on_resize=hide_landscape_status_bar)
         s=ScreenManager()
         return s
 
