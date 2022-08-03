@@ -38,6 +38,8 @@ source.exclude_exts = xlsx, md
 # (str) Application versioning (method 2)
 version = 0.1
 
+#指定需要编译的库（不是纯python的，包含C库），在其中放入补丁文件
+p4a.local_recipes = ./p4a-recipes
 
 # (list) Application requirements
 # comma separated e.g. requirements = sqlite3,kivy
@@ -49,8 +51,11 @@ requirements = python3, \
                kivy==2.1.0, \
                git+https://github.com/102757017/KivyMD.git@master, \
                pillow, \
+               #sdl2_ttf==2.0.15, \
+               android, \
                certifi, \
                openssl, \               
+               #opencv-python, \
                pyzbar, \
                libzbar, \
                mysql_connector, \
@@ -63,6 +68,33 @@ orientation = all
 # (bool) Indicate if the application should be fullscreen or not
 fullscreen = 0
 
+# (int) Target Android API, should be as high as possible.
+android.api = 32
+
+# (bool) If True, then skip trying to update the Android sdk
+# This can be useful to avoid excess Internet downloads or save time
+# when an update is due and you just want to test/build your package
+#android.skip_update = False
+
+# (bool) If True, then automatically accept SDK license
+# agreements. This is intended for automation only. If set to False,
+# the default, you will be shown the license when first running
+# buildozer.
+#android.accept_sdk_license = True
+
+# (str) The Android arch to build for, choices: armeabi-v7a, arm64-v8a, x86, x86_64
+android.archs = arm64-v8a
+
+android.release_artifact = apk
+
+# (str) python-for-android branch to use, defaults to master
+p4a.branch = master
+
+# (str) Filename to the hook for p4a
+p4a.hook = camerax_provider/gradle_options.py
+
+# (list) Permissions
+android.permissions = CAMERA,INTERNET,READ_EXTERNAL_STORAGE,WRITE_EXTERNAL_STORAGE
 
 #
 # iOS specific
