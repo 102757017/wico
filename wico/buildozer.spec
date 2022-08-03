@@ -21,19 +21,12 @@ source.dir = .
 # (str) Icon of the application
 #icon.filename = %(source.dir)s/assets/images/logo.png
 
-# (string) Presplash background color (for new android toolchain)
-#android.presplash_color = #000000
 
 # (list) Source files to include (let empty to include all the files)
 #source.include_exts = py, gif, png, jpg, jpeg, ttf, kv, json, txt, md
 
 source.exclude_exts = xlsx, md
 
-
-# (bool) Enable AndroidX support. Enable when 'android.gradle_dependencies'
-# contains an 'androidx' package, or any package from Kotlin source.
-# android.enable_androidx requires android.api >= 28
-# android.enable_androidx = True
 
 # (str) Application versioning (method 2)
 version = 0.1
@@ -50,7 +43,6 @@ requirements = python3, \
                git+https://github.com/102757017/KivyMD.git@master, \
                pillow, \
                certifi, \
-               openssl, \               
                pyzbar, \
                libzbar, \
                mysql_connector, \
