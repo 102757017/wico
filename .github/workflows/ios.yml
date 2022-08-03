@@ -35,7 +35,7 @@ jobs:
 
       - name: Build with Buildozer
         run: |
-          cd wico
+          cd wico - ios
           #导入的环境变量只在此name下有效
           export PATH=$PATH:/Users/runner/Library/Python/3.9/bin
           export PATH=$PATH:~/.local/bin/
