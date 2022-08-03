@@ -41,6 +41,9 @@ jobs:
           export PATH=$PATH:/Users/runner/Library/Python/3.9/bin
           export PATH=$PATH:~/.local/bin/
           ls -a
+          toolchain recipes
+          toolchain build python3 kivy libzbar openssl
+          toolchain pip3 install pillow pyzbar camera4kivy
           buildozer ios debug
 
       - name: Upload artifacts

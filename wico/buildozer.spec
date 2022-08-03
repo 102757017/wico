@@ -44,7 +44,6 @@ requirements = python3, \
                pillow, \
                certifi, \
                pyzbar, \
-               libzbar, \
                mysql_connector, \
                camera4kivy, \
                gestures4kivy
