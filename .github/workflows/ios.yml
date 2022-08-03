@@ -30,6 +30,7 @@ jobs:
       - name: Install gems
         run: |
           brew install pkg-config sdl2 sdl2_image sdl2_ttf sdl2_mixer gstreamer autoconf automake
+          export PATH="${PATH}:/Users/runner/Library/Python/3.9/bin"
           python3 -m pip install --user --upgrade pip virtualenv kivy-ios Cython buildozer
           brew link libtool
 
