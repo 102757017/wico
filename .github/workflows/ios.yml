@@ -24,7 +24,7 @@ jobs:
         run: |
           echo "安装Xcode"
           #sudo xcode-select --switch /Applications/Xcode_13.0.app
-          sudo xcode-select --install
+          #sudo xcode-select --install
 
       # 安装buildozer相关依赖
       - name: Install gems
