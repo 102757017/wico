@@ -6,9 +6,6 @@ on:
   #手动触发工作流程运行
   workflow_dispatch:
 
-  # 允许你从Actions选项卡手动运行此工作流
-  workflow_dispatch:
-
 # 具体任务
 jobs:
   # 名称为build的任务
