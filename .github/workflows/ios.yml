@@ -1,0 +1,45 @@
+# workflow名称，显示在Github Actions Tab 中
+name: compil on osx
+
+# workflow 执行的条件
+on:
+  #手动触发工作流程运行
+  workflow_dispatch:
+
+  # 允许你从Actions选项卡手动运行此工作流
+  workflow_dispatch:
+
+# 具体任务
+jobs:
+  # 名称为build的任务
+  build:
+    # 声明运行系统
+    runs-on: macOS-latest
+
+    # 具体步骤
+    steps:
+      # 自动检出本项目
+      - uses: actions/checkout@v2
+
+      # 安装Xcode
+      - name: 安装Xcode
+        shell: bash
+        run: |
+          echo "安装Xcode"
+          #sudo xcode-select --switch /Applications/Xcode_13.0.app
+          sudo xcode-select --install
+
+      # 安装buildozer相关依赖
+      - name: Install gems
+        run: |
+          brew install pkg-config sdl2 sdl2_image sdl2_ttf sdl2_mixer gstreamer autoconf automake
+          python3 -m pip install --user --upgrade pip virtualenv kivy-ios Cython
+          brew link libtool
+
+      - name: Build with Buildozer
+        uses: ArtemSBulgakov/buildozer-action@v1.1.3
+        id: buildozer
+        with:
+          command: buildozer ios debug
+          workdir: wico
+          buildozer_version: stable
