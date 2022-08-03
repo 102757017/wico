@@ -51,7 +51,7 @@ requirements = python3, \
                kivy==2.1.0, \
                git+https://github.com/102757017/KivyMD.git@master, \
                pillow, \
-               sdl2_ttf==2.0.15, \
+               #sdl2_ttf==2.0.15, \
                android, \
                certifi, \
                openssl, \               
