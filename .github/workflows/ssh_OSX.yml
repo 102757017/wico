@@ -1,0 +1,64 @@
+
+# This is a basic workflow to help you get started with Actions
+
+name: ssh OSX
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the main branch
+on:
+  #手动触发工作流程运行
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: macOS-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - name: Setup Debug Session
+        uses: csexton/debugger-action@master
+      #取消15分钟的超时限制
+#      - name: Run a one-line script
+#        run: touch /tmp/keepalive
+
+      # 拉取本项目源码
+      - name: Checkout
+        uses: actions/checkout@v2
+
+
+      # 安装buildozer相关依赖
+      - name: 安装buildozer相关依赖
+        run: |
+          #导入的环境变量只在此name下有效
+          export PATH=$PATH:/Users/runner/Library/Python/3.9/bin
+          export PATH=$PATH:~/.local/bin/
+          brew install pkg-config sdl2 sdl2_image sdl2_ttf sdl2_mixer gstreamer autoconf automake libtool
+          python3 -m pip install --user --upgrade pip virtualenv kivy-ios Cython buildozer
+          brew link libtool
+          
+      - uses: actions/cache@v2
+        with:
+          #kivy-ios的build路径在项目的根目录
+          path: build
+          key: sfeggrt6hddggt6rbrdgeegjlu89kl89l89svgeg54dfbjio4
+          
+      - uses: actions/cache@v2
+        with:
+          #kivy-ios的dist路径在项目的根目录
+          path: dist
+          key: sfeggrt6hddggt6rbrdgeegjsfsfseggwwt34tg54655s2gkdwdg45
+          
+      - name: toolchain
+        run: |
+          #导入的环境变量只在此name下有效
+          export PATH=$PATH:/Users/runner/Library/Python/3.9/bin
+          export PATH=$PATH:~/.local/bin/
+          toolchain recipes
+          toolchain build libzbar openssl
+          #toolchain build python3 kivy
+          #toolchain pip3 install pillow pyzbar camera4kivy
+          ls -a
+
