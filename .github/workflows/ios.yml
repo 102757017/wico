@@ -26,6 +26,7 @@ jobs:
     # 具体步骤
     steps:
       # 拉取本项目源码
+      - name: Checkout
       - uses: actions/checkout@v2
 
 
