@@ -16,13 +16,6 @@ jobs:
     # The type of runner that the job will run on
     runs-on: macOS-latest
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:
-      - name: Setup Debug Session
-        uses: csexton/debugger-action@master
-      #取消15分钟的超时限制
-#      - name: Run a one-line script
-#        run: touch /tmp/keepalive
 
       # 拉取本项目源码
       - name: Checkout
