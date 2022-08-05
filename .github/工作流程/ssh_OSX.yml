@@ -37,7 +37,7 @@ jobs:
         with:
           #kivy-ios的dist路径在项目的根目录
           path: dist
-          key: sfeggrt6hddggt6rbrdgeegjsfsfseggwwt34tg54655s2gkdwdg45
+          key: sfeggrt6hddggt6rbrdgjhheegjsfsfseggwwt34tg54655s2gkdwdg45
           
       - name: toolchain
         run: |
