@@ -23,11 +23,10 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
 
-    # 具体步骤
-    steps:
+
       # 拉取本项目源码
       - name: Checkout
-      - uses: actions/checkout@v2
+        uses: actions/checkout@v2
 
 
       # 安装Xcode
