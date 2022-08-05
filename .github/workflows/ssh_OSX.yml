@@ -31,12 +31,7 @@ jobs:
           brew install pkg-config sdl2 sdl2_image sdl2_ttf sdl2_mixer gstreamer autoconf automake libtool
           python3 -m pip install --user --upgrade pip virtualenv kivy-ios Cython buildozer
           brew link libtool
-          
-      - uses: actions/cache@v2
-        with:
-          #kivy-ios的build路径在项目的根目录
-          path: build
-          key: sfeggrt6hddggt6rbrdgeegjlu89kl89l89svgeg54dfbjio4
+
           
       - uses: actions/cache@v2
         with:
@@ -51,7 +46,7 @@ jobs:
           export PATH=$PATH:~/.local/bin/
           toolchain recipes
           toolchain build libzbar openssl
-          #toolchain build python3 kivy
-          #toolchain pip3 install pillow pyzbar camera4kivy
+          toolchain build python3 kivy
+          toolchain pip3 install pillow pyzbar camera4kivy
           ls -a
 
