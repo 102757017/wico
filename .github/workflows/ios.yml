@@ -12,11 +12,22 @@ jobs:
   build:
     # 声明运行系统
     runs-on: macOS-latest
+    environment: Builds
+    strategy:
+      matrix:
+        python-version: [3.9]
+
+    steps:
+      - name: 安装 Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
 
     # 具体步骤
     steps:
-      # 自动检出本项目
+      # 拉取本项目源码
       - uses: actions/checkout@v2
+
 
       # 安装Xcode
       - name: 安装Xcode
@@ -29,9 +40,42 @@ jobs:
       # 安装buildozer相关依赖
       - name: 安装buildozer相关依赖
         run: |
-          brew install pkg-config sdl2 sdl2_image sdl2_ttf sdl2_mixer gstreamer autoconf automake
+          #导入的环境变量只在此name下有效
+          export PATH=$PATH:/Users/runner/Library/Python/3.9/bin
+          export PATH=$PATH:~/.local/bin/
+          brew install pkg-config sdl2 sdl2_image sdl2_ttf sdl2_mixer gstreamer autoconf automake libtool
           python3 -m pip install --user --upgrade pip virtualenv kivy-ios Cython buildozer
           brew link libtool
+
+
+      - uses: actions/cache@v2
+        with:
+          #buildozer的缓存路径在项目的根目录
+          path: .buildozer
+          key: ggw4gg45hyywaygg76ir24fsf3455354h65345rt
+
+      - uses: actions/cache@v2
+        with:
+          #kivy-ios的build路径在项目的根目录
+          path: build
+          key: sfeggrt6hddggt6rbrdgeegjlu89kl89l89svgeg54dfbjio4
+          
+      - uses: actions/cache@v2
+        with:
+          #kivy-ios的dist路径在项目的根目录
+          path: dist
+          key: sfeggrt6hddggt6rbrdgeegjsfsfseggwwt34tg54655s2gkdwdg45
+          
+      - name: toolchain
+        run: |
+          #导入的环境变量只在此name下有效
+          export PATH=$PATH:/Users/runner/Library/Python/3.9/bin
+          export PATH=$PATH:~/.local/bin/
+          ls -a
+          toolchain recipes
+          #toolchain build libzbar openssl
+          #toolchain build python3 kivy
+          #toolchain pip3 install pillow pyzbar camera4kivy
 
       - name: Build with Buildozer
         id: buildozer
@@ -41,9 +85,6 @@ jobs:
           export PATH=$PATH:/Users/runner/Library/Python/3.9/bin
           export PATH=$PATH:~/.local/bin/
           ls -a
-          toolchain recipes
-          toolchain build python3 kivy libzbar openssl
-          toolchain pip3 install pillow pyzbar camera4kivy
           buildozer ios debug
 
       - name: Upload artifacts
