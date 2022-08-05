@@ -13,10 +13,10 @@ on:
 jobs:
   # This workflow contains a single job called "build"
   build:
-    # The type of runner that the job will run on
+    # 声明运行系统
     runs-on: macOS-latest
 
-
+    steps:
       # 拉取本项目源码
       - name: Checkout
         uses: actions/checkout@v2
