@@ -16,8 +16,8 @@ jobs:
         include:
           - runs_on: macos-latest
             python: '3.9'
-          - runs_on: apple-silicon-m1
-            python: '3.9.7'
+          #- runs_on: apple-silicon-m1
+          #  python: '3.9.7'
     steps:
     - name: Setup python
       # Needs to be skipped on our self-hosted runners tagged as 'apple-silicon-m1'
@@ -34,7 +34,7 @@ jobs:
       run: |
         source ci/osx_ci.sh
         arm64_set_path_and_python_version ${{ matrix.python }}
-        pip install Cython buildozer
+        pip install Cython pbxproj buildozer
 
 
     - name: Check buildozer installation
