@@ -51,3 +51,6 @@ jobs:
           ls -a
           toolchain create wico ./wico
           open wico-ios/wico.xcodeproj
+
+      - name: Xcode Build
+        uses: devbotsxyz/xcode-build@v1.0.0
