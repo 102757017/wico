@@ -52,8 +52,7 @@ jobs:
           toolchain create wico ./wico
           open wico-ios/wico.xcodeproj
 
-      - name: Setup Debug Session
-        uses: csexton/debugger-action@master
-      #取消15分钟的超时限制
-#      - name: Run a one-line script
-#        run: touch /tmp/keepalive
+      - uses: devbotsxyz/xcode-archive@v1.0.0
+        with:
+          workspace: wico-ios
+          project: wico-ios/wico.xcodeproj
