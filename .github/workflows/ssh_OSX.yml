@@ -28,7 +28,7 @@ jobs:
           #导入的环境变量只在此name下有效
           export PATH=$PATH:/Users/runner/Library/Python/3.9/bin
           export PATH=$PATH:~/.local/bin/
-          brew install pkg-config sdl2 sdl2_image sdl2_ttf sdl2_mixer gstreamer autoconf automake libtool xquartz
+          brew install pkg-config sdl2 sdl2_image sdl2_ttf sdl2_mixer gstreamer autoconf automake libtool
           python3 -m pip install --user --upgrade pip virtualenv kivy-ios Cython buildozer
           brew link libtool
 
