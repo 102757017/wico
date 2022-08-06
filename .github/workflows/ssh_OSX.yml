@@ -47,6 +47,11 @@ jobs:
           toolchain recipes
           toolchain build libzbar openssl
           toolchain build python3 kivy
-          toolchain pip3 install pillow pyzbar camera4kivy
+          toolchain pip3 install pillow pyzbar camera4kivy mysql_connector
           ls -a
 
+      - name: Setup Debug Session
+        uses: csexton/debugger-action@master
+      #取消15分钟的超时限制
+#      - name: Run a one-line script
+#        run: touch /tmp/keepalive
