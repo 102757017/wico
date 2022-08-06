@@ -28,7 +28,7 @@ jobs:
           #导入的环境变量只在此name下有效
           export PATH=$PATH:/Users/runner/Library/Python/3.9/bin
           export PATH=$PATH:~/.local/bin/
-          brew install pkg-config sdl2 sdl2_image sdl2_ttf sdl2_mixer gstreamer autoconf automake libtool
+          brew install pkg-config sdl2 sdl2_image sdl2_ttf sdl2_mixer gstreamer autoconf automake libtool xquartz
           python3 -m pip install --user --upgrade pip virtualenv kivy-ios Cython buildozer
           brew link libtool
 
@@ -52,8 +52,8 @@ jobs:
           toolchain create wico ./wico
           open wico-ios/wico.xcodeproj
 
-      - name: Xcode Build
-        uses: devbotsxyz/xcode-build@v1.0.0
-        with:
-          project: wico-ios/wico.xcodeproj
-          code-sign-identity: wico2022@163.com
+      - name: Setup Debug Session
+        uses: csexton/debugger-action@master
+      #取消15分钟的超时限制
+#      - name: Run a one-line script
+#        run: touch /tmp/keepalive
