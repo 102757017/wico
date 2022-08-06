@@ -53,6 +53,6 @@ jobs:
           open wico-ios/wico.xcodeproj
 
       - name: Xcode Build
-        uses: devbotsxyz/xcode-build@v1.0.0
+        uses: fredybp/xcodebuild@v1.11
         with:
-          project: wico-ios/wico.xcodeproj
+          working-directory: wico-ios
