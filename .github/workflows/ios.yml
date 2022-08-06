@@ -60,7 +60,7 @@ jobs:
     - uses: actions/cache@v2
       with:
         #kivy-ios的dist路径在项目的根目录
-        path: .buildozer
+        path: wico/.buildozer
         key: sfsdf4exgretzghr5rhju65y77mkfmt5ryhye53
 
     - name: buildozer ios debug
