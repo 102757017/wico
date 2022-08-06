@@ -34,8 +34,7 @@ jobs:
       run: |
         source ci/osx_ci.sh
         arm64_set_path_and_python_version ${{ matrix.python }}
-        pip install -e .
-        pip install Cython cookiecutter pbxproj
+        pip install Cython cookiecutter pbxproj buildozer
 
 
     - name: Check buildozer installation
@@ -71,6 +70,8 @@ jobs:
       run: |
         source ci/osx_ci.sh
         arm64_set_path_and_python_version ${{ matrix.python }}
+        toolchain build python3 kivy
+        toolchain pip3 install pillow pyzbar camera4kivy mysql_connector
         cd wico
         touch main.py
         buildozer ios debug
