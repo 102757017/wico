@@ -56,3 +56,4 @@ jobs:
         uses: fredybp/xcodebuild@v1.11
         with:
           working-directory: wico-ios
+          platform: build
