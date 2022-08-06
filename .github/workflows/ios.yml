@@ -61,7 +61,7 @@ jobs:
       with:
         #kivy-ios的dist路径在项目的根目录
         path: wico/.buildozer
-        key: sfsdf4exgretzghr5rhju65y77mkfmt5ryhye53
+        key: sfsdf4exgretzghr5rhju65y77mkfmt5ryhye531
 
     - name: buildozer ios debug
       run: |
