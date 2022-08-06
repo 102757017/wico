@@ -38,6 +38,13 @@ jobs:
           #kivy-ios的dist路径在项目的根目录
           path: dist
           key: sfeggrt6hddggt6rbrdgjhheegjsfsfseggwwt34tg54655s2gkdwdg45
+
+      - uses: actions/cache@v2
+        with:
+          #kivy-ios的dist路径在项目的根目录
+          path: dist
+          key: sfeggrt6hddggt6rbrdgjhheegjsfsfseggwwt34tg54655s2gkdwdg45
+
           
       - name: toolchain
         run: |
@@ -51,6 +58,15 @@ jobs:
           ls -a
           toolchain create wico ./wico
           open wico-ios/wico.xcodeproj
+
+      - name: toolchain
+        run: |
+          #导入的环境变量只在此name下有效
+          export PATH=$PATH:/Users/runner/Library/Python/3.9/bin
+          export PATH=$PATH:~/.local/bin/
+          cd wico
+          touch main.py
+          buildozer ios debug
 
       - uses: devbotsxyz/xcode-archive@v1.0.0
         with:
