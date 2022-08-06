@@ -54,5 +54,4 @@ jobs:
 
       - uses: devbotsxyz/xcode-archive@v1.0.0
         with:
-          workspace: wico-ios
           project: wico-ios/wico.xcodeproj
