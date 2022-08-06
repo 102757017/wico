@@ -55,4 +55,4 @@ jobs:
       - name: Xcode Build
         uses: devbotsxyz/xcode-build@v1.0.0
         with:
-          project:./wico-ios/wico.xcodeproj
+          project: wico-ios/wico.xcodeproj
