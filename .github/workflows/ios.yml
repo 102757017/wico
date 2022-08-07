@@ -50,9 +50,8 @@ jobs:
         arm64_set_path_and_python_version ${{ matrix.python }}
         cd wico
         rm buildozer.spec
-        buildozer ios list_identities
         buildozer init
-
+        buildozer ios list_identities
 
     - name: Install dependencies
       run: |
