@@ -53,8 +53,6 @@ jobs:
         source ci/osx_ci.sh
         arm64_set_path_and_python_version ${{ matrix.python }}
         cd wico
-        rm buildozer.spec
-        buildozer init
         buildozer ios list_identities
 
     - name: Install dependencies
