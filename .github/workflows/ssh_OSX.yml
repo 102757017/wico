@@ -59,15 +59,6 @@ jobs:
           toolchain create wico ./wico
           open wico-ios/wico.xcodeproj
 
-      - name: toolchain
-        run: |
-          #导入的环境变量只在此name下有效
-          export PATH=$PATH:/Users/runner/Library/Python/3.9/bin
-          export PATH=$PATH:~/.local/bin/
-          cd wico
-          touch main.py
-          buildozer ios debug
-
       - uses: devbotsxyz/xcode-archive@v1.0.0
         with:
           project: wico-ios/wico.xcodeproj
