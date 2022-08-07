@@ -38,7 +38,7 @@ jobs:
       run: |
         source ci/osx_ci.sh
         arm64_set_path_and_python_version ${{ matrix.python }}
-        pip install Cython cookiecutter pbxproj buildozer
+        pip install --upgrade pip virtualenv Cython cookiecutter pbxproj buildozer
 
 
     - name: Check buildozer installation
@@ -60,7 +60,6 @@ jobs:
         source ci/osx_ci.sh
         arm64_set_path_and_python_version ${{ matrix.python }}
         brew install pkg-config sdl2 sdl2_image sdl2_ttf sdl2_mixer gstreamer autoconf automake libtool
-        python3 -m pip install --user --upgrade pip virtualenv kivy-ios Cython buildozer
         brew link libtool
 
     - uses: actions/cache@v2
