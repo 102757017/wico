@@ -49,7 +49,7 @@ jobs:
         source ci/osx_ci.sh
         arm64_set_path_and_python_version ${{ matrix.python }}
         cd wico
-        del buildozer.spec
+        rm buildozer.spec
         buildozer ios list_identities
         buildozer init
 
