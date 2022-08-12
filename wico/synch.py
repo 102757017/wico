@@ -129,10 +129,10 @@ def sync_partlist(sqlite_conn,mariadb_conn):
             sqlite_cursor.execute(sqlcmd)
 
             #修改服务器数据库的同步标识
-            sqlcmd="REPLACE INTO partlist VALUES {}".format(value)
-            sqlcmd=sqlcmd.replace("None","NULL")
+            #sqlcmd="REPLACE INTO partlist VALUES {}".format(value)
+            #sqlcmd=sqlcmd.replace("None","NULL")
             #print(sqlcmd)
-            mariadb_cursor.execute(sqlcmd)
+            #mariadb_cursor.execute(sqlcmd)
         
         sqlite_conn.commit()    
         mariadb_conn.commit()
@@ -169,10 +169,10 @@ def sync_seatlist(sqlite_conn,mariadb_conn):
             sqlite_cursor.execute(sqlcmd)
 
             #修改服务器数据库的同步标识
-            sqlcmd="REPLACE INTO seatlist VALUES {}".format(value)
-            sqlcmd=sqlcmd.replace("None","NULL")
+            #sqlcmd="REPLACE INTO seatlist VALUES {}".format(value)
+            #sqlcmd=sqlcmd.replace("None","NULL")
             #print(sqlcmd)
-            mariadb_cursor.execute(sqlcmd)
+            #mariadb_cursor.execute(sqlcmd)
         
         sqlite_conn.commit()    
         mariadb_conn.commit()
@@ -209,10 +209,10 @@ def sync_ngtype(sqlite_conn,mariadb_conn):
             sqlite_cursor.execute(sqlcmd)
 
             #修改服务器数据库的同步标识
-            sqlcmd="REPLACE INTO ngtype VALUES {}".format(value)
-            sqlcmd=sqlcmd.replace("None","NULL")
+            #sqlcmd="REPLACE INTO ngtype VALUES {}".format(value)
+            #sqlcmd=sqlcmd.replace("None","NULL")
             #print(sqlcmd)
-            mariadb_cursor.execute(sqlcmd)
+            #mariadb_cursor.execute(sqlcmd)
         
         sqlite_conn.commit()    
         mariadb_conn.commit()
