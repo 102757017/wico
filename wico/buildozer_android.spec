@@ -51,16 +51,18 @@ requirements = python3, \
                kivy==2.1.0, \
                git+https://github.com/102757017/KivyMD.git@master, \
                pillow, \
+               sqlite3, \
                #sdl2_ttf==2.0.15, \
                android, \
                certifi, \
-               openssl, \               
+               openssl, \
                #opencv-python, \
                pyzbar, \
                libzbar, \
                mysql_connector, \
                camera4kivy, \
-               gestures4kivy
+               gestures4kivy, \
+               sentry-sdk
 
 # (str) Supported orientation (one of landscape, sensorLandscape, portrait or all)
 orientation = all
