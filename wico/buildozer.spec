@@ -72,7 +72,7 @@ orientation = all
 fullscreen = 0
 
 # (int) Target Android API, should be as high as possible.
-#android.api = 32
+android.api = 32
 
 # (bool) If True, then skip trying to update the Android sdk
 # This can be useful to avoid excess Internet downloads or save time
