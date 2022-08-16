@@ -144,7 +144,7 @@ class DemoApp(MDApp):
 
     def goback(self):       
         self.root.current = 'main'
-        Clock.schedule_once(self.root.CameraScreen.ids.qrreader.disconnect_camera)
+        Clock.schedule_once(lambda a: self.root.CameraScreen.ids.qrreader.disconnect_camera)
 
         #self.root.EnterNgIfo.ids.PartType1.text="电动滑轨"
         #self.root.EnterNgIfo.ids.WicoPartNumber1.text="23-4739141-2"
@@ -156,7 +156,7 @@ class DemoApp(MDApp):
         if len(args[0])!=0:
             self.root.EnterNgIfo.ids.Lot1.text=args[0]
             self.root.current = 'main'
-            Clock.schedule_once(self.root.CameraScreen.ids.qrreader.disconnect_camera)
+            Clock.schedule_once(lambda a: self.root.CameraScreen.ids.qrreader.disconnect_camera)
 
         
     
