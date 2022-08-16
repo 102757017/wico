@@ -24,9 +24,8 @@ jobs:
       - name: caches
         uses: actions/cache@v2
         with:
-          path: .buildozer
-          key: dggrg34sbdfbh54zvbrthdgevbxbhrtvbfs
-          workdir: wico
+          path: wico/.buildozer
+          key: sdfsfnytj56n5sbbb65ubwt5fhs
 
       - name: Build with Buildozer
         uses: ArtemSBulgakov/buildozer-action@v1.1.3
