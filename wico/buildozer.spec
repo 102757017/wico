@@ -62,7 +62,8 @@ requirements = python3, \
                mysql_connector, \
                camera4kivy, \
                gestures4kivy, \
-               sentry-sdk
+               sentry-sdk, \
+               urllib3
 
 # (str) Supported orientation (one of landscape, sensorLandscape, portrait or all)
 orientation = all
