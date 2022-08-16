@@ -21,12 +21,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2 
 
-    - uses: actions/cache@v2
-      with:
-        #kivy-ios的dist路径在项目的根目录
-        path: .buildozer
-        key: dggrg34sbdfbh54zvbrthdgevbxbhrtvbfs
-        workdir: wico
+      - name: caches
+        uses: actions/cache@v2
+        with:
+          path: .buildozer
+          key: dggrg34sbdfbh54zvbrthdgevbxbhrtvbfs
+          workdir: wico
 
       - name: Build with Buildozer
         uses: ArtemSBulgakov/buildozer-action@v1.1.3
