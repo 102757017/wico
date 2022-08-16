@@ -19,6 +19,9 @@ from kivy.clock import Clock
 from kivy.clock import mainthread
 from android_permissions import AndroidPermissions
 import sentry_sdk
+import ssl
+
+
 sentry_sdk.init(
     dsn="https://c2b64348a28e4568bcdea9565eb25b4c@o1350401.ingest.sentry.io/6649619",
 
@@ -37,7 +40,7 @@ WindowBase.softinput_mode='below_target'
 os.environ['SSL_CERT_FILE'] = certifi.where()
 os.environ['SSL_CERT_DIR'] = str(Path(certifi.where()).parent)
 
-Logger.info("certifi.where():"+certifi.where())
+Logger.info("SSL:"+str(ssl.get_default_verify_paths()))
 
 #  所有基于模块的使用到__file__属性的代码，在源码运行时表示的是当前脚本的绝对路径，但是用pyinstaller打包后就是当前模块的模块名（即文件名xxx.py）
 #  因此需要用以下代码来获取exe的绝对路径
@@ -140,13 +143,13 @@ class DemoApp(MDApp):
     @mainthread
     def start_cam(self):
         self.root.current = 'camera'
-        Clock.schedule_once(self.connect_camera)
+        #Clock.schedule_once(self.connect_camera)
         
 
     @mainthread
     def goback(self):       
         self.root.current = 'main'
-        self.root.CameraScreen.ids.qrreader.disconnect_camera()
+        #self.root.CameraScreen.ids.qrreader.disconnect_camera()
 
         #self.root.EnterNgIfo.ids.PartType1.text="电动滑轨"
         #self.root.EnterNgIfo.ids.WicoPartNumber1.text="23-4739141-2"
@@ -158,7 +161,7 @@ class DemoApp(MDApp):
         if len(args[0])!=0:
             self.root.EnterNgIfo.ids.Lot1.text=args[0]
             self.root.current = 'main'
-            self.root.CameraScreen.ids.qrreader.disconnect_camera()
+            #self.root.CameraScreen.ids.qrreader.disconnect_camera()
 
         
     
