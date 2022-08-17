@@ -362,7 +362,38 @@ def uploade_ngrecord(NgTime, CarModel, SeatModel, WicoPartNumber, TsPartNumber, 
     values = cursor.fetchall()
     cursor.close()
     conn.commit()
+    add_seat(CarModel,SeatModel)
     return RepairMethod
+
+#添加不良记录后同步添加该座椅的产量记录。
+def add_seat(CarModel,SeatModel):
+    C_M_Date=datetime.datetime.now()-datetime.timedelta(hours=8)
+    C_M_Date=C_M_Date.strftime("%Y-%m-%d")
+    cursor = conn.cursor()
+    sqlcmd='''
+    SELECT
+    C_M_Date,
+    CarModel,
+    SeatModel,
+    Day,
+    Night,
+    Sync 
+    FROM
+    volume
+    WHERE
+    C_M_Date = "{}" AND
+    CarModel = "{}" AND
+    SeatModel  = "{}"
+    '''.format(C_M_Date,CarModel,SeatModel)
+    cursor.execute(sqlcmd)
+    values = cursor.fetchall()
+    cursor.close()
+    
+    if values==[]:
+        data=(C_M_Date, CarModel,SeatModel, '0', '0', 0)
+        submit_volume(data)
+    return values
+
 
 
 def query_volume_local(C_M_Date):
@@ -476,6 +507,7 @@ def submit_volume(data):
     {}
     '''.format(data)
     #print(sqlcmd)
+    #print(data)
     cursor.execute(sqlcmd)
     values = cursor.fetchall()
     cursor.close()
@@ -517,6 +549,9 @@ if __name__=="__main__":
     pprint.pprint(PartPicUrl)
 
     a=search_barcode("21-3390210W-2","1")
+    print(a)
+    
+    a=add_seat("2022-08-17","2LQ","电动-前排-左席座椅（8WAY带记忆）")
     print(a)
     '''
     WicoPartNumber,TsPartNumber,PartName,PartPicUrl,Production_Line,Regular=get_DetailByName("2VH","手动-前排-左席座椅","手动滑轨","SLIDE ADJR OUT L,FR SEAT")

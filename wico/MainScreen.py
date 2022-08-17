@@ -49,7 +49,10 @@ class MainScreen(Screen):
             t1=threading.Thread(target=instance_tab.update())
             t1.start()
             
-
+        if instance_tab.name=="outputinfo":
+            instance_tab.ids.quantity.clear_widgets()
+            instance_tab.load_volume()
+            
 from EnterNgIfo import EnterNgIfo
 from Manual_input import Manual_input
 from OutPutInfo import OutPutInfo

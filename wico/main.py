@@ -39,6 +39,7 @@ WindowBase.softinput_mode='below_target'
 #不设置此项,图片将无法显示
 os.environ['SSL_CERT_FILE'] = certifi.where()
 os.environ['SSL_CERT_DIR'] = str(Path(certifi.where()).parent)
+os.environ["REQUESTS_CA_BUNDLE"]= certifi.where()
 
 Logger.info("SSL:"+str(ssl.get_default_verify_paths()))
 

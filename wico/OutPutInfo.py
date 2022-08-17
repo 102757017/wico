@@ -56,10 +56,12 @@ class OutPutInfo(MDFloatLayout, MDTabsBase):
     def __init__(self, **kwargs):
         #一定要注意这里要加super，才能把现有的新初始化方法覆盖掉继承来的旧初始化方法
         super().__init__(**kwargs)
-        #self.root=Builder.load_file( 'outputinfo.kv' )
+        self.name="outputinfo"
         print(self)
         Clock.schedule_interval(self.update_clock, 60)
         self.load_volume()
+        
+
 
         
     def load_volume(self):
