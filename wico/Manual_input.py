@@ -67,6 +67,7 @@ class Manual_input(MDFloatLayout, MDTabsBase):
         self.ids.lot.text=""
         self.ids.NgInfo.text=""
         self.ids.RepairMethod1.text=""
+        self.ids.part_image.source="http://gitee.com/sunny_ho/image_bed/raw/master/wico/wico.jpg"
 
     def show_SeatModel(self):
         bs_menu_1 = MDListBottomSheet()
@@ -86,6 +87,7 @@ class Manual_input(MDFloatLayout, MDTabsBase):
         self.ids.lot.text=""
         self.ids.NgInfo.text=""
         self.ids.RepairMethod1.text=""
+        self.ids.part_image.source="http://gitee.com/sunny_ho/image_bed/raw/master/wico/wico.jpg"
 
 
     def show_product_type(self):
@@ -105,6 +107,7 @@ class Manual_input(MDFloatLayout, MDTabsBase):
         self.ids.lot.text=""
         self.ids.NgInfo.text=""
         self.ids.RepairMethod1.text=""
+        self.ids.part_image.source="http://gitee.com/sunny_ho/image_bed/raw/master/wico/wico.jpg"
 
 
     def show_WicoPartNumber(self):
