@@ -48,7 +48,15 @@ root：指当前规则中的基本小部件/模板,root只代表其上层被<>�
 self：始终引用当前小部件
 '''
 
-
+#button内的文本自动换行
+class WrappedButton(Button):
+    # Based on Tshirtman's answer
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.bind(
+            width=lambda *x:
+            self.setter('text_size')(self, (self.width, None)),
+            texture_size=lambda *x: self.setter('height')(self, self.texture_size[1]))
 
 
 class OutPutInfo(MDFloatLayout, MDTabsBase):
@@ -76,10 +84,8 @@ class OutPutInfo(MDFloatLayout, MDTabsBase):
         self.Night_rows=[]
         for x in values:
             HB = BoxLayout(orientation='horizontal')
-            t1 = Button(text=x[1],font_name="DroidSansFallback.ttf",size_hint_x=0.1)
-            t2 = Button(text=x[2],font_name="DroidSansFallback.ttf",size_hint_x=0.5)
-            #按钮内文本自动换行
-            t2.text_size=(t2.width+30,None)
+            t1 = WrappedButton(text=x[1],font_name="DroidSansFallback.ttf",size_hint_x=0.1)
+            t2 = WrappedButton(text=x[2],font_name="DroidSansFallback.ttf",size_hint_x=0.5)
             t3 = TextInput(text=str(x[3]),size_hint_x=0.2,halign="center",multiline=False,input_filter="int")
             t4 = TextInput(text=str(x[4]),size_hint_x=0.2,halign="center",multiline=False,input_filter="int")
 
@@ -130,9 +136,8 @@ class OutPutInfo(MDFloatLayout, MDTabsBase):
 
     def add_quantity(self):
         HB = BoxLayout(orientation='horizontal')
-        t1 = Button(text='',font_name="DroidSansFallback.ttf",size_hint_x=0.1)
-        t2 = Button(text='',font_name="DroidSansFallback.ttf",size_hint_x=0.5)
-        t2.text_size=(t2.width+30,None)
+        t1 = WrappedButton(text='',font_name="DroidSansFallback.ttf",size_hint_x=0.1)
+        t2 = WrappedButton(text='',font_name="DroidSansFallback.ttf",size_hint_x=0.5)
         t3 = TextInput(text="0",size_hint_x=0.2,halign="center",multiline=False,input_filter="int")
         t4 = TextInput(text="0",size_hint_x=0.2,halign="center",multiline=False,input_filter="int")
 
