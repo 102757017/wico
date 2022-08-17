@@ -132,6 +132,7 @@ class OutPutInfo(MDFloatLayout, MDTabsBase):
         HB = BoxLayout(orientation='horizontal')
         t1 = Button(text='',font_name="DroidSansFallback.ttf",size_hint_x=0.1)
         t2 = Button(text='',font_name="DroidSansFallback.ttf",size_hint_x=0.5)
+        t2.text_size=(t2.width+30,None)
         t3 = TextInput(text="0",size_hint_x=0.2,halign="center",multiline=False,input_filter="int")
         t4 = TextInput(text="0",size_hint_x=0.2,halign="center",multiline=False,input_filter="int")
 

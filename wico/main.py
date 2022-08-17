@@ -40,7 +40,7 @@ WindowBase.softinput_mode='below_target'
 os.environ['SSL_CERT_FILE'] = certifi.where()
 os.environ['SSL_CERT_DIR'] = str(Path(certifi.where()).parent)
 os.environ["REQUESTS_CA_BUNDLE"]= certifi.where()
-
+ssl._create_default_https_context = ssl._create_unverified_context
 Logger.info("SSL:"+str(ssl.get_default_verify_paths()))
 
 #  所有基于模块的使用到__file__属性的代码，在源码运行时表示的是当前脚本的绝对路径，但是用pyinstaller打包后就是当前模块的模块名（即文件名xxx.py）
