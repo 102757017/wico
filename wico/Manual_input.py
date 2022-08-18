@@ -101,13 +101,20 @@ class Manual_input(MDFloatLayout, MDTabsBase):
         bs_menu_1.open()
     def select_product_type(self, *args):
         self.ids.PartType.text=args[0]
-        self.ids.WicoPartNumber.text=""
-        self.ids.TsPartNumber.text=""
-        self.ids.PartName.text=""
+        WicoPartNumber,TsPartNumber,PartName,Supplier,Regular,Production_Line,PartPicUrl=get_PartNumberName(self.ids.CarModel1.text,self.ids.SeatModel.text,self.ids.PartType.text)
+        if len(WicoPartNumber)==1:
+            self.ids.WicoPartNumber.text=WicoPartNumber[0]
+            self.ids.TsPartNumber.text=TsPartNumber[0]
+            self.ids.PartName.text=PartName[0]
+            self.ids.part_image.source=PartPicUrl[0]
+        else:
+            self.ids.WicoPartNumber.text=""
+            self.ids.TsPartNumber.text=""
+            self.ids.PartName.text=""
+            self.ids.part_image.source="http://gitee.com/sunny_ho/image_bed/raw/master/wico/wico.jpg"
         self.ids.lot.text=""
         self.ids.NgInfo.text=""
         self.ids.RepairMethod1.text=""
-        self.ids.part_image.source="http://gitee.com/sunny_ho/image_bed/raw/master/wico/wico.jpg"
 
 
     def show_WicoPartNumber(self):
