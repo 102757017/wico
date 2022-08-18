@@ -20,7 +20,7 @@ from kivy.clock import Clock
 from functools import partial
 from kivymd.uix.floatlayout import MDFloatLayout
 from kivymd.uix.tab import MDTabsBase
-from synch import sync_all
+from synch import sync_ngrecord_volume
 from pathlib import Path
 from kivy.logger import Logger
 import threading
@@ -187,7 +187,7 @@ class OutPutInfo(MDFloatLayout, MDTabsBase):
         self.ids.submit.disabled=True
         try:
             submit_volume(data)
-            f=sync_all()
+            f=sync_ngrecord_volume()
             if f==False:
                 Clock.schedule_once(lambda a: toast("网络不好,稍后再试"))
             else:

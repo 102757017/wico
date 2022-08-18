@@ -13,14 +13,13 @@ from kivy.logger import Logger
 from pathlib import Path
 from kivy.core.window import WindowBase
 import threading
-import certifi
 from kivy.config import Config
 from kivy.clock import Clock
 from kivy.clock import mainthread
 from android_permissions import AndroidPermissions
 import sentry_sdk
 import ssl
-
+import certifi
 
 sentry_sdk.init(
     dsn="https://c2b64348a28e4568bcdea9565eb25b4c@o1350401.ingest.sentry.io/6649619",

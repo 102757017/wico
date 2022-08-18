@@ -17,7 +17,7 @@ from kivymd.uix.tab import MDTabsBase
 from kivymd.uix.textfield import MDTextField
 from barcode_analysis import analysis_part_lable
 import re
-from synch import sync_all
+from synch import sync_ngrecord_volume
 from pathlib import Path
 from kivy.logger import Logger
 
@@ -257,7 +257,7 @@ class Manual_input(MDFloatLayout, MDTabsBase):
                                         Production_Line,
                                         0)
                         #toast("数据在本地保存完成")
-                        f=sync_all()
+                        f=sync_ngrecord_volume()
                         if f==True:
                             toast("数据已上传到服务器")
                         else:
@@ -287,7 +287,7 @@ class Manual_input(MDFloatLayout, MDTabsBase):
                                 Production_Line,
                                 0)
                 #toast("数据在本地保存完成")
-                f=sync_all()
+                f=sync_ngrecord_volume()
                 if f==True:
                     toast("数据已上传到服务器")
                 else:

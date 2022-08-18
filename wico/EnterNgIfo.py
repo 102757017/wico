@@ -15,7 +15,7 @@ import sys
 from functools import partial
 from kivymd.uix.floatlayout import MDFloatLayout
 from kivymd.uix.tab import MDTabsBase
-from synch import sync_all
+from synch import sync_ngrecord_volume
 from kivy.logger import Logger
 from pathlib import Path
 
@@ -132,7 +132,7 @@ class EnterNgIfo(MDFloatLayout, MDTabsBase):
                                  Production_Line,
                                  0)
                 #toast("数据在本地保存完成")
-                f=sync_all()
+                f=sync_ngrecord_volume()
                 if f==True:
                     toast("数据已上传到服务器")
                 else:

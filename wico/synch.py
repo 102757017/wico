@@ -255,6 +255,27 @@ def sync_all():
         print(traceback.format_exc())
         return False
 
+def sync_ngrecord_volume():
+    # 连接到SQLite数据库
+    # 数据库文件是test.db
+    # 如果文件不存在，会自动在当前目录创建:
+    sqlite_conn = sqlite3.connect(f"{os.environ['WICO_ROOT']}/db.db")
+    
+    try: 
+        mariadb_conn = mariadb.connect( 
+        user="hewei", 
+        password="wico2022", 
+        host="sunnyho.f3322.net", 
+        port=3306, 
+        database="pyytest" )
+        sync_ngrecord(sqlite_conn,mariadb_conn)
+        #print("NG品记录已同步完成")
+        sync_volume(sqlite_conn,mariadb_conn)
+        #print("客户产量已同步完成")
+        return True
+    except Exception:
+        print(traceback.format_exc())
+        return False
     
 
 if __name__=="__main__":
