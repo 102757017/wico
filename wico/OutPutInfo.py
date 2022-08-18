@@ -138,8 +138,8 @@ class OutPutInfo(MDFloatLayout, MDTabsBase):
         HB = BoxLayout(orientation='horizontal')
         t1 = WrappedButton(text='',font_name="DroidSansFallback.ttf",size_hint_x=0.1)
         t2 = WrappedButton(text='',font_name="DroidSansFallback.ttf",size_hint_x=0.5)
-        t3 = TextInput(text="0",size_hint_x=0.2,halign="center",multiline=False,input_filter="int")
-        t4 = TextInput(text="0",size_hint_x=0.2,halign="center",multiline=False,input_filter="int")
+        t3 = TextInput(text="",size_hint_x=0.2,halign="center",multiline=False,input_filter="int")
+        t4 = TextInput(text="",size_hint_x=0.2,halign="center",multiline=False,input_filter="int")
 
         
         t1.bind(on_press=partial(self.all_model2, t1))
