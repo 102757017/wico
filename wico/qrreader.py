@@ -47,7 +47,7 @@ class QRReader(Preview, CommonGestures):
         pil_image = Image.frombytes(mode='RGBA', size=image_size, data= pixels)
         barcodes = pyzbar.decode(pil_image)
         found = []
-        #self.Data.lot="13M0817K064GW"
+        #self.Data.lot="1TZA835A001GW"
         for barcode in barcodes:
             text = barcode.data.decode('utf-8')
             self.Data.lot=text

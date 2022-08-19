@@ -55,9 +55,14 @@ class EnterNgIfo(MDFloatLayout, MDTabsBase):
         bs_menu_1.open()
     def select_model1(self, *args):
         self.ids.CarModel1.text=args[0]
-        self.ids.SeatModel1.text=""
         self.ids.NgInfo1.text=""
         self.ids.RepairMethod1.text=""
+
+        SeatModel=get_SeatModelBybar(self.ids.WicoPartNumber1.text,args[0])
+        if len(SeatModel)==1:
+            self.ids.SeatModel1.text=SeatModel[0]
+        else:
+            self.ids.SeatModel1.text=""
 
     def show_SeatModel1(self):
         bs_menu_1 = MDListBottomSheet()
@@ -169,13 +174,20 @@ class EnterNgIfo(MDFloatLayout, MDTabsBase):
         self.ids.TsPartNumber1.text=TsPartNumber
         self.ids.PartName1.text=PartName
         self.ids.part_image.source=PartPicUrl
+        self.Supplier1=Supplier
+        self.Production_Line1=Production_Line
+        self.ManufactureDate1=ManufactureDate
         self.ids.CarModel1.text=""
         self.ids.SeatModel1.text=""
         self.ids.NgInfo1.text=""
         self.ids.RepairMethod1.text=""
-        self.Supplier1=Supplier
-        self.Production_Line1=Production_Line
-        self.ManufactureDate1=ManufactureDate
+        
+        if len(CarModel)==1:
+            self.ids.CarModel1.text=CarModel[0]
+            SeatModel=get_SeatModelBybar(WicoPartNumber,CarModel[0])
+            if len(SeatModel)==1:
+                self.ids.SeatModel1.text=SeatModel[0]
+
         toast("{}线{}生产的产品".format(Production_Line,ManufactureDate))
         
 
