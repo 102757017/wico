@@ -86,8 +86,8 @@ class OutPutInfo(MDFloatLayout, MDTabsBase):
             HB = BoxLayout(orientation='horizontal')
             t1 = WrappedButton(text=x[1],font_name="DroidSansFallback.ttf",size_hint_x=0.1)
             t2 = WrappedButton(text=x[2],font_name="DroidSansFallback.ttf",size_hint_x=0.5)
-            t3 = TextInput(text=str(x[3]),size_hint_x=0.2,halign="center",multiline=False,input_filter="int")
-            t4 = TextInput(text=str(x[4]),size_hint_x=0.2,halign="center",multiline=False,input_filter="int")
+            t3 = TextInput(text=str(x[3]),size_hint_x=0.2,halign="center",multiline=False,input_filter="int",input_type="number")
+            t4 = TextInput(text=str(x[4]),size_hint_x=0.2,halign="center",multiline=False,input_filter="int",input_type="number")
 
             t1.bind(on_press=partial(self.all_model2, t1))
             t2.bind(on_press=partial(self.show_SeatModel2, t2))
@@ -138,8 +138,8 @@ class OutPutInfo(MDFloatLayout, MDTabsBase):
         HB = BoxLayout(orientation='horizontal')
         t1 = WrappedButton(text='',font_name="DroidSansFallback.ttf",size_hint_x=0.1)
         t2 = WrappedButton(text='',font_name="DroidSansFallback.ttf",size_hint_x=0.5)
-        t3 = TextInput(text="",size_hint_x=0.2,halign="center",multiline=False,input_filter="int")
-        t4 = TextInput(text="",size_hint_x=0.2,halign="center",multiline=False,input_filter="int")
+        t3 = TextInput(text="",size_hint_x=0.2,halign="center",multiline=False,input_filter="int",input_type="number")
+        t4 = TextInput(text="",size_hint_x=0.2,halign="center",multiline=False,input_filter="int",input_type="number")
 
         
         t1.bind(on_press=partial(self.all_model2, t1))
@@ -163,7 +163,7 @@ class OutPutInfo(MDFloatLayout, MDTabsBase):
         Date=self.ids.date.text
         data=[]
         for i in range(len(self.CarModel_rows)):
-            if self.SeatModel_rows[i].text !="" and (self.Day_rows[i].text !="0" or self.Night_rows[i].text !="0"):
+            if self.SeatModel_rows[i].text !="" and (self.Day_rows[i].text !="" or self.Night_rows[i].text !=""):
                 d=(
                     Date,
                     self.CarModel_rows[i].text,
