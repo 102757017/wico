@@ -149,7 +149,7 @@ class DemoApp(MDApp):
     @mainthread
     def goback(self):       
         self.root.current = 'main'
-        #self.root.CameraScreen.ids.qrreader.disconnect_camera()
+        self.root.CameraScreen.ids.qrreader.disconnect_camera()
 
         #self.root.EnterNgIfo.ids.PartType1.text="电动滑轨"
         #self.root.EnterNgIfo.ids.WicoPartNumber1.text="23-4739141-2"
