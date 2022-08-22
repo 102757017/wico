@@ -134,7 +134,7 @@ class DemoApp(MDApp):
         Clock.schedule_once(self.connect_camera)
 
     def connect_camera(self,dt):
-        self.root.CameraScreen.ids.qrreader.connect_camera(analyze_pixels_resolution = 640,
+        self.root.CameraScreen.ids.qrreader.connect_camera(analyze_pixels_resolution = 1024,
                                      enable_analyze_pixels = True)
 
     def on_stop(self):
