@@ -57,9 +57,9 @@ class Manual_input(MDFloatLayout, MDTabsBase):
         for item in CarModel:
             bs_menu_1.add_item(item,callback=lambda x, y=item: self.select_model1(y))                
         bs_menu_1.open()
-        bs_menu_1.dismiss()
-        bs_menu_1.bg_color=(125,155,155)
-        bs_menu_1.open()
+        #bs_menu_1.dismiss()
+        #bs_menu_1.bg_color=(125,155,155)
+        #bs_menu_1.open()
         
 
     def select_model1(self, *args):
