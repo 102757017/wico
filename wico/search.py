@@ -516,8 +516,6 @@ def submit_volume(data):
 
 
 
-
-
 # 提交事务:execute后数据已经进入了数据库,但是如果最后没有commit 的话已经进入数据库的数据会被清除掉，自动回滚
 #conn.commit()
 
@@ -551,8 +549,7 @@ if __name__=="__main__":
     a=search_barcode("21-3390210W-2","1")
     print(a)
     
-    a=add_seat("2022-08-17","2LQ","电动-前排-左席座椅（8WAY带记忆）")
-    print(a)
+
     '''
     WicoPartNumber,TsPartNumber,PartName,PartPicUrl,Production_Line,Regular=get_DetailByName("2VH","手动-前排-左席座椅","手动滑轨","SLIDE ADJR OUT L,FR SEAT")
     print(WicoPartNumber,TsPartNumber,PartName,PartPicUrl,Production_Line,Regular)

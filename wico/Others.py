@@ -19,6 +19,7 @@ from email.header import Header
 from email.mime.application import MIMEApplication
 from pathlib import Path
 from kivy.logger import Logger
+from synch import overlap
 
 #  所有基于模块的使用到__file__属性的代码，在源码运行时表示的是当前脚本的绝对路径，但是用pyinstaller打包后就是当前模块的模块名（即文件名xxx.py）
 #  因此需要用以下代码来获取exe的绝对路径
@@ -119,6 +120,11 @@ class Others(MDFloatLayout, MDTabsBase):
         server.login(from_addr, password)
         server.sendmail(from_addr, [to_addr], msg.as_string())
         self.ids.content.text=""
+        self.ids.submit_database.disabled=False
+
+    def async_database(self, *args):
+        self.ids.submit_database.disabled=True
+        overlap()
         self.ids.submit_database.disabled=False
 
 

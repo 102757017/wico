@@ -277,6 +277,16 @@ def sync_ngrecord_volume():
         print(traceback.format_exc())
         return False
     
+def overlap():
+    sqlite_conn = sqlite3.connect(f"{os.environ['WICO_ROOT']}/db.db")
+    cursor = sqlite_conn.cursor()
+    cursor.execute("delete from partlist")
+    cursor.execute("delete from seatlist")
+    cursor.execute("delete from ngtype")
+    sqlite_conn.commit()
+    sync_all()
+    cursor.close()
+
 
 if __name__=="__main__":
     a=sync_all()

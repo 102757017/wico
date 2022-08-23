@@ -49,14 +49,19 @@ class UPPER_TEXT(MDTextField):
 
 
 class Manual_input(MDFloatLayout, MDTabsBase):
+    
     def show_model1(self):
         bs_menu_1 = MDListBottomSheet()
-        scroll = ScrollView()
         #CarModel=["2FW","2HY","2VH","2VP","2WB","2YC","2YN","2YS","2YT","3BS"]
         CarModel=get_CarModel()
         for item in CarModel:
             bs_menu_1.add_item(item,callback=lambda x, y=item: self.select_model1(y))                
         bs_menu_1.open()
+        bs_menu_1.dismiss()
+        bs_menu_1.bg_color=(125,155,155)
+        bs_menu_1.open()
+        
+
     def select_model1(self, *args):
         self.ids.CarModel1.text=args[0]
         self.ids.SeatModel.text=""

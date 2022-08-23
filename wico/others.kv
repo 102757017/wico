@@ -26,7 +26,7 @@
             pos_hint: {"center_x": .5}
 
         MDBoxLayout:
-            orientation: "horizontal"
+            orientation: "vertical"
             adaptive_height: True
             spacing: "10dp"
             pos_hint: {"center_x": .5}
@@ -40,8 +40,8 @@
 
             MDRaisedButton:
                 id:submit_database
-                text: "提交本机数据库（管理员debug时使用）"
-                on_release: Thread(target=root.send_database).start()
+                text: "同步数据库"
+                on_release: Thread(target=root.async_database).start()
 
 
 
