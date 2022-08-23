@@ -112,6 +112,9 @@ class Manual_input(MDFloatLayout, MDTabsBase):
             self.ids.TsPartNumber.text=TsPartNumber[0]
             self.ids.PartName.text=PartName[0]
             self.ids.part_image.source=PartPicUrl[0]
+            self.Supplier=Supplier[0]
+            self.Regular=Regular[0]
+            self.Production_Line=Production_Line[0]
         else:
             self.ids.WicoPartNumber.text=""
             self.ids.TsPartNumber.text=""
