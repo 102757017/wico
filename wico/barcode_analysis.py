@@ -127,9 +127,9 @@ def analysis_part_lable(lable,Regular):
     if Regular=="([0-9]{2})([A-L])([0-3][0-9])([A-C]) ([0-9]{3})":
         date=imasen_lable(result)
         line=""
-    
+
     #根据正则表达式的长度匹配条码规则，判断是那种类型的条码，进入不同的解析函数
-    if len(Regular)==64:
+    if len(Regular)==70:
         date,line=imasen_barcode(result)
         
     if len(Regular)==36:
@@ -152,7 +152,7 @@ if __name__ == '__main__':
     part_number,line,date=analysis_code(t)
     print(part_number,line,date)
 
-    line,date=analysis_part_lable("13M0817K064GW","13M0([1-9A-E])1([1-9A-C])([1-9A-X])([0-9A-F]{3})([0-9A-Z])([WT])")
+    line,date=analysis_part_lable("1TBA838J0307W","1TBA([1-9A-E])3([1-9A-C])([1-9A-HJ-NP-X])([0-9A-F]{3})([0-9A-Z])([WT])")
     print(line,date)
 
 

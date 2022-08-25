@@ -238,6 +238,8 @@ class Manual_input(MDFloatLayout, MDTabsBase):
             Supplier=self.Supplier
             NgInfo=self.ids.NgInfo.text
             RepairMethod=self.ids.RepairMethod1.text
+            lable=self.ids.lot.text
+            Regular=self.Regular
             Production_Line=self.Production_Line
             Lot=self.ids.lot.text
             ManufactureDate=""
@@ -280,7 +282,7 @@ class Manual_input(MDFloatLayout, MDTabsBase):
 
                         self.ids.RepairMethod1.text =""
                         self.ids.NgInfo.text =""
-                        self.ids.lot.text =""
+
                     else:
                         toast("输入的批次号与本产品批次号格式不符,请重新输入批次号")
                 else:
@@ -309,7 +311,7 @@ class Manual_input(MDFloatLayout, MDTabsBase):
                     toast("数据上传到服务器失败，稍后重新启动app将再次尝试上传")
                 self.ids.RepairMethod1.text =""
                 self.ids.NgInfo.text =""
-                self.ids.lot.text =""
+
         else:
             toast("请将表单填写完整后再上传")
 
