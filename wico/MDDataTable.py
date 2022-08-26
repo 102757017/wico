@@ -36,7 +36,8 @@ class Nginfo_tables(MDFloatLayout, MDTabsBase):
                 ("[size=25]批次号", dp(18)),
                 ("[size=25]生产日期", dp(18)),
             ],
-            row_data=info
+            row_data=info,
+            rows_num=20
             )
         self.data_tables.bind(on_row_press=self.on_row_press)
         self.data_tables.bind(on_check_press=self.on_check_press)

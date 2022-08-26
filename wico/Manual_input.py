@@ -280,8 +280,6 @@ class Manual_input(MDFloatLayout, MDTabsBase):
                         else:
                             toast("数据上传到服务器失败，稍后重新启动app将再次尝试上传")
 
-                        self.ids.RepairMethod1.text =""
-                        self.ids.NgInfo.text =""
 
                     else:
                         toast("输入的批次号与本产品批次号格式不符,请重新输入批次号")
@@ -309,8 +307,6 @@ class Manual_input(MDFloatLayout, MDTabsBase):
                     toast("数据已上传到服务器")
                 else:
                     toast("数据上传到服务器失败，稍后重新启动app将再次尝试上传")
-                self.ids.RepairMethod1.text =""
-                self.ids.NgInfo.text =""
 
         else:
             toast("请将表单填写完整后再上传")

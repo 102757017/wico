@@ -131,11 +131,11 @@ class DemoApp(MDApp):
     def start_app(self):
         self.dont_gc = None
         # Can't connect camera till after on_start()
-        Clock.schedule_once(self.connect_camera)
+        #Clock.schedule_once(self.connect_camera)
+        
 
     def connect_camera(self,dt):
-        self.root.CameraScreen.ids.qrreader.connect_camera(analyze_pixels_resolution = 1024,
-                                     enable_analyze_pixels = True)
+        self.root.CameraScreen.ids.qrreader.connect_camera(enable_analyze_pixels = True)
 
     def on_stop(self):
         self.root.CameraScreen.ids.qrreader.disconnect_camera()
@@ -144,7 +144,7 @@ class DemoApp(MDApp):
     def start_cam(self):
         self.root.current = 'camera'
         if self.root.CameraScreen.ids.qrreader.camera_connected == False:
-            Clock.schedule_once(self.connect_camera)
+            self.connect_camera(self)
         
 
     @mainthread
