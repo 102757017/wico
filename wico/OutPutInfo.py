@@ -71,7 +71,7 @@ class OutPutInfo(MDFloatLayout, MDTabsBase):
         print(self)
         self.clock_variable=Clock.schedule_interval(self.update_clock, 60)
         self.load_volume()
-        
+
     def show_date_picker(self):
         dialog = MDDatePicker()
         dialog.bind(on_save=self.set_previous_date)
@@ -79,7 +79,12 @@ class OutPutInfo(MDFloatLayout, MDTabsBase):
 
     def set_previous_date(self, instance, value, date_rang):
         self.ids.date.text = (f"{value.year}-{value.month}-{value.day}")
-        self.clock_variable.cancel()
+        t=datetime.datetime.strftime(datetime.datetime.now()-datetime.timedelta(hours=8), "%Y-%m-%d")
+        if self.ids.date.text==t:
+            if self.clock_variable==None:
+                self.clock_variable=Clock.schedule_interval(self.update_clock, 60)
+        else:
+            self.clock_variable.cancel()
         self.ids.quantity.clear_widgets()
         self.load_volume()
 

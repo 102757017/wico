@@ -20,6 +20,9 @@ import re
 from synch import sync_ngrecord_volume
 from pathlib import Path
 from kivy.logger import Logger
+from kivymd.uix.pickers import MDDatePicker
+from kivy.clock import Clock
+
 
 
 #  所有基于模块的使用到__file__属性的代码，在源码运行时表示的是当前脚本的绝对路径，但是用pyinstaller打包后就是当前模块的模块名（即文件名xxx.py）
@@ -49,6 +52,34 @@ class UPPER_TEXT(MDTextField):
 
 
 class Manual_input(MDFloatLayout, MDTabsBase):
+    def __init__(self, **kwargs):
+        #一定要注意这里要加super，才能把现有的新初始化方法覆盖掉继承来的旧初始化方法
+        super().__init__(**kwargs)
+        self.clock_variable=Clock.schedule_interval(self.update_clock, 1)
+
+    def show_date_picker(self):
+        dialog = MDDatePicker()
+        dialog.bind(on_save=self.set_previous_date)
+        dialog.open()
+
+    def set_previous_date(self, instance, value, date_rang):
+        self.ids.date.text = (f"{value.year}-{value.month}-{value.day}")
+        t=datetime.datetime.now()-datetime.timedelta(hours=8)
+        if value==t.date():
+            self.clock_variable.cancel()
+            self.clock_variable=Clock.schedule_interval(self.update_clock, 1)
+        else:
+            self.clock_variable.cancel()
+            self.clock_variable=Clock.schedule_interval(self.update_clock2, 1)
+
+    def update_clock(self, *args):
+        self.ids.date.text = datetime.datetime.strftime(datetime.datetime.now()-datetime.timedelta(hours=8), "%Y-%m-%d")
+        self.ngtime=time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
+
+    def update_clock2(self, *args):
+         self.ngtime=self.ids.date.text + datetime.datetime.strftime(datetime.datetime.now()+datetime.timedelta(hours=8), " %H:%M:%S")           
+
+
     
     def show_model1(self):
         bs_menu_1 = MDListBottomSheet()
@@ -228,7 +259,7 @@ class Manual_input(MDFloatLayout, MDTabsBase):
         #返修方法，产品番号是否填写
         if self.ids.RepairMethod1.text !="" and self.ids.NgInfo.text !="" and self.ids.WicoPartNumber.text !="":
             # 格式化成2016-03-20 11:45:39形式
-            NgTime=time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
+            NgTime=self.ngtime
             CarModel=self.ids.CarModel1.text
             SeatModel=self.ids.SeatModel.text
             WicoPartNumber=self.ids.WicoPartNumber.text

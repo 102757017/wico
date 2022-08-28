@@ -18,7 +18,7 @@ from kivymd.uix.tab import MDTabsBase
 from synch import sync_ngrecord_volume
 from kivy.logger import Logger
 from pathlib import Path
-from kivymd.uix.pickers import MDDatePicker
+
 
 #  所有基于模块的使用到__file__属性的代码，在源码运行时表示的是当前脚本的绝对路径，但是用pyinstaller打包后就是当前模块的模块名（即文件名xxx.py）
 #  因此需要用以下代码来获取exe的绝对路径
@@ -42,16 +42,7 @@ self：始终引用当前小部件
 
 
 class EnterNgIfo(MDFloatLayout, MDTabsBase):
-
-    def show_date_picker(self):
-        dialog = MDDatePicker()
-        dialog.bind(on_save=self.set_previous_date)
-        dialog.open()
-
-    def set_previous_date(self, instance, value, date_rang):
-        self.ids.date.text = (f"{value.year}-{value.month}-{value.day}")
-
-
+    
     def show_model1(self):
         bs_menu_1 = MDListBottomSheet()
         scroll = ScrollView()
