@@ -25,6 +25,7 @@ from pathlib import Path
 from kivy.logger import Logger
 import threading
 from kivy.clock import Clock
+from kivymd.uix.pickers import MDDatePicker
 
 
 #  所有基于模块的使用到__file__属性的代码，在源码运行时表示的是当前脚本的绝对路径，但是用pyinstaller打包后就是当前模块的模块名（即文件名xxx.py）
@@ -53,6 +54,8 @@ class WrappedButton(Button):
     # Based on Tshirtman's answer
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+        
+        #按钮内的文本自动换行
         self.bind(
             width=lambda *x:
             self.setter('text_size')(self, (self.width, None)),
@@ -66,12 +69,20 @@ class OutPutInfo(MDFloatLayout, MDTabsBase):
         super().__init__(**kwargs)
         self.name="outputinfo"
         print(self)
-        Clock.schedule_interval(self.update_clock, 60)
+        self.clock_variable=Clock.schedule_interval(self.update_clock, 60)
         self.load_volume()
         
+    def show_date_picker(self):
+        dialog = MDDatePicker()
+        dialog.bind(on_save=self.set_previous_date)
+        dialog.open()
 
+    def set_previous_date(self, instance, value, date_rang):
+        self.ids.date.text = (f"{value.year}-{value.month}-{value.day}")
+        self.clock_variable.cancel()
+        self.ids.quantity.clear_widgets()
+        self.load_volume()
 
-        
     def load_volume(self):
         #根据日期在数据库中查询当天的产量,优先显示服务器数据
         values=query_volume_server(self.ids.date.text)
