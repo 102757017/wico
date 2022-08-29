@@ -49,8 +49,7 @@ p4a.local_recipes = ./p4a-recipes
 #将对应的项目拷贝到./p4a-recipes文件夹后再在requirements中添加依赖
 requirements = python3, \
                kivy==2.1.0, \
-               git+https://github.com/102757017/KivyMD.git@c_1.0.2, \
-               #KivyMD, \
+               KivyMD, \
                pillow, \
                sqlite3, \
                #sdl2_ttf==2.0.15, \
