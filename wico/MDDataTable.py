@@ -7,7 +7,7 @@ from kivymd.uix.floatlayout import MDFloatLayout
 from kivy.uix.screenmanager import Screen
 import pprint
 from kivy.logger import Logger
-import font_definitions
+from font import font_definitions
 
 class Nginfo_tables(MDFloatLayout, MDTabsBase):
     def __init__(self, **kwargs):

@@ -20,7 +20,7 @@ from android_permissions import AndroidPermissions
 import sentry_sdk
 import ssl
 import certifi
-import font_definitions
+from font import font_definitions
 
 sentry_sdk.init(
     dsn="https://c2b64348a28e4568bcdea9565eb25b4c@o1350401.ingest.sentry.io/6649619",

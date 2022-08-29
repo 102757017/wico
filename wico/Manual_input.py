@@ -22,7 +22,7 @@ from pathlib import Path
 from kivy.logger import Logger
 from kivymd.uix.pickers import MDDatePicker
 from kivy.clock import Clock
-import font_definitions
+from font import font_definitions
 
 
 #  所有基于模块的使用到__file__属性的代码，在源码运行时表示的是当前脚本的绝对路径，但是用pyinstaller打包后就是当前模块的模块名（即文件名xxx.py）
@@ -35,6 +35,7 @@ else:
 KV_DIR = f"{os.environ['WICO_ROOT']}"
 sys.path.append(KV_DIR)
 Logger.info("Manual_input_KV_DIR:"+KV_DIR)
+
 
 
 '''

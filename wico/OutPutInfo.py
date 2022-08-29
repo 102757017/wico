@@ -26,7 +26,7 @@ from kivy.logger import Logger
 import threading
 from kivy.clock import Clock
 from kivymd.uix.pickers import MDDatePicker
-import font_definitions
+from font import font_definitions
 
 
 #  所有基于模块的使用到__file__属性的代码，在源码运行时表示的是当前脚本的绝对路径，但是用pyinstaller打包后就是当前模块的模块名（即文件名xxx.py）
@@ -40,7 +40,8 @@ KV_DIR = f"{os.environ['WICO_ROOT']}"
 sys.path.append(KV_DIR)
 Logger.info("OutPut_KV_DIR:"+KV_DIR)
 
-
+font_path=Path(os.environ['WICO_ROOT'])/"font"/"DroidSansFallback.ttf"
+font_path=str(font_path)
 
 
 '''
@@ -101,8 +102,8 @@ class OutPutInfo(MDFloatLayout, MDTabsBase):
         self.Night_rows=[]
         for x in values:
             HB = BoxLayout(orientation='horizontal')
-            t1 = WrappedButton(text=x[1],font_name="DroidSansFallback.ttf",size_hint_x=0.1)
-            t2 = WrappedButton(text=x[2],font_name="DroidSansFallback.ttf",size_hint_x=0.5)
+            t1 = WrappedButton(text=x[1],font_name=font_path,size_hint_x=0.1)
+            t2 = WrappedButton(text=x[2],font_name=font_path,size_hint_x=0.5)
             t3 = TextInput(text=str(x[3]),size_hint_x=0.2,halign="center",multiline=False,input_filter="int",input_type="number")
             t4 = TextInput(text=str(x[4]),size_hint_x=0.2,halign="center",multiline=False,input_filter="int",input_type="number")
 
@@ -153,8 +154,8 @@ class OutPutInfo(MDFloatLayout, MDTabsBase):
 
     def add_quantity(self):
         HB = BoxLayout(orientation='horizontal')
-        t1 = WrappedButton(text='',font_name="DroidSansFallback.ttf",size_hint_x=0.1)
-        t2 = WrappedButton(text='',font_name="DroidSansFallback.ttf",size_hint_x=0.5)
+        t1 = WrappedButton(text='',font_name=font_path,size_hint_x=0.1)
+        t2 = WrappedButton(text='',font_name=font_path,size_hint_x=0.5)
         t3 = TextInput(text="",size_hint_x=0.2,halign="center",multiline=False,input_filter="int",input_type="number")
         t4 = TextInput(text="",size_hint_x=0.2,halign="center",multiline=False,input_filter="int",input_type="number")
 

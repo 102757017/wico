@@ -11,16 +11,16 @@ from kivy.core.text import LabelBase
 import os
 import sys
 from pathlib import Path
+import pprint
 
 #  所有基于模块的使用到__file__属性的代码，在源码运行时表示的是当前脚本的绝对路径，但是用pyinstaller打包后就是当前模块的模块名（即文件名xxx.py）
 #  因此需要用以下代码来获取exe的绝对路径
 if getattr(sys, "frozen", False):  # bundle mode with PyInstaller
-    os.environ["WICO_ROOT"] = sys._MEIPASS
+    p = sys._MEIPASS
 else:
-    os.environ["WICO_ROOT"] = str(Path(__file__).parent)
+    p = str(Path(__file__).parent)
 
-fonts_path = f"{os.environ['WICO_ROOT']}"+os.path.sep
-print(fonts_path)
+fonts_path = p+os.path.sep
 
 
 fonts = [
@@ -56,6 +56,8 @@ fonts = [
          "fn_regular": fonts_path + "materialdesignicons-webfont.ttf",
      },
  ]
+
+pprint.pprint(fonts)
 
 for font in fonts:
     LabelBase.register(**font)
