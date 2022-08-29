@@ -152,7 +152,7 @@ class EnterNgIfo(MDFloatLayout, MDTabsBase):
                 self.Supplier1=""
                 self.ids.NgInfo1.text=""
                 self.ids.RepairMethod1.text=""
-                self.ids.Lot1.text=""
+                self.ids.Lot1.text="点击扫码"
                 self.ManufactureDate1=""
                 self.Production_Line1="" 
             else:
