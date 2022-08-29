@@ -19,7 +19,7 @@ if getattr(sys, "frozen", False):  # bundle mode with PyInstaller
 else:
     os.environ["WICO_ROOT"] = str(Path(__file__).parent)
 
-fonts_path = f"{os.environ['WICO_ROOT']}"+"\\"
+fonts_path = f"{os.environ['WICO_ROOT']}"+os.path.sep
 print(fonts_path)
 
 
