@@ -16,7 +16,6 @@ from email.mime.text import MIMEText
 import smtplib
 from email.utils import parseaddr, formataddr
 from email.header import Header
-from email.mime.application import MIMEApplication
 from pathlib import Path
 from kivy.logger import Logger
 from synch import overlap
@@ -80,48 +79,6 @@ class Others(MDFloatLayout, MDTabsBase):
         self.ids.content.text=""
         self.ids.submit_advice.disabled=False
         
-
-    def send_database(self, *args):
-        self.ids.submit_database.disabled=True
-        text=self.ids.advice.text
-        database=open('db.db','rb').read()
-        #传入'plain'表示纯文本
-        content = MIMEText(text, 'plain', 'utf-8')
-
-        msg = MIMEMultipart()
-        msg.attach(content)
-        
-        if database !=None:
-             # 构建并添加db
-            db = MIMEApplication(database)
-            db.add_header('Content-Disposition', 'attachment', filename="db.db")   
-            msg.attach(db)
-
-        # 输入Email地址和口令:
-        from_addr = "wico2022@163.com"
-        password = "EASEXKCOHRCGENFK"
-        # 输入收件人地址:
-        to_addr ="sdf63fg@yeah.net"
-        # 输入SMTP服务器地址:
-        smtp_server = "smtp.yeah.net"
-        smtp_server = "smtp.163.com"
-
-
-        def _format_addr(s):
-            name, addr = parseaddr(s)
-            return formataddr((Header(name, 'utf-8').encode(), addr))
-
-        msg['From'] = _format_addr('驻在员 <%s>' % from_addr)
-        msg['To'] = _format_addr('何威 <%s>' % to_addr)
-        msg['Subject'] = Header('客户不良信息数据库', 'utf-8').encode()
-
-        # SMTP协议默认端口是25
-        server = smtplib.SMTP(smtp_server, 25) 
-        server.set_debuglevel(1)
-        server.login(from_addr, password)
-        server.sendmail(from_addr, [to_addr], msg.as_string())
-        self.ids.content.text=""
-        self.ids.submit_database.disabled=False
 
     def async_database(self, *args):
         self.ids.submit_database.disabled=True
