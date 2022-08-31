@@ -75,7 +75,8 @@ class OutPutInfo(MDFloatLayout, MDTabsBase):
         self.load_volume()
 
     def show_date_picker(self):
-        dialog = MDDatePicker()
+        t=datetime.datetime.now()-datetime.timedelta(hours=8)
+        dialog = MDDatePicker(year=t.year, month=t.month, day=t.day)
         dialog.bind(on_save=self.set_previous_date)
         dialog.open()
 
