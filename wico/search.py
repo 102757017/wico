@@ -362,12 +362,12 @@ def uploade_ngrecord(NgTime, CarModel, SeatModel, WicoPartNumber, TsPartNumber, 
     values = cursor.fetchall()
     cursor.close()
     conn.commit()
-    add_seat(CarModel,SeatModel)
+    #add_seat(CarModel,SeatModel,NgTime)
     return RepairMethod
 
 #添加不良记录后同步添加该座椅的产量记录。
-def add_seat(CarModel,SeatModel):
-    C_M_Date=datetime.datetime.now()-datetime.timedelta(hours=8)
+def add_seat(CarModel,SeatModel,NgTime):
+    C_M_Date=datetime.datetime.strptime(NgTime, "%Y-%m-%d %H:%M:%S")-datetime.timedelta(hours=8)
     C_M_Date=C_M_Date.strftime("%Y-%m-%d")
     cursor = conn.cursor()
     sqlcmd='''
