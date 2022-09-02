@@ -1,7 +1,7 @@
 from kivymd.app import MDApp
 from kivymd.toast import toast
 from kivymd.app import MDApp
-from kivymd.uix.screen import Screen
+#from kivymd.uix.screen import Screen
 from kivy.uix.screenmanager import Screen
 from kivy.lang import Builder
 from pprint import pprint
@@ -53,6 +53,7 @@ class MainScreen(Screen):
         if instance_tab.name=="outputinfo":
             instance_tab.ids.quantity.clear_widgets()
             instance_tab.load_volume()
+            
             
 from EnterNgIfo import EnterNgIfo
 from Manual_input import Manual_input

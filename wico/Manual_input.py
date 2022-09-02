@@ -258,6 +258,7 @@ class Manual_input(MDFloatLayout, MDTabsBase):
 
     
     def upload(self):
+        self.ids.submit.disabled=True
         #返修方法，产品番号是否填写
         if self.ids.RepairMethod1.text !="" and self.ids.NgInfo.text !="" and self.ids.WicoPartNumber.text !="":
             # 格式化成2016-03-20 11:45:39形式
@@ -343,6 +344,7 @@ class Manual_input(MDFloatLayout, MDTabsBase):
 
         else:
             toast("请将表单填写完整后再上传")
+        self.ids.submit.disabled=False
 
 
 

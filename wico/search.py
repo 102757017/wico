@@ -58,6 +58,8 @@ def get_SeatModel(CarModel):
     WHERE seatlist.CarModel = "{}"
     GROUP BY
     seatlist.SeatModel
+    ORDER BY
+    seatlist.SeatModel desc
     '''.format(CarModel)
     cursor.execute(sqlcmd)
     values = cursor.fetchall()

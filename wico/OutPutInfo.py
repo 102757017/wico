@@ -197,10 +197,20 @@ class OutPutInfo(MDFloatLayout, MDTabsBase):
 
         data=str(data)[1:-1]
         if data !="":
-            t1 = threading.Thread(target=self.child_Thread,args=(data,))
-            t1.start()
+            #t1 = threading.Thread(target=self.child_Thread,args=(data,))
+            #t1.start()
+            self.ids.submit.disabled=True
+            try:
+                submit_volume(data)
+                f=sync_ngrecord_volume()
+                if f==False:
+                    toast("网络不好,稍后再试")
+                else:
+                    toast("数据已提交")
+            except:
+                toast("数据提交出错")
+            self.ids.submit.disabled=False
 
-        
 
     def child_Thread(self,data):
         self.ids.submit.disabled=True
