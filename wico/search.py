@@ -10,7 +10,7 @@ from pathlib import Path
 from kivy.logger import Logger
 import traceback
 import mysql.connector as mariadb
-
+from datetime import timedelta
 
 
 if getattr(sys, "frozen", False):  # bundle mode with PyInstaller
@@ -455,10 +455,12 @@ def query_volume_server(C_M_Date):
 
 
 
-def query_nginfo():
-    t=datetime.datetime.now()-datetime.timedelta(hours=8)
-    t=t.strftime("%Y-%m-%d")
-    t=t+" 08:00:00"
+def query_nginfo(date):
+    Timer = datetime.datetime.strptime(date, "%Y-%m-%d")
+    start_time=Timer+timedelta(hours=8)
+    end_time=Timer+timedelta(hours=32)
+    start_time=datetime.datetime.strftime(start_time, "%Y-%m-%d %H:%M:%S")
+    end_time=datetime.datetime.strftime(end_time, "%Y-%m-%d %H:%M:%S")
     
     try: 
         mariadb_conn = mariadb.connect( 
@@ -483,9 +485,9 @@ def query_nginfo():
                     ManufactureDate
             FROM
                     ngrecord
-            WHERE NgTime>"{}"
+            WHERE NgTime>"{}" and NgTime<"{}"
             ORDER BY CarModel,SeatModel,WicoPartNumber,NgInfo
-        '''.format(t)
+        '''.format(start_time,end_time)
         mariadb_cursor.execute(sqlcmd)
         values = mariadb_cursor.fetchall()
         mariadb_cursor.close()

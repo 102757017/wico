@@ -4,8 +4,12 @@ from kivymd.uix.datatables import MDDataTable
 from search import *
 from kivymd.uix.tab import MDTabsBase
 from kivymd.uix.floatlayout import MDFloatLayout
+from kivymd.uix.pickers import MDDatePicker
 from kivy.uix.screenmanager import Screen
+from kivy.lang import Builder
+from kivy.clock import Clock
 import pprint
+import datetime
 from kivy.logger import Logger
 from font import font_definitions
 
@@ -15,8 +19,9 @@ class Nginfo_tables(MDFloatLayout, MDTabsBase):
         super().__init__(**kwargs)
         self.title="已录入NG信息"
         self.name="inputed_ng_info"
+        self.clock_variable=Clock.schedule_interval(self.update_clock, 60)
 
-        info=query_nginfo()
+        info=query_nginfo(self.ids.date.text)
         for i,j in enumerate(info):
             info[i]=list(j)
             for x,y in enumerate(j):
@@ -41,12 +46,32 @@ class Nginfo_tables(MDFloatLayout, MDTabsBase):
             )
         self.data_tables.bind(on_row_press=self.on_row_press)
         self.data_tables.bind(on_check_press=self.on_check_press)
-        self.add_widget(self.data_tables) 
+        self.ids.lay_table.add_widget(self.data_tables)
+        
 
 
+    def show_date_picker(self):
+        t=datetime.datetime.now()-datetime.timedelta(hours=8)
+        dialog = MDDatePicker(year=t.year, month=t.month, day=t.day)
+        dialog.bind(on_save=self.set_previous_date)
+        dialog.open()
+
+    def set_previous_date(self, instance, value, date_rang):
+        self.ids.date.text = (f"{value.year}-{value.month}-{value.day}")
+        t=datetime.datetime.strftime(datetime.datetime.now()-datetime.timedelta(hours=8), "%Y-%m-%d")
+        if self.ids.date.text==t:
+            if self.clock_variable==None:
+                self.clock_variable=Clock.schedule_interval(self.update_clock, 60)
+        else:
+            self.clock_variable.cancel()
+        self.update()
+
+    def update_clock(self, *args):
+        self.ids.date.text = datetime.datetime.strftime(datetime.datetime.now()-datetime.timedelta(hours=8), "%Y-%m-%d")
+        
     #更新表格中的数据
     def update(self):
-        info=query_nginfo()
+        info=query_nginfo(self.ids.date.text)
         for i,j in enumerate(info):
             info[i]=list(j)
             for x,y in enumerate(j):
@@ -71,5 +96,5 @@ class DemoApp(MDApp):
 
 
 if __name__=="__main__":
-    #Builder.load_file( '' )
+    Builder.load_file( f"{os.environ['WICO_ROOT']}/mddatatable.kv" )
     DemoApp().run()
