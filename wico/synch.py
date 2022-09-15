@@ -5,7 +5,7 @@ import datetime
 import os
 import sys
 import pprint
-import mysql.connector as mariadb
+import mariadb
 import traceback
 from pathlib import Path
 from kivy.logger import Logger
@@ -214,7 +214,7 @@ def sync_ngtype(sqlite_conn,mariadb_conn):
             #print(sqlcmd)
             #mariadb_cursor.execute(sqlcmd)
         
-        sqlite_conn.commit()    
+        sqlite_conn.commit()
         mariadb_conn.commit()
         
         sqlite_cursor.close()

@@ -9,7 +9,7 @@ import datetime
 from pathlib import Path
 from kivy.logger import Logger
 import traceback
-import mysql.connector as mariadb
+import mariadb
 from datetime import timedelta
 
 
@@ -280,13 +280,33 @@ def get_NgInfo(PartType):
     cursor = conn.cursor()
     sqlcmd='''
     SELECT
-    NgInfo
+            t1.NgInfo
     FROM
-    ngtype
-    WHERE
-    PartType = "{}"
-    GROUP BY NgInfo
-    '''.format(PartType)
+            (
+            SELECT
+                    NgInfo
+            FROM
+                    ngtype
+            WHERE
+                    PartType = "{}"
+            GROUP BY
+                    NgInfo) as t1
+    left join 
+            (
+            SELECT
+                    NgInfo,
+                    COUNT(NgInfo) as quantity
+            FROM
+                    ngrecord
+            WHERE
+                    PartType = "{}"
+            GROUP BY
+                    NgInfo) as t2
+    on
+            t1.NgInfo = t2.NgInfo
+    ORDER BY
+            quantity DESC
+    '''.format(PartType,PartType)
     cursor.execute(sqlcmd)
     values = cursor.fetchall()
     cursor.close()
