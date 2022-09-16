@@ -9,7 +9,7 @@ import datetime
 from pathlib import Path
 from kivy.logger import Logger
 import traceback
-import mariadb
+import mysql.connector as mariadb
 from datetime import timedelta
 
 

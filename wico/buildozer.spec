@@ -59,7 +59,7 @@ requirements = python3, \
                #opencv-python, \
                pyzbar, \
                libzbar, \
-               mariadb, \
+               mysql_connector, \
                camera4kivy, \
                gestures4kivy, \
                sentry-sdk, \

@@ -5,7 +5,7 @@ import datetime
 import os
 import sys
 import pprint
-import mariadb
+import mysql.connector as mariadb
 import traceback
 from pathlib import Path
 from kivy.logger import Logger
