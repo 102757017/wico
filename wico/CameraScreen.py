@@ -28,7 +28,6 @@ sys.path.append(KV_DIR)
 Logger.info("Camera_KV_DIR:"+KV_DIR)
 
 
-
 '''
 Kv 语言特有的三个关键字：
 app：总是指您的应用程序的实例。
