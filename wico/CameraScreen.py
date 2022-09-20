@@ -50,10 +50,11 @@ class CameraScreen(Screen):
 
     def on_checkbox_active(self, checkbox, value):
         if value:
-            self.ids.qrreader.flash()
-            print('The checkbox is active')
+            r=self.ids.qrreader.flash()
+            toast("闪光灯状态："+r)
         else:
-            print('The checkbox is inactive')
+            r=self.ids.qrreader.flash()
+            toast("闪光灯状态："+r)
 
 
 
