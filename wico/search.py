@@ -496,11 +496,11 @@ def query_nginfo(date):
             SELECT
                     CarModel,
                     SeatModel,
+                    NgInfo,
+                    RepairMethod,
                     WicoPartNumber,
                     TsPartNumber,
                     PartName,
-                    NgInfo,
-                    RepairMethod,
                     Lot,
                     ManufactureDate
             FROM

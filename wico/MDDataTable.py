@@ -1,4 +1,4 @@
-from kivy.metrics import dp
+from kivy.metrics import dp,sp
 from kivymd.app import MDApp
 from kivymd.uix.datatables import MDDataTable
 from search import *
@@ -12,6 +12,8 @@ import pprint
 import datetime
 from kivy.logger import Logger
 from font import font_definitions
+import kivy
+print(kivy.core.window.Window.size)
 
 class Nginfo_tables(MDFloatLayout, MDTabsBase):
     def __init__(self, **kwargs):
@@ -22,24 +24,28 @@ class Nginfo_tables(MDFloatLayout, MDTabsBase):
         self.clock_variable=Clock.schedule_interval(self.update_clock, 60)
 
         info=query_nginfo(self.ids.date.text)
+        k=1
+        fontsize="[size={}]".format(int(25/k))
         for i,j in enumerate(info):
             info[i]=list(j)
+            #调整字体大小
             for x,y in enumerate(j):
-                y="[size=25]"+str(y)
+                y=fontsize+str(y)
                 info[i][x]=y
+        print("{}车型".format(fontsize))
         self.data_tables = MDDataTable(
             use_pagination=False,
             check=True,
             column_data=[
-                ("[size=25]车型", dp(18)),
-                ("[size=25]座椅型号", dp(20)),
-                ("[size=25]WICO番号", dp(21)),
-                ("[size=25]TS番号", dp(27)),
-                ("[size=25]零件名称", dp(30)),
-                ("[size=25]不良信息", dp(25)),
-                ("[size=25]维修方法", dp(25)),
-                ("[size=25]批次号", dp(18)),
-                ("[size=25]生产日期", dp(18)),
+                ("{}车型".format(fontsize), dp(18*k)),
+                ("{}座椅型号".format(fontsize), dp(20*k)),
+                ("{}不良信息".format(fontsize), dp(25*k)),
+                ("{}维修方法".format(fontsize), dp(25*k)),
+                ("{}WICO番号".format(fontsize), dp(21*k)),
+                ("{}TS番号".format(fontsize), dp(27*k)),
+                ("{}零件名称".format(fontsize), dp(30*k)),
+                ("{}批次号".format(fontsize), dp(18*k)),
+                ("{}生产日期".format(fontsize), dp(18*k)),
             ],
             row_data=info,
             rows_num=20
@@ -72,10 +78,12 @@ class Nginfo_tables(MDFloatLayout, MDTabsBase):
     #更新表格中的数据
     def update(self):
         info=query_nginfo(self.ids.date.text)
+        k=1
+        fontsize="[size={}]".format(int(25/k))
         for i,j in enumerate(info):
             info[i]=list(j)
             for x,y in enumerate(j):
-                y="[size=25]"+str(y)
+                y=fontsize+str(y)
                 info[i][x]=y
         self.data_tables.update_row_data(instance_data_table=self.data_tables,data=info)
  

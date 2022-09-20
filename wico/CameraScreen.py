@@ -28,6 +28,7 @@ sys.path.append(KV_DIR)
 Logger.info("Camera_KV_DIR:"+KV_DIR)
 
 
+
 '''
 Kv 语言特有的三个关键字：
 app：总是指您的应用程序的实例。
@@ -46,7 +47,14 @@ class ScreenManager(ScreenManager):
 
 
 class CameraScreen(Screen):
-    pass
+
+    def on_checkbox_active(self, checkbox, value):
+        if value:
+            self.ids.qrreader.flash()
+            print('The checkbox is active')
+        else:
+            print('The checkbox is inactive')
+
 
 
 class DemoApp(MDApp):

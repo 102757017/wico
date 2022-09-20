@@ -4,6 +4,12 @@
     BoxLayout:
         orientation: "vertical"
 
+        MDSwitch:
+            id: light
+            pos_hint: {"center_x": .5, "center_y": .5}
+            size: "48dp", "48dp"
+            on_active: root.on_checkbox_active(*args)
+
         MDLabel:
             #size: self.texture_size[0], 50
             size_hint_y: 0.1
