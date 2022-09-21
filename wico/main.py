@@ -60,7 +60,7 @@ Logger.info("Main_KV_DIR:"+KV_DIR)
 from kivy.utils import platform
 if platform == "android":
     from android.permissions import request_permissions, Permission
-    request_permissions([Permission.READ_EXTERNAL_STORAGE, Permission.WRITE_EXTERNAL_STORAGE, Permission.INTERNET,Permission.CAMERA])    
+    request_permissions([Permission.READ_EXTERNAL_STORAGE, Permission.WRITE_EXTERNAL_STORAGE, Permission.INTERNET,Permission.CAMERA,Permission.FLASHLIGHT])    
     from android.storage import primary_external_storage_path
     appwd=primary_external_storage_path()+'/WICO'
     Logger.info("外部存储路径:"+appwd)

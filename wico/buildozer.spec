@@ -97,7 +97,7 @@ p4a.branch = master
 p4a.hook = camerax_provider/gradle_options.py
 
 # (list) Permissions
-android.permissions = CAMERA,INTERNET,READ_EXTERNAL_STORAGE,WRITE_EXTERNAL_STORAGE
+android.permissions = CAMERA,INTERNET,READ_EXTERNAL_STORAGE,WRITE_EXTERNAL_STORAGE,FLASHLIGHT
 
 #
 # iOS specific

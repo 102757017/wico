@@ -48,13 +48,9 @@ class ScreenManager(ScreenManager):
 
 class CameraScreen(Screen):
 
-    def on_checkbox_active(self, checkbox, value):
-        if value:
-            r=self.ids.qrreader.flash()
-            toast("闪光灯状态："+r)
-        else:
-            r=self.ids.qrreader.flash()
-            toast("闪光灯状态："+r)
+    def turn_flash(self):
+        r=self.ids.qrreader.flash()
+        self.ids.light.text="闪光灯状态："+r
 
 
 
