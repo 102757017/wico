@@ -51,7 +51,9 @@ class CameraScreen(Screen):
     def turn_flash(self):
         r=self.ids.qrreader.flash()
         self.ids.light.text="闪光灯状态："+r
-        Logger.info(dir(self.ids.qrreader.preview._camera))
+        Logger.info("闪光灯状态："+r)
+        Logger.info(self.ids.qrreader.preview._camera.flash)
+        Logger.info(self.ids.qrreader.preview._camera.flashMode)
 
 
 
