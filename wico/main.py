@@ -22,6 +22,7 @@ import ssl
 import certifi
 from font import font_definitions
 
+
 sentry_sdk.init(
     dsn="https://c2b64348a28e4568bcdea9565eb25b4c@o1350401.ingest.sentry.io/6649619",
 
@@ -60,7 +61,8 @@ Logger.info("Main_KV_DIR:"+KV_DIR)
 from kivy.utils import platform
 if platform == "android":
     from android.permissions import request_permissions, Permission
-    request_permissions([Permission.READ_EXTERNAL_STORAGE, Permission.WRITE_EXTERNAL_STORAGE, Permission.INTERNET,Permission.CAMERA,Permission.FLASHLIGHT])    
+    request_permissions([Permission.READ_EXTERNAL_STORAGE, Permission.WRITE_EXTERNAL_STORAGE, Permission.INTERNET,Permission.CAMERA])
+    Logger.info("Android_Permission:"+str(dir(Permission)))
     from android.storage import primary_external_storage_path
     appwd=primary_external_storage_path()+'/WICO'
     Logger.info("外部存储路径:"+appwd)
