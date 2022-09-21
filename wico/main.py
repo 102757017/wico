@@ -137,8 +137,7 @@ class DemoApp(MDApp):
         
 
     def connect_camera(self,dt):
-        self.root.CameraScreen.ids.qrreader.flash()
-        self.root.CameraScreen.ids.qrreader.connect_camera(enable_analyze_pixels = True)
+        self.root.CameraScreen.ids.qrreader.connect_camera(enable_analyze_pixels = True,default_flash = 'on')
 
     def on_stop(self):
         self.root.CameraScreen.ids.qrreader.disconnect_camera()
