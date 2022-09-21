@@ -66,7 +66,7 @@ requirements = python3, \
                urllib3
 
 # (str) Supported orientation (one of landscape, sensorLandscape, portrait or all)
-orientation = all
+orientation = portrait
 
 # (bool) Indicate if the application should be fullscreen or not
 fullscreen = 0
@@ -97,7 +97,7 @@ p4a.branch = master
 p4a.hook = camerax_provider/gradle_options.py
 
 # (list) Permissions
-android.permissions = CAMERA,INTERNET,READ_EXTERNAL_STORAGE,WRITE_EXTERNAL_STORAGE
+android.permissions = CAMERA,INTERNET,READ_EXTERNAL_STORAGE,WRITE_EXTERNAL_STORAGE,FLASHLIGHT
 
 #
 # iOS specific

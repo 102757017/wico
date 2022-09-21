@@ -507,7 +507,7 @@ def query_nginfo(date):
             FROM
                     ngrecord
             WHERE NgTime>"{}" and NgTime<"{}"
-            ORDER BY CarModel,SeatModel,WicoPartNumber,NgInfo
+            ORDER BY Ngtime DESC
         '''.format(start_time,end_time)
         mariadb_cursor.execute(sqlcmd)
         values = mariadb_cursor.fetchall()
