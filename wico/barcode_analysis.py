@@ -40,7 +40,7 @@ def imasen_barcode(result):
     return date,line
     
 def imasen_lable(result):
-    #([0-9]{2})([A-L])([0-3][0-9])([A-C]) ([0-9]{3})
+    #([0-9]{2})([A-L])([0-3][0-9])([A-M]) ([0-9]{3})
     d_month={"A":"01","B":"02","C":"03","D":"04","E":"05","F":"06","G":"07","H":"08","I":"09","J":"10","K":"11","L":"12"}
     year,month,day="","",""
 
@@ -124,7 +124,7 @@ def analysis_code(t):
 
 def analysis_part_lable(lable,Regular):
     result = re.findall(Regular, lable)
-    if Regular=="([0-9]{2})([A-L])([0-3][0-9])([A-C]) ([0-9]{3})":
+    if Regular=="([0-9]{2})([A-L])([0-3][0-9])([A-M]) ([0-9]{3})":
         date=imasen_lable(result)
         line=""
 

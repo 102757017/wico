@@ -20,6 +20,22 @@
                 size_hint_x: 1.0
                 on_release: root.show_date_picker()
 
-            BoxLayout:
+
+
+            FloatLayout:
                 id:lay_table
                 orientation: "horizontal"
+
+                RecycleView:
+                    viewclass: 'Button'
+                    data: [{'text': str(x)} for x in root.data_items]
+                    SelectableRecycleGridLayout:
+                        cols: 9
+                        default_size: None, dp(26)
+                        default_size_hint: 1, None
+                        size_hint: None,None
+                        cols_minimum: {0: 50, 1: 300,2: 200, 3: 200, 4: 150, 5: 200, 6: 250, 7: 120, 8: 100}
+                        height: self.minimum_height
+                        width: self.minimum_width
+                        multiselect: True
+                        touch_multiselect: True

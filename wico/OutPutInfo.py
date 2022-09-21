@@ -193,7 +193,7 @@ class OutPutInfo(MDFloatLayout, MDTabsBase):
                    )
                 data.append(d)
             else:
-                toast("{}车型的{}座椅数据未填写完整".format(self.CarModel_rows[i].text,self.SeatModel_rows[i].text))
+                toast("{} {}座椅数据未填写完整".format(self.CarModel_rows[i].text,self.SeatModel_rows[i].text))
 
         data=str(data)[1:-1]
         if data !="":
