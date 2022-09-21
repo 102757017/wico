@@ -494,6 +494,7 @@ def query_nginfo(date):
         
         sqlcmd='''
             SELECT
+                    substring(Ngtime,12,8),
                     CarModel,
                     SeatModel,
                     NgInfo,

@@ -31,7 +31,7 @@ class Nginfo_tables(MDFloatLayout, MDTabsBase):
         self.name="inputed_ng_info"
         self.clock_variable=Clock.schedule_interval(self.update_clock, 60)
 
-        self.Column_names=["车型","座椅型号","不良信息","维修方法","WICO番号","TS番号","零件名称","批次号","生产日期"]
+        self.Column_names=["录入时间","车型","座椅型号","不良信息","维修方法","WICO番号","TS番号","零件名称","批次号","生产日期"]
         for name in self.Column_names:
             self.data_items.append(name)
             
