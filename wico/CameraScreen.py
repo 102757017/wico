@@ -52,6 +52,8 @@ class CameraScreen(Screen):
         #r=self.ids.qrreader.flash()
         
         camera=self.ids.qrreader.preview._camera
+        Logger.info("type(camera)："+str(type(camera)))
+        Logger.info("dir(camera)："+str(dir(camera)))
         cameraControl = camera.getCameraControl()
         cameraInfo = camera.getCameraInfo()
         Logger.info("当前的手电筒状态："+str(cameraInfo.getTorchState()))
