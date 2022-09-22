@@ -47,21 +47,17 @@ class ScreenManager(ScreenManager):
 
 
 class CameraScreen(Screen):
-
-    def turn_flash(self):
-        #r=self.ids.qrreader.flash()
-        
-        camera=self.ids.qrreader.preview._camera.
-        Logger.info("type(camera)："+str(type(camera)))
-        Logger.info("dir(camera)："+str(dir(camera)))
+    
+    #打开手电筒，仅支持android
+    def on_turn_switch(self,checkbox, value):
+        camera=self.ids.qrreader.preview._camera.camera
         cameraControl = camera.getCameraControl()
         cameraInfo = camera.getCameraInfo()
-        Logger.info("当前的手电筒状态："+str(cameraInfo.getTorchState()))
-        Logger.info("手电筒功能是否可用："+str(cameraInfo.hasFlashUnit()))
-        cameraControl.enableTorch(True)
+        if value:
+            cameraControl.enableTorch(True)
+        else:
+            cameraControl.enableTorch(False)
 
-        self.ids.light.text="闪光灯状态："+r
-        Logger.info("闪光灯状态："+r)
 
 
 

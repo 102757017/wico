@@ -4,11 +4,11 @@
     BoxLayout:
         orientation: "vertical"
 
-        MDRectangleFlatButton:
+        MDSwitch:
             id: light
-            text:"手电筒"
             pos_hint: {"center_x": .5, "center_y": .5}
-            on_press: root.turn_flash()
+            size: "48dp", "48dp"
+            on_active: root.on_turn_switch(*args)
 
 
         MDLabel:
