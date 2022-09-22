@@ -51,7 +51,7 @@ class CameraScreen(Screen):
     def turn_flash(self):
         #r=self.ids.qrreader.flash()
         
-        camera=self.ids.qrreader.preview._camera
+        camera=self.ids.qrreader.preview._camera.camera
         Logger.info("type(camera)："+str(type(camera)))
         Logger.info("dir(camera)："+str(dir(camera)))
         cameraControl = camera.getCameraControl()
