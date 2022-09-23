@@ -152,6 +152,8 @@ class DemoApp(MDApp):
     @mainthread
     def goback(self):       
         self.root.current = 'main'
+        #复位闪光灯按钮
+        self.root.CameraScreen.ids.light.active=False
         if self.root.CameraScreen.ids.qrreader.camera_connected == True:
             self.root.CameraScreen.ids.qrreader.disconnect_camera()
 
@@ -162,6 +164,8 @@ class DemoApp(MDApp):
     #加修饰符，强制在主线程更新ui
     @mainthread
     def goback2(self,*args):
+        #复位闪光灯按钮
+        self.root.CameraScreen.ids.light.active=False
         if len(args[0])!=0:
             self.root.EnterNgIfo.ids.Lot1.text=args[0]
             self.root.current = 'main'

@@ -23,6 +23,8 @@ from kivy.logger import Logger
 from kivymd.uix.pickers import MDDatePicker
 from kivy.clock import Clock
 from font import font_definitions
+from kivy.uix.behaviors import FocusBehavior
+#from kivymd.uix.behaviors.focus_behavior import FocusBehavior
 
 
 #  所有基于模块的使用到__file__属性的代码，在源码运行时表示的是当前脚本的绝对路径，但是用pyinstaller打包后就是当前模块的模块名（即文件名xxx.py）
@@ -51,7 +53,10 @@ class UPPER_TEXT(MDTextField):
         s = substring.upper()
         return super(UPPER_TEXT, self).insert_text(s, from_undo=from_undo)
 
-
+class NUMBET_TEXT(MDTextField,FocusBehavior):
+    #self.input_type="number"
+    pass
+    
 class Manual_input(MDFloatLayout, MDTabsBase):
     def __init__(self, **kwargs):
         #一定要注意这里要加super，才能把现有的新初始化方法覆盖掉继承来的旧初始化方法
@@ -76,10 +81,12 @@ class Manual_input(MDFloatLayout, MDTabsBase):
 
     def update_clock(self, *args):
         self.ids.date.text = datetime.datetime.strftime(datetime.datetime.now()-datetime.timedelta(hours=8), "%Y-%m-%d")
-        self.ngtime=time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
+        self.ngtime=datetime.datetime.strftime(datetime.datetime.now(), "%Y-%m-%d %H:%M:%S.%f")
+        #print(self.ngtime)
 
     def update_clock2(self, *args):
-         self.ngtime=self.ids.date.text + datetime.datetime.strftime(datetime.datetime.now()+datetime.timedelta(hours=8), " %H:%M:%S")           
+         self.ngtime=self.ids.date.text + datetime.datetime.strftime(datetime.datetime.now()+datetime.timedelta(hours=8), " %H:%M:%S.%f")
+         #print(self.ngtime)
 
 
     
@@ -320,27 +327,32 @@ class Manual_input(MDFloatLayout, MDTabsBase):
                 else:
                     toast("此批次号的产品此前已经上传过不良信息了，请勿重复上传")               
             else:
-                #提交表单
-                uploade_ngrecord(NgTime,
-                                CarModel,
-                                SeatModel,
-                                WicoPartNumber,
-                                TsPartNumber,
-                                PartName,
-                                PartType,
-                                Supplier,
-                                NgInfo,
-                                RepairMethod,
-                                Lot,
-                                ManufactureDate,
-                                Production_Line,
-                                0)
-                #toast("数据在本地保存完成")
+                quantity=int(self.ids.quantity.text)
+                for i in range(quantity):
+                    #提交表单
+                    uploade_ngrecord(self.ngtime,
+                                    CarModel,
+                                    SeatModel,
+                                    WicoPartNumber,
+                                    TsPartNumber,
+                                    PartName,
+                                    PartType,
+                                    Supplier,
+                                    NgInfo,
+                                    RepairMethod,
+                                    Lot,
+                                    ManufactureDate,
+                                    Production_Line,
+                                    0)
+                    #time.sleep(1)
+                    self.update_clock2()
+                    #toast("数据在本地保存完成")
                 f=sync_ngrecord_volume()
                 if f==True:
                     toast("数据已上传到服务器")
                 else:
                     toast("数据上传到服务器失败，稍后重新启动app将再次尝试上传")
+                self.ids.quantity.text="1"
 
         else:
             toast("请将表单填写完整后再上传")
