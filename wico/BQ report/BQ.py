@@ -9,6 +9,7 @@ import datetime
 from datetime import timedelta
 import pprint
 import webbrowser
+import pandas as pd
 
 
 mariadb_conn = mariadb.connect( 
@@ -53,11 +54,17 @@ fig_distribution2.update_layout(margin=dict(l=30, r=30, t=30, b=30))
 sqlcmd='''SELECT * FROM volume WHERE C_M_Date = "{}" ORDER BY CarModel,SeatModel'''.format(end_date)
 df=sql.read_sql(sqlcmd,mariadb_conn)
 df["SeatModel"]=df["CarModel"]+df["SeatModel"]
-fig_volume = px.bar(df,x="SeatModel",y=["Day","Night"],title="{} 客户产量".format(end_date))
+df=df.drop(["Sync",'CarModel'],axis=1)
+df=pd.melt(df,id_vars=['C_M_Date','SeatModel'],var_name='班次',value_name='产量')
+fig_volume = px.bar(df,x="SeatModel",y="产量",color="班次",text="产量",title="{} 客户产量".format(end_date))
+fig_volume.update_traces(texttemplate='%{text:.2s}', # 显示的整数位数：示例为2位
+                  textposition='auto')   # 文本显示位置：['inside', 'outside', 'auto', 'none']
 #设置图形边距
 fig_volume.update_layout(
-    margin=dict(l=0, r=0, t=30, b=30)
-    ) 
+    margin=dict(l=0, r=0, t=30, b=30),
+    uniformtext_mode='show'
+    )
+
 
 
 #30日不良趋势

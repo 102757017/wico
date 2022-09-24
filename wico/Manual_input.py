@@ -286,6 +286,8 @@ class Manual_input(MDFloatLayout, MDTabsBase):
             ManufactureDate=""
             #批次号是否填写，是否有条码规则
             if self.ids.lot.text !="" and self.Regular !="":
+                if self.ids.quantity.text !="1":
+                    toast("输入的批次号有唯一性（有序列号），一次只能上传一条记录，多余的数量将不会录入，请分次上传")
                 #查询番号&条码是否重复
                 if search_barcode(WicoPartNumber,Lot)==False:
 
@@ -325,7 +327,9 @@ class Manual_input(MDFloatLayout, MDTabsBase):
                     else:
                         toast("输入的批次号与本产品批次号格式不符,请重新输入批次号")
                 else:
-                    toast("此批次号的产品此前已经上传过不良信息了，请勿重复上传")               
+                    toast("此批次号的产品此前已经上传过不良信息了，请勿重复上传")
+                self.ids.quantity.text="1"
+                
             else:
                 quantity=int(self.ids.quantity.text)
                 for i in range(quantity):
@@ -344,7 +348,6 @@ class Manual_input(MDFloatLayout, MDTabsBase):
                                     ManufactureDate,
                                     Production_Line,
                                     0)
-                    #time.sleep(1)
                     self.update_clock2()
                     #toast("数据在本地保存完成")
                 f=sync_ngrecord_volume()
