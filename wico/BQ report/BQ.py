@@ -34,7 +34,23 @@ start_date365=datetime.datetime.strftime(start_date365, "%Y-%m-%d")
 
 sqlcmd='''CALL pyytest.dataframe("{}")'''.format(end_date)
 df_table=sql.read_sql(sqlcmd,mariadb_conn)
-
+df_table=df_table.set_index(["车型","零件类型","不良内容","维修方法"])
+#df_table.to_html('assets/test.html',header=True, index=True, justify='justify-all',bold_rows=True,col_space='280px')
+table_html=df_table.to_html(classes='mystyle',header=True, index=True, justify='justify-all',bold_rows=True,col_space='280px')
+table_html=table_html.replace("top","middle")
+pd.set_option('colheader_justify', 'center')   # FOR TABLE <th>
+html_string = '''
+<html>
+  <head><title>HTML Pandas Dataframe with CSS</title></head>
+  <link rel="stylesheet" type="text/css" href="df_style.css"/>
+  <body>
+    {table}
+  </body>
+</html>.
+'''
+# OUTPUT AN HTML FILE
+with open('assets/test.html', 'w', encoding="utf-8") as f:
+    f.write(html_string.format(table=table_html))
 
 
 sqlcmd='''CALL pyytest.日内不良("{}")'''.format(end_date)
@@ -58,7 +74,8 @@ df=df.drop(["Sync",'CarModel'],axis=1)
 df=pd.melt(df,id_vars=['C_M_Date','SeatModel'],var_name='班次',value_name='产量')
 fig_volume = px.bar(df,x="SeatModel",y="产量",color="班次",text="产量",title="{} 客户产量".format(end_date))
 fig_volume.update_traces(texttemplate='%{text:.2s}', # 显示的整数位数：示例为2位
-                  textposition='auto')   # 文本显示位置：['inside', 'outside', 'auto', 'none']
+                         textfont=dict(family=['Arial Black', 'Arial'],size=[15]),
+                         textposition='auto')   # 文本显示位置：['inside', 'outside', 'auto', 'none']
 #设置图形边距
 fig_volume.update_layout(
     margin=dict(l=0, r=0, t=30, b=30),
@@ -169,10 +186,12 @@ app = Dash(
 app.layout = html.Div(
     [
         html.H1(end_date,style={'textAlign': 'center'}),
-        html.Hr(), # 水平分割线
+        #html.Hr(), # 水平分割线
         dbc.Row(
             [
-                dbc.Col(dbc.Table.from_dataframe(df_table, striped=True), width=12, style={'margin-top': '30px','overflow': 'auto','font-size':'26px'})
+                #dbc.Col(dbc.Table.from_dataframe(df_table, striped=True, hover=True,index=True), width=12, style={'margin-top': '30px','overflow': 'auto','font-size':'26px'})
+                html.Iframe(src="assets/test.html",style={"height": "{}px".format((df_table.shape[0]+2)*50), "width": "100%"})
+                
                 
             ]
         ),

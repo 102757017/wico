@@ -148,7 +148,7 @@ def analysis_part_lable(lable,Regular):
 
 if __name__ == '__main__':
     #t="IMAFT WITHOUT HES MOTORLV NO.:LVSMT111912-A03IMASEN NO.:Z23-4729910-2MOTOR NO.:250222 B302 02311"
-    t="13M0817K064GW"
+    t="2TLA8E8V1618W"
     part_number,line,date=analysis_code(t)
     print(part_number,line,date)
 

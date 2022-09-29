@@ -42,7 +42,8 @@
             MYDropDownItem:
                 id: CarModel1
                 on_release: root.show_model1()
-                
+
+
         MDBoxLayout:
             orientation: "horizontal"
             adaptive_height: True
@@ -76,6 +77,19 @@
             pos_hint: {"center_x": .5}
 
             MYLabel:
+                text: "产品名称："
+
+            MYDropDownItem:
+                id: PartName
+                on_release: root.show_PartName()
+
+        MDBoxLayout:
+            orientation: "horizontal"
+            adaptive_height: True
+            spacing: "10dp"
+            pos_hint: {"center_x": .5}
+
+            MYLabel:
                 text: "WICO番号："
 
             MYDropDownItem:
@@ -96,18 +110,7 @@
                 id: TsPartNumber
                 on_release: root.show_TsPartNumber()
 
-        MDBoxLayout:
-            orientation: "horizontal"
-            adaptive_height: True
-            spacing: "10dp"
-            pos_hint: {"center_x": .5}
 
-            MYLabel:
-                text: "产品名称："
-
-            MYDropDownItem:
-                id: PartName
-                on_release: root.show_PartName()
 
         AsyncImage:
             id: part_image
