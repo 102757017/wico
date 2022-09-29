@@ -121,11 +121,12 @@
         MDBoxLayout:
             orientation: "horizontal"
             adaptive_height: True
-            spacing: "10dp"
+            spacing: "3dp"
             pos_hint: {"center_x": .5}
 
             MYLabel:
                 text: "批次标签："
+                size_hint_x: 0.2
 
             UPPER_TEXT:
                 id: lot
@@ -136,17 +137,18 @@
                 id: quantity
                 text: "1"
                 hint_text: "不良数量"
-                size_hint_x: 0.1
+                size_hint_x: 0.2
 
 
         MDBoxLayout:
             orientation: "horizontal"
             adaptive_height: True
-            spacing: "10dp"
+            spacing: "3dp"
             pos_hint: {"center_x": .5}
 
             MYLabel:
                 text: "不良内容："
+                size_hint_x: 0.2
 
             MDTextField:
                 id: NgInfo
@@ -163,11 +165,12 @@
         MDBoxLayout:
             orientation: "horizontal"
             adaptive_height: True
-            spacing: "10dp"
+            spacing: "3dp"
             pos_hint: {"center_x": .5}
 
             MYLabel:
                 text: "维修方法："
+                size_hint_x: 0.2
 
             MDTextField:
                 id: RepairMethod1
