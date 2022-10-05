@@ -5,7 +5,7 @@
     border-collapse: collapse; 
     border: 1px solid silver;
 }
-.mystyle td, th {
+.mystyle td,th {
     padding: 1px;
 }
 .mystyle tr:nth-child(even) {

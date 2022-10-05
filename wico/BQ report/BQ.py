@@ -10,6 +10,7 @@ from datetime import timedelta
 import pprint
 import webbrowser
 import pandas as pd
+import numpy as np
 
 
 mariadb_conn = mariadb.connect( 
@@ -33,10 +34,28 @@ start_date365=datetime.datetime.strftime(start_date365, "%Y-%m-%d")
 
 
 sqlcmd='''CALL pyytest.dataframe("{}")'''.format(end_date)
-df_table=sql.read_sql(sqlcmd,mariadb_conn)
-df_table=df_table.set_index(["车型","零件类型","不良内容","维修方法"])
+#df_table=sql.read_sql(sqlcmd,mariadb_conn)
+#df_table=df_table.set_index(["车型","零件类型","不良内容","维修方法"])
+df1=sql.read_sql(sqlcmd,mariadb_conn)
+df2=df1.groupby(["车型"]).aggregate({'NG数量':np.sum})
+df2.rename(columns={'NG数量':'合计1'}, inplace = True)
+
+df3=df1.groupby(["车型","零件类型"]).aggregate({'NG数量':np.sum})
+df3.rename(columns={'NG数量':'合计2'}, inplace = True)
+
+df4=df1.groupby(["车型","零件类型","不良内容"]).aggregate({'NG数量':np.sum})
+df4.rename(columns={'NG数量':'合计3'}, inplace = True)
+
+df1=pd.merge(df1, df2, how='left', on="车型")
+df1=pd.merge(df1, df3, how='left', on=["车型","零件类型"])
+df1=pd.merge(df1, df4, how='left', on=["车型","零件类型","不良内容"])
+
+df_table=df1.set_index(["车型","合计1","零件类型","合计2","不良内容","合计3","维修方法"])
+#df_table=df1.groupby(["车型","合计1","零件类型","合计2","不良内容","合计3","维修方法"]).aggregate({'NG数量':np.sum})
+
+
 #df_table.to_html('assets/test.html',header=True, index=True, justify='justify-all',bold_rows=True,col_space='280px')
-table_html=df_table.to_html(classes='mystyle',header=True, index=True, justify='justify-all',bold_rows=True,col_space='280px')
+table_html=df_table.to_html(classes='mystyle',header=True, index=True, justify='justify-all',bold_rows=True,col_space='180px')
 table_html=table_html.replace("top","middle")
 pd.set_option('colheader_justify', 'center')   # FOR TABLE <th>
 html_string = '''
