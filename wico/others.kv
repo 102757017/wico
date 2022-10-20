@@ -32,13 +32,13 @@
             pos_hint: {"center_x": .5}
             size_hint_x: 0.9
 
-            MDRaisedButton:
+            MDFillRoundFlatButton:
                 id:submit_advice
                 text: "提交建议"
                 on_release: Thread(target=root.send_mail).start()
 
 
-            MDRaisedButton:
+            MDFillRoundFlatButton:
                 id:submit_database
                 text: "同步数据库"
                 on_release: Thread(target=root.async_database).start()

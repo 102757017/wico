@@ -12,7 +12,7 @@
 
             
             #:import datetime datetime
-            MDRaisedButton:
+            MDRectangleFlatButton:
                 id:date
                 text:datetime.datetime.strftime(datetime.datetime.now()-datetime.timedelta(hours=8), "%Y-%m-%d")
                 color:.9,.2,.1,1   #字体颜色
@@ -55,7 +55,7 @@
                 anchor_x: "center"
                 text: ""
                 callback: None
-                MDRaisedButton:
+                MDFillRoundFlatButton:
                     text: "新增"
                     on_release: root.add_quantity()
                     pos_hint: { "center_y": .55}
@@ -66,7 +66,7 @@
                 anchor_x: "center"
                 text: ""
                 callback: None
-                MDRaisedButton:
+                MDFillRoundFlatButton:
                     id:submit
                     text: "提交"
                     on_release: root.upload_volume()
