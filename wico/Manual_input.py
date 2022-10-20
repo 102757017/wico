@@ -3,6 +3,9 @@ from kivymd.toast import toast
 from kivymd.uix.bottomsheet import MDListBottomSheet
 from kivymd.app import MDApp
 from kivymd.uix.screen import Screen
+from kivymd.uix.list import IRightBodyTouch, ILeftBody,OneLineAvatarIconListItem
+from kivymd.uix.selectioncontrol import MDCheckbox
+from kivymd.uix.label import MDIcon
 from kivy.uix.scrollview import ScrollView
 from kivy.uix.screenmanager import Screen
 from kivy.lang import Builder
@@ -56,6 +59,34 @@ class UPPER_TEXT(MDTextField):
 class NUMBET_TEXT(MDTextField,FocusBehavior):
     #self.input_type="number"
     pass
+
+
+
+
+
+class RightCheckbox(IRightBodyTouch, MDCheckbox):
+    '''Custom right container.'''
+    
+class ListBottomSheetIconLeft(ILeftBody, MDIcon):
+    pass
+
+class OneLineAvatarIconListItem_CK(OneLineAvatarIconListItem):
+    def __init__(self, **kwargs):
+        #一定要注意这里要加super，才能把现有的新初始化方法覆盖掉继承来的旧初始化方法
+        super().__init__(**kwargs)
+        self.add_widget(ListBottomSheetIconLeft(icon="tools"))
+        self.ck=RightCheckbox()
+        self.add_widget(self.ck)
+        
+class MDListBottomSheet(MDListBottomSheet):
+
+    def add_item_checkbox(self, text, callback):
+        item = OneLineAvatarIconListItem_CK(text=text, on_release=callback)
+        item.bind(on_release=lambda x: self.dismiss())
+        self.sheet_list.ids.box_sheet_list.add_widget(item)
+
+
+
     
 class Manual_input(MDFloatLayout, MDTabsBase):
     def __init__(self, **kwargs):
@@ -255,14 +286,26 @@ class Manual_input(MDFloatLayout, MDTabsBase):
         PartType=self.ids.PartType.text
         NgInfo=self.ids.NgInfo.text
         RepairMethod=get_RepairMethod(PartType,NgInfo)
+        bs_menu_1.add_item("确认",callback=partial(self.get_active_check))
         #RepairMethod=["涂油","换电机"]
         for item in RepairMethod:
-            bs_menu_1.add_item(item,callback=lambda x, y=item: self.select_repair_method1(y))
+            bs_menu_1.add_item_checkbox(item,callback=lambda x, y=item: self.select_repair_method1(y))
+        self.bs_menu=bs_menu_1
         bs_menu_1.open()
     def select_repair_method1(self, *args):
         self.ids.RepairMethod1.text=args[0]
 
+    def get_active_check(self, *args):
+        nginfo=[]
+        for ListItemWithCheckbox in self.bs_menu.sheet_list.ids.box_sheet_list.children:
+            if isinstance(ListItemWithCheckbox, OneLineAvatarIconListItem_CK) and ListItemWithCheckbox.ck.active==True:
+                nginfo.append(ListItemWithCheckbox.text)
+        nginfo.sort()
+        self.ids.RepairMethod1.text=','.join(nginfo)
 
+
+        
+        
     
     def upload(self):
         self.ids.submit.disabled=True
