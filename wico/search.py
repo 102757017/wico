@@ -36,9 +36,23 @@ conn_server = mariadb.connect(host='localhost',
 '''
 
 def get_CarModel():
+    t=datetime.datetime.now()-datetime.timedelta(days=7)
     # 创建一个Cursor:
     cursor = conn.cursor()
-    cursor.execute("SELECT distinct CarModel from seatlist s")
+    sqlcmd='''
+            SELECT
+            t1.CarModel
+            FROM
+            (SELECT distinct CarModel from seatlist) as t1
+            left join 
+            (SELECT CarModel ,SUM(DAY)+ SUM(Night) as quantity FROM volume WHERE C_M_Date>"{}" GROUP BY CarModel ) as t2
+            on
+            t1.CarModel = t2.CarModel
+            ORDER BY
+            t2.quantity DESC,
+            t1.CarModel
+            '''.format(t.strftime("%Y-%m-%d"))
+    cursor.execute(sqlcmd)
     values = cursor.fetchall()
     cursor.close()
     CarModel=[]

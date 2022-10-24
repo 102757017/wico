@@ -119,72 +119,80 @@
             size:self.texture_size
 
         MDBoxLayout:
-            orientation: "horizontal"
+            orientation: "vertical"
             adaptive_height: True
-            spacing: "3dp"
-            pos_hint: {"center_x": .5}
-
-            MYLabel:
-                text: "批次标签："
-                size_hint_x: 0.2
-
-            UPPER_TEXT:
-                id: lot
-                hint_text: "例:22C15A 065，不要省略空格与0"
-                size_hint_x: 0.6
-
-            NUMBET_TEXT:
-                id: quantity
-                text: "1"
-                hint_text: "不良数量"
-                size_hint_x: 0.2
+            spacing: "0dp"
 
 
-        MDBoxLayout:
-            orientation: "horizontal"
-            adaptive_height: True
-            spacing: "3dp"
-            pos_hint: {"center_x": .5}
+            MDBoxLayout:
+                orientation: "horizontal"
+                adaptive_height: True
+                spacing: "3dp"
+                pos_hint: {"center_x": .5}
 
-            MYLabel:
-                text: "不良内容："
-                size_hint_x: 0.2
+                MYLabel:
+                    text: "不良内容："
+                    size_hint_x: 0.2
 
-            MDTextField:
-                id: NgInfo
-                hint_text: "选单内没有时手动输入"
-                size_hint_x: 0.7
-                text_color_normal: 1, 0, 1, 1
-                
-            MDIconButton:
-                pos_hint: {"center_x": .5, "center_y": .5}
-                icon: "plus"
-                #user_font_size: "20sp"
-                on_release: root.show_ng_information1()
+                MDTextField:
+                    id: NgInfo
+                    hint_text: "选单内没有时手动输入"
+                    size_hint_x: 0.7
+                    text_color_normal: 1, 0, 1, 1
+                    
+                MDIconButton:
+                    size_hint_x: 0.1
+                    pos_hint: {"center_x": .5, "center_y": .5}
+                    icon: "plus"
+                    #user_font_size: "20sp"
+                    on_release: root.show_ng_information1()
 
-        MDBoxLayout:
-            orientation: "horizontal"
-            adaptive_height: True
-            spacing: "3dp"
-            pos_hint: {"center_x": .5}
+            MDBoxLayout:
+                orientation: "horizontal"
+                adaptive_height: True
+                spacing: "3dp"
+                pos_hint: {"center_x": .5}
 
-            MYLabel:
-                text: "维修方法："
-                size_hint_x: 0.2
+                MYLabel:
+                    text: "维修方法："
+                    size_hint_x: 0.2
 
-            MDTextField:
-                id: RepairMethod1
-                text:""
-                hint_text: "选单内没有时手动输入"
-                size_hint_x: 0.7
-                text_color_normal: 1, 0, 1, 1
-                
-            MDIconButton:
-                pos_hint: {"center_x": .5, "center_y": .5}
-                icon: "plus"
-                #user_font_size: "20sp"
-                on_release: root.show_repair_method1()
-            
+                MDTextField:
+                    id: RepairMethod1
+                    text:""
+                    hint_text: "选单内没有时手动输入"
+                    size_hint_x: 0.7
+                    text_color_normal: 1, 0, 1, 1
+                    
+                MDIconButton:
+                    size_hint_x: 0.1
+                    pos_hint: {"center_x": .5, "center_y": .5}
+                    icon: "plus"
+                    #user_font_size: "20sp"
+                    on_release: root.show_repair_method1()
+
+            MDBoxLayout:
+                orientation: "horizontal"
+                adaptive_height: True
+                spacing: "3dp"
+                pos_hint: {"center_x": .5}
+
+                MYLabel:
+                    text: "批次标签："
+                    size_hint_x: 0.2
+
+                UPPER_TEXT:
+                    id: lot
+                    hint_text: "例:22C15A 065，不要省略空格与0"
+                    size_hint_x: 0.7
+
+                NUMBET_TEXT:
+                    id: quantity
+                    text: "1"
+                    hint_text: "不良数量"
+                    size_hint_x: 0.1
+
+
         MDBoxLayout:
             orientation: "horizontal"
             size_hint_y: 0.1
