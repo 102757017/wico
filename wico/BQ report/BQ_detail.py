@@ -33,7 +33,7 @@ start_date365=datetime.datetime.strftime(start_date365, "%Y-%m-%d")
 
 
 
-sqlcmd='''CALL pyytest.dataframe2("{}")'''.format(end_date)
+sqlcmd='''CALL pyytest.dataframe("{}")'''.format(end_date)
 #df_table=sql.read_sql(sqlcmd,mariadb_conn)
 #df_table=df_table.set_index(["车型","零件类型","不良内容","维修方法"])
 df1=sql.read_sql(sqlcmd,mariadb_conn)
