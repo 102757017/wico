@@ -156,7 +156,7 @@ class EnterNgIfo(MDFloatLayout, MDTabsBase):
             ManufactureDate=self.ManufactureDate1
             Production_Line=self.Production_Line1
             if search_barcode(WicoPartNumber,Lot)==False:
-                uploade_ngrecord(NgTime,
+                conn=uploade_ngrecord(NgTime,
                                  CarModel,
                                  SeatModel,
                                  WicoPartNumber,
@@ -170,6 +170,7 @@ class EnterNgIfo(MDFloatLayout, MDTabsBase):
                                  ManufactureDate,
                                  Production_Line,
                                  0)
+                #conn.commit()
                 #toast("数据在本地保存完成")
                 f=sync_ngrecord_volume()
                 if f==True:

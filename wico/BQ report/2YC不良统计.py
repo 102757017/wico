@@ -206,7 +206,7 @@ with open('assets/2YC电动支架OUT.html', 'w', encoding="utf-8") as f:
 
 
 sqlcmd='''
-select
+	select
 	`ngrecord`.`PartType` AS `零件类型`,
 	`ngrecord`.`NgInfo` AS `不良内容`,
 	`ngrecord`.`RepairMethod` AS `维修方法`,
@@ -221,8 +221,7 @@ left join `volume` on
 		and `ngrecord`.`SeatModel` = `volume`.`SeatModel`))
 WHERE
 	cast(`ngrecord`.`NgTime` as date)>"2022-08-24" AND 
-	`ngrecord`.`CarModel`="2YC" AND
-	`ngrecord`.`PartType`="电动滑轨" OR `ngrecord`.`PartType`="前升降电动支架" OR `ngrecord`.`PartType`="后升降电动支架"
+	`ngrecord`.`CarModel`="2YC"
 group by
 	`ngrecord`.`CarModel`,
 	`ngrecord`.`PartType`,

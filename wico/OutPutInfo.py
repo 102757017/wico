@@ -182,7 +182,11 @@ class OutPutInfo(MDFloatLayout, MDTabsBase):
         Date=self.ids.date.text
         data=[]
         for i in range(len(self.CarModel_rows)):
-            if self.SeatModel_rows[i].text !="" and self.Day_rows[i].text !="" and self.Night_rows[i].text !="":
+            if self.SeatModel_rows[i].text !="" and (self.Day_rows[i].text !="" or self.Night_rows[i].text !=""):
+                if self.Day_rows[i].text =="":
+                    self.Day_rows[i].text ="0"
+                if self.Night_rows[i].text =="":
+                    self.Night_rows[i].text ="0"
                 d=(
                     Date,
                     self.CarModel_rows[i].text,
@@ -191,6 +195,7 @@ class OutPutInfo(MDFloatLayout, MDTabsBase):
                     self.Night_rows[i].text,
                     0
                    )
+                print(d)
                 data.append(d)
             else:
                 toast("{} {}座椅数据未填写完整".format(self.CarModel_rows[i].text,self.SeatModel_rows[i].text))

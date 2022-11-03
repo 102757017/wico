@@ -399,7 +399,7 @@ def uploade_ngrecord(NgTime, CarModel, SeatModel, WicoPartNumber, TsPartNumber, 
     cursor.close()
     conn.commit()
     #add_seat(CarModel,SeatModel,NgTime)
-    return RepairMethod
+    return conn
 
 #添加不良记录后同步添加该座椅的产量记录。
 def add_seat(CarModel,SeatModel,NgTime):

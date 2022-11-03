@@ -345,7 +345,7 @@ class Manual_input(MDFloatLayout, MDTabsBase):
                             Production_Line=line
                             ManufactureDate=lable_date
                         #提交表单
-                        uploade_ngrecord(NgTime,
+                        conn=uploade_ngrecord(NgTime,
                                         CarModel,
                                         SeatModel,
                                         WicoPartNumber,
@@ -359,6 +359,7 @@ class Manual_input(MDFloatLayout, MDTabsBase):
                                         ManufactureDate,
                                         Production_Line,
                                         0)
+                        #conn.commit()
                         #toast("数据在本地保存完成")
                         f=sync_ngrecord_volume()
                         if f==True:
@@ -377,7 +378,7 @@ class Manual_input(MDFloatLayout, MDTabsBase):
                 quantity=int(self.ids.quantity.text)
                 for i in range(quantity):
                     #提交表单
-                    uploade_ngrecord(self.ngtime,
+                    conn=uploade_ngrecord(self.ngtime,
                                     CarModel,
                                     SeatModel,
                                     WicoPartNumber,
@@ -393,6 +394,7 @@ class Manual_input(MDFloatLayout, MDTabsBase):
                                     0)
                     self.update_clock2()
                     #toast("数据在本地保存完成")
+                #conn.commit()
                 f=sync_ngrecord_volume()
                 if f==True:
                     toast("数据已上传到服务器")
