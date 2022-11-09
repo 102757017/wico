@@ -13,13 +13,13 @@ import pandas as pd
 import numpy as np
 
 
-
 mariadb_conn = mariadb.connect( 
-user="imasenwh", 
-password="596bf648aa7f80d8", 
-host="mysql.sqlpub.com", 
+user="hewei", 
+password="wico2022", 
+host="sunnyho.f3322.net", 
 port=3306, 
-database="custom_feedback" )
+database="pyytest" )
+
 
 t=datetime.datetime.strftime(datetime.datetime.now()-timedelta(days=1), "%Y-%m-%d")
 end_date=input("直接回车查询昨天的日报，如需指定日期，请输入查询日报的日期（例:{}）：".format(t))
@@ -33,7 +33,7 @@ start_date365=datetime.datetime.strftime(start_date365, "%Y-%m-%d")
 
 
 
-sqlcmd='''CALL custom_feedback.dataframe2("{}")'''.format(end_date)
+sqlcmd='''CALL pyytest.dataframe2("{}")'''.format(end_date)
 #df_table=sql.read_sql(sqlcmd,mariadb_conn)
 #df_table=df_table.set_index(["车型","零件类型","不良内容","维修方法"])
 df1=sql.read_sql(sqlcmd,mariadb_conn,coerce_float=False)
@@ -73,14 +73,14 @@ with open('assets/test.html', 'w', encoding="utf-8") as f:
     f.write(html_string.format(table=table_html))
 
 
-sqlcmd='''CALL custom_feedback.日内不良("{}")'''.format(end_date)
+sqlcmd='''CALL pyytest.日内不良("{}")'''.format(end_date)
 df=sql.read_sql(sqlcmd,mariadb_conn)
 fig_distribution = px.sunburst(df, path=['供应商', '零件类型', '不良内容'], values='不良数',title="{} 所有不良分布情况".format(end_date))
 #设置图形边距
 fig_distribution.update_layout(margin=dict(l=30, r=30, t=30, b=30))
 
 
-sqlcmd='''CALL custom_feedback.按生产线分类("{}")'''.format(end_date)
+sqlcmd='''CALL pyytest.按生产线分类("{}")'''.format(end_date)
 df=sql.read_sql(sqlcmd,mariadb_conn)
 fig_distribution2 = px.sunburst(df, path=['生产线' ,'车型', '不良内容'], values='不良数',title="{} WICO各生产线不良分布".format(end_date))
 #设置图形边距
@@ -105,7 +105,7 @@ fig_volume.update_layout(
 
 
 #30日不良趋势
-sqlcmd='''CALL custom_feedback.不良趋势("{}","{}",{})'''.format(start_date30,end_date,5)
+sqlcmd='''CALL pyytest.不良趋势("{}","{}",{})'''.format(start_date30,end_date,5)
 df=sql.read_sql(sqlcmd,mariadb_conn)
 df["nginfo"]=df["supplier"]+"-"+df["parttype"]+"-"+df["nginfo"]
 fig_trend_30 = px.line(df,x="ngdate",y="不良率",color="nginfo",title="近30日内不良发展趋势（TOP5）",markers=True,symbol = "nginfo")
@@ -119,7 +119,7 @@ fig_trend_30.update_layout(
 
 
 #365日不良趋势
-sqlcmd='''CALL custom_feedback.不良趋势("{}","{}",{})'''.format(start_date365,end_date,10)
+sqlcmd='''CALL pyytest.不良趋势("{}","{}",{})'''.format(start_date365,end_date,10)
 df=sql.read_sql(sqlcmd,mariadb_conn)
 df["nginfo"]=df["supplier"]+"-"+df["parttype"]+"-"+df["nginfo"]
 fig_trend_365 = px.line(df,x="ngdate",y="不良率",color="nginfo",title="年度不良发展趋势（TOP10）",markers=True,symbol = "nginfo")
@@ -133,7 +133,7 @@ fig_trend_365.update_layout(
 
 
 #不良批次分布
-sqlcmd='''CALL custom_feedback.不良批次分布("{}","{}")'''.format("2311-550-120","%焊穿%")
+sqlcmd='''CALL pyytest.不良批次分布("{}","{}")'''.format("2311-550-120","%焊穿%")
 df=sql.read_sql(sqlcmd,mariadb_conn)
 
 

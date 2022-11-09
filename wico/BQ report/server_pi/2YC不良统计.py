@@ -5,14 +5,15 @@ import pandas as pd
 import numpy as np
 import datetime
 
-
-
 mariadb_conn = mariadb.connect( 
-user="imasenwh", 
-password="596bf648aa7f80d8", 
-host="mysql.sqlpub.com", 
+user="hewei", 
+password="wico2022", 
+host="sunnyho.f3322.net", 
 port=3306, 
-database="custom_feedback" )
+database="pyytest" )
+
+
+
 
 
 sqlcmd='''
@@ -22,8 +23,8 @@ select
 	`ngrecord`.`NgInfo` AS `不良内容`,
 	`ngrecord`.`RepairMethod` AS `维修方法`,
 	count(`ngrecord`.`NgInfo`) AS `NG数量`,
-	#concat(left(count(`ngrecord`.`NgInfo`) / (any_value(`volume`.`Day`) + any_value(`volume`.`Night`)) * 100, 4), '%') AS `不良率`,
-	(any_value(`volume`.`Day`) + any_value(`volume`.`Night`)) AS `产量`
+	#concat(left(count(`ngrecord`.`NgInfo`) / (`volume`.`Day` + `volume`.`Night`) * 100, 4), '%') AS `不良率`,
+	(`volume`.`Day` + `volume`.`Night`) AS `产量`
 from
 	(`ngrecord`
 left join `volume` on
@@ -87,8 +88,8 @@ select
 	`ngrecord`.`NgInfo` AS `不良内容`,
 	`ngrecord`.`RepairMethod` AS `维修方法`,
 	count(`ngrecord`.`NgInfo`) AS `NG数量`,
-	#concat(left(count(`ngrecord`.`NgInfo`) / (any_value(`volume`.`Day`) + any_value(`volume`.`Night`)) * 100, 4), '%') AS `不良率`,
-	(any_value(`volume`.`Day`) + any_value(`volume`.`Night`)) AS `产量`
+	#concat(left(count(`ngrecord`.`NgInfo`) / (`volume`.`Day` + `volume`.`Night`) * 100, 4), '%') AS `不良率`,
+	(`volume`.`Day` + `volume`.`Night`) AS `产量`
 from
 	(`ngrecord`
 left join `volume` on
@@ -148,8 +149,8 @@ select
 	`ngrecord`.`NgInfo` AS `不良内容`,
 	`ngrecord`.`RepairMethod` AS `维修方法`,
 	count(`ngrecord`.`NgInfo`) AS `NG数量`,
-	#concat(left(count(`ngrecord`.`NgInfo`) / (any_value(`volume`.`Day`) + any_value(`volume`.`Night`)) * 100, 4), '%') AS `不良率`,
-	(any_value(`volume`.`Day`) + any_value(`volume`.`Night`)) AS `产量`
+	#concat(left(count(`ngrecord`.`NgInfo`) / (`volume`.`Day` + `volume`.`Night`) * 100, 4), '%') AS `不良率`,
+	(`volume`.`Day` + `volume`.`Night`) AS `产量`
 from
 	(`ngrecord`
 left join `volume` on
@@ -205,15 +206,21 @@ with open('assets/2YC电动支架OUT.html', 'w', encoding="utf-8") as f:
 
 
 sqlcmd='''
-select
-	`ngrecord`.`PartType` as `零件类型`,
-	`ngrecord`.`NgInfo` as `不良内容`,
-	`ngrecord`.`RepairMethod` as `维修方法`,
-	count(`ngrecord`.`NgInfo`) as `NG数量`
-	#concat(left(count(`ngrecord`.`NgInfo`) / (any_value(`volume`.`Day`) + any_value(`volume`.`Night`)) * 100, 4), '%') AS `不良率`,
+	select
+	`ngrecord`.`PartType` AS `零件类型`,
+	`ngrecord`.`NgInfo` AS `不良内容`,
+	`ngrecord`.`RepairMethod` AS `维修方法`,
+	count(`ngrecord`.`NgInfo`) AS `NG数量`,
+	#concat(left(count(`ngrecord`.`NgInfo`) / (`volume`.`Day` + `volume`.`Night`) * 100, 4), '%') AS `不良率`,
+	(`volume`.`Day` + `volume`.`Night`) AS `产量`
 from
-	`ngrecord`
+	(`ngrecord`
+left join `volume` on
+	(cast(`ngrecord`.`NgTime` as date) = `volume`.`C_M_Date`
+		and `ngrecord`.`CarModel` = `volume`.`CarModel`
+		and `ngrecord`.`SeatModel` = `volume`.`SeatModel`))
 WHERE
+	cast(`ngrecord`.`NgTime` as date)>"2022-08-24" AND 
 	`ngrecord`.`CarModel`="2YC"
 group by
 	`ngrecord`.`CarModel`,
@@ -222,6 +229,7 @@ group by
 	`ngrecord`.`RepairMethod`
 ORDER BY 
 	`ngrecord`.`PartType`,
+	cast(`ngrecord`.`NgTime` as date),
 	`ngrecord`.`NgInfo`
 '''
 df1=sql.read_sql(sqlcmd,mariadb_conn)

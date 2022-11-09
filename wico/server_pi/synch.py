@@ -228,11 +228,11 @@ def sync_all():
     
     try: 
         mariadb_conn = mariadb.connect( 
-        user="imasenwh", 
-        password="596bf648aa7f80d8", 
-        host="mysql.sqlpub.com", 
+        user="hewei", 
+        password="wico2022", 
+        host="sunnyho.f3322.net", 
         port=3306, 
-        database="custom_feedback" )
+        database="pyytest" )
         t1=datetime.datetime.now()
         sync_ngrecord(sqlite_conn,mariadb_conn)
         #print("NG品记录已同步完成")
@@ -261,13 +261,13 @@ def sync_ngrecord_volume():
     # 如果文件不存在，会自动在当前目录创建:
     sqlite_conn = sqlite3.connect(f"{os.environ['WICO_ROOT']}/db.db")
     
-    try:
+    try: 
         mariadb_conn = mariadb.connect( 
-        user="imasenwh", 
-        password="596bf648aa7f80d8", 
-        host="mysql.sqlpub.com", 
+        user="hewei", 
+        password="wico2022", 
+        host="sunnyho.f3322.net", 
         port=3306, 
-        database="custom_feedback" )
+        database="pyytest" )
         sync_ngrecord(sqlite_conn,mariadb_conn)
         #print("NG品记录已同步完成")
         sync_volume(sqlite_conn,mariadb_conn)

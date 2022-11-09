@@ -195,7 +195,7 @@ class OutPutInfo(MDFloatLayout, MDTabsBase):
                     self.Night_rows[i].text,
                     0
                    )
-                print(d)
+                #print(d)
                 data.append(d)
             else:
                 toast("{} {}座椅数据未填写完整".format(self.CarModel_rows[i].text,self.SeatModel_rows[i].text))

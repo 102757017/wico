@@ -456,11 +456,11 @@ def query_volume_local(C_M_Date):
 def query_volume_server(C_M_Date):
     try: 
         mariadb_conn = mariadb.connect( 
-        user="imasenwh", 
-        password="596bf648aa7f80d8", 
-        host="mysql.sqlpub.com", 
+        user="hewei", 
+        password="wico2022", 
+        host="sunnyho.f3322.net", 
         port=3306, 
-        database="custom_feedback" )
+        database="pyytest" )
 
         mariadb_cursor = mariadb_conn.cursor()
         
@@ -498,11 +498,11 @@ def query_nginfo(date):
     
     try: 
         mariadb_conn = mariadb.connect( 
-        user="imasenwh", 
-        password="596bf648aa7f80d8", 
-        host="mysql.sqlpub.com", 
+        user="hewei", 
+        password="wico2022", 
+        host="sunnyho.f3322.net", 
         port=3306, 
-        database="custom_feedback" )
+        database="pyytest" )
 
         mariadb_cursor = mariadb_conn.cursor()
         
