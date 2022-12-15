@@ -109,6 +109,7 @@ class Manual_input(MDFloatLayout, MDTabsBase):
         else:
             self.clock_variable.cancel()
             self.clock_variable=Clock.schedule_interval(self.update_clock2, 1)
+        
 
     def update_clock(self, *args):
         self.ids.date.text = datetime.datetime.strftime(datetime.datetime.now()-datetime.timedelta(hours=8), "%Y-%m-%d")
@@ -116,7 +117,12 @@ class Manual_input(MDFloatLayout, MDTabsBase):
         #print(self.ngtime)
 
     def update_clock2(self, *args):
-         self.ngtime=self.ids.date.text + datetime.datetime.strftime(datetime.datetime.now()+datetime.timedelta(hours=8), " %H:%M:%S.%f")
+         #self.ngtime=self.ids.date.text + datetime.datetime.strftime(datetime.datetime.now()+datetime.timedelta(hours=8), " %H:%M:%S.%f")
+         now=datetime.datetime.now()
+         delta1=timedelta(hours=now.hour, minutes=now.minute, seconds=now.second,microseconds=now.microsecond)
+         delta2=datetime.timedelta(hours=8)
+         self.ngtime=datetime.datetime.strptime(self.ids.date.text, "%Y-%m-%d")+delta1+delta2
+         self.ngtime=datetime.datetime.strftime(self.ngtime, "%Y-%m-%d %H:%M:%S.%f")
          #print(self.ngtime)
 
 
