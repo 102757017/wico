@@ -4,8 +4,10 @@ import webbrowser
 import pandas as pd
 import numpy as np
 import datetime
+from pathlib import Path
+import os
 
-
+os.chdir(Path(__file__).parent)
 
 mariadb_conn = mariadb.connect( 
 user="imasenwh", 

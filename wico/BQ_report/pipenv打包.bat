@@ -18,6 +18,8 @@ echo 建立虚拟环境
 pipenv --python "D:\Python36-32\python3.6.exe"
 
 echo 安装模块
+pipenv run pip install "F:\桌面\python\基础操作\模块安装\mariadb-1.1.0b2-cp36-cp36m-win32.whl"
+pipenv run pip install "F:\桌面\python\基础操作\模块安装\immutables-0.9-cp36-cp36m-win32.whl"
 pipenv run pip install mariadb pandas dash dash_bootstrap_components
 
 echo 安装pyinstaller

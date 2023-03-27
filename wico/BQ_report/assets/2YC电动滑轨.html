@@ -1,0 +1,3299 @@
+
+<html>
+  <head><title>HTML Pandas Dataframe with CSS</title></head>
+  <link rel="stylesheet" type="text/css" href="df_style.css"/>
+  <body>
+    <table border="1" class="dataframe mystyle">
+  <thead>
+    <tr style="text-align: justify-all;">
+      <th style="min-width: 280px;"></th>
+      <th style="min-width: 280px;"></th>
+      <th style="min-width: 280px;"></th>
+      <th style="min-width: 280px;"></th>
+      <th style="min-width: 280px;">NG数量</th>
+      <th style="min-width: 280px;">产量</th>
+    </tr>
+    <tr>
+      <th>零件类型</th>
+      <th>日期</th>
+      <th>不良内容</th>
+      <th>维修方法</th>
+      <th style="min-width: 280px;"></th>
+      <th style="min-width: 280px;"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="560" valign="middle">电动滑轨</th>
+      <th>2022-08-28</th>
+      <th>条码脏污/破损，无法识别</th>
+      <th>更换条码</th>
+      <td>2</td>
+      <td>80.0</td>
+    </tr>
+    <tr>
+      <th rowspan="3" valign="middle">2022-08-31</th>
+      <th rowspan="3" valign="middle">滑动震动</th>
+      <th>报废</th>
+      <td>2</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>更换滑轨</th>
+      <td>1</td>
+      <td>120.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱</th>
+      <td>4</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="middle">2022-09-01</th>
+      <th>条码脏污/破损，无法识别</th>
+      <th>更换条码</th>
+      <td>5</td>
+      <td>20.0</td>
+    </tr>
+    <tr>
+      <th>滑动异音</th>
+      <th>更换齿轮箱</th>
+      <td>1</td>
+      <td>20.0</td>
+    </tr>
+    <tr>
+      <th rowspan="3" valign="middle">2022-09-02</th>
+      <th>不在初始位</th>
+      <th>调节到初始位</th>
+      <td>1</td>
+      <td>30.0</td>
+    </tr>
+    <tr>
+      <th>条码脏污/破损，无法识别</th>
+      <th>更换条码</th>
+      <td>1</td>
+      <td>30.0</td>
+    </tr>
+    <tr>
+      <th>滑动震动</th>
+      <th>更换齿轮箱</th>
+      <td>1</td>
+      <td>30.0</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="middle">2022-09-03</th>
+      <th>条码脏污/破损，无法识别</th>
+      <th>更换条码</th>
+      <td>1</td>
+      <td>35.0</td>
+    </tr>
+    <tr>
+      <th>滑动震动</th>
+      <th>更换滑轨</th>
+      <td>1</td>
+      <td>35.0</td>
+    </tr>
+    <tr>
+      <th>2022-09-08</th>
+      <th>滑动震动</th>
+      <th>更换齿轮箱</th>
+      <td>4</td>
+      <td>40.0</td>
+    </tr>
+    <tr>
+      <th rowspan="3" valign="middle">2022-09-14</th>
+      <th>滑动异音</th>
+      <th>待处理</th>
+      <td>10</td>
+      <td>80.0</td>
+    </tr>
+    <tr>
+      <th>滑动晃动</th>
+      <th>待处理</th>
+      <td>3</td>
+      <td>80.0</td>
+    </tr>
+    <tr>
+      <th>滑动震动</th>
+      <th>待处理</th>
+      <td>2</td>
+      <td>80.0</td>
+    </tr>
+    <tr>
+      <th rowspan="4" valign="middle">2022-09-16</th>
+      <th>滑动异音</th>
+      <th>更换齿轮箱</th>
+      <td>1</td>
+      <td>124.0</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="middle">滑动晃动</th>
+      <th>更换滑轨</th>
+      <td>1</td>
+      <td>124.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱</th>
+      <td>2</td>
+      <td>124.0</td>
+    </tr>
+    <tr>
+      <th>滑轨震动并且晃动</th>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>8</td>
+      <td>124.0</td>
+    </tr>
+    <tr>
+      <th rowspan="5" valign="middle">2022-09-19</th>
+      <th>不在初始位</th>
+      <th>调节到初始位</th>
+      <td>4</td>
+      <td>180.0</td>
+    </tr>
+    <tr>
+      <th rowspan="3" valign="middle">滑动异音</th>
+      <th>更换齿轮箱</th>
+      <td>2</td>
+      <td>180.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>2</td>
+      <td>180.0</td>
+    </tr>
+    <tr>
+      <th>调整/更换 短绕性轴</th>
+      <td>2</td>
+      <td>180.0</td>
+    </tr>
+    <tr>
+      <th>滑动晃动</th>
+      <th>更换齿轮箱</th>
+      <td>4</td>
+      <td>180.0</td>
+    </tr>
+    <tr>
+      <th rowspan="5" valign="middle">2022-09-20</th>
+      <th rowspan="2" valign="middle">滑动晃动</th>
+      <th>更换齿轮箱</th>
+      <td>1</td>
+      <td>180.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>14</td>
+      <td>180.0</td>
+    </tr>
+    <tr>
+      <th rowspan="3" valign="middle">滑动震动</th>
+      <th>更换齿轮箱</th>
+      <td>4</td>
+      <td>180.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>14</td>
+      <td>180.0</td>
+    </tr>
+    <tr>
+      <th>调整/更换 短绕性轴</th>
+      <td>7</td>
+      <td>180.0</td>
+    </tr>
+    <tr>
+      <th rowspan="5" valign="middle">2022-09-21</th>
+      <th rowspan="2" valign="middle">滑动异音</th>
+      <th>更换齿轮箱</th>
+      <td>2</td>
+      <td>180.0</td>
+    </tr>
+    <tr>
+      <th>涂油反复作动</th>
+      <td>6</td>
+      <td>180.0</td>
+    </tr>
+    <tr>
+      <th>滑动晃动</th>
+      <th>更换齿轮箱</th>
+      <td>11</td>
+      <td>180.0</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="middle">滑动震动</th>
+      <th>更换齿轮箱</th>
+      <td>15</td>
+      <td>180.0</td>
+    </tr>
+    <tr>
+      <th>涂油反复作动</th>
+      <td>5</td>
+      <td>180.0</td>
+    </tr>
+    <tr>
+      <th rowspan="7" valign="middle">2022-09-22</th>
+      <th>不在初始位</th>
+      <th>调节到初始位</th>
+      <td>8</td>
+      <td>340.0</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="middle">滑动异音</th>
+      <th>更换齿轮箱</th>
+      <td>8</td>
+      <td>340.0</td>
+    </tr>
+    <tr>
+      <th>涂油反复作动</th>
+      <td>2</td>
+      <td>340.0</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="middle">滑动晃动</th>
+      <th>更换齿轮箱</th>
+      <td>13</td>
+      <td>340.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>3</td>
+      <td>340.0</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="middle">滑动震动</th>
+      <th>更换齿轮箱</th>
+      <td>22</td>
+      <td>340.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>3</td>
+      <td>340.0</td>
+    </tr>
+    <tr>
+      <th rowspan="5" valign="middle">2022-09-23</th>
+      <th>无法作动到最前/后端</th>
+      <th>更换滑块</th>
+      <td>1</td>
+      <td>200.0</td>
+    </tr>
+    <tr>
+      <th>滑动异音</th>
+      <th>更换齿轮箱</th>
+      <td>3</td>
+      <td>200.0</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="middle">滑动晃动</th>
+      <th>更换滑轨</th>
+      <td>1</td>
+      <td>200.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱</th>
+      <td>3</td>
+      <td>200.0</td>
+    </tr>
+    <tr>
+      <th>滑动震动</th>
+      <th>更换齿轮箱</th>
+      <td>9</td>
+      <td>200.0</td>
+    </tr>
+    <tr>
+      <th rowspan="5" valign="middle">2022-09-24</th>
+      <th>不在初始位</th>
+      <th>调节到初始位</th>
+      <td>4</td>
+      <td>206.0</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="middle">滑动异音</th>
+      <th>更换齿轮箱</th>
+      <td>2</td>
+      <td>206.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>3</td>
+      <td>206.0</td>
+    </tr>
+    <tr>
+      <th>滑动晃动</th>
+      <th>撬L形支架</th>
+      <td>1</td>
+      <td>206.0</td>
+    </tr>
+    <tr>
+      <th>滑动震动</th>
+      <th>更换齿轮箱</th>
+      <td>12</td>
+      <td>206.0</td>
+    </tr>
+    <tr>
+      <th rowspan="7" valign="middle">2022-09-26</th>
+      <th>不在初始位</th>
+      <th>调节到初始位</th>
+      <td>4</td>
+      <td>435.0</td>
+    </tr>
+    <tr>
+      <th rowspan="3" valign="middle">滑动异音</th>
+      <th>更换滑轨</th>
+      <td>1</td>
+      <td>435.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱</th>
+      <td>9</td>
+      <td>435.0</td>
+    </tr>
+    <tr>
+      <th>涂油反复作动</th>
+      <td>1</td>
+      <td>435.0</td>
+    </tr>
+    <tr>
+      <th>滑动晃动</th>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>1</td>
+      <td>435.0</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="middle">滑动震动</th>
+      <th>更换齿轮箱</th>
+      <td>3</td>
+      <td>435.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>1</td>
+      <td>435.0</td>
+    </tr>
+    <tr>
+      <th rowspan="11" valign="middle">2022-09-27</th>
+      <th>不在初始位</th>
+      <th>调节到初始位</th>
+      <td>3</td>
+      <td>580.0</td>
+    </tr>
+    <tr>
+      <th>无法作动到最前/后端</th>
+      <th>反复作动,更换齿轮箱</th>
+      <td>1</td>
+      <td>580.0</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="middle">滑动异音</th>
+      <th>更换齿轮箱</th>
+      <td>7</td>
+      <td>580.0</td>
+    </tr>
+    <tr>
+      <th>涂油反复作动</th>
+      <td>14</td>
+      <td>580.0</td>
+    </tr>
+    <tr>
+      <th rowspan="3" valign="middle">滑动晃动</th>
+      <th>撬L形支架</th>
+      <td>2</td>
+      <td>580.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱</th>
+      <td>3</td>
+      <td>580.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>3</td>
+      <td>580.0</td>
+    </tr>
+    <tr>
+      <th rowspan="3" valign="middle">滑动震动</th>
+      <th>更换齿轮箱</th>
+      <td>9</td>
+      <td>580.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>7</td>
+      <td>580.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱,调整/更换 长绕性轴</th>
+      <td>2</td>
+      <td>580.0</td>
+    </tr>
+    <tr>
+      <th>滑轨震动并且晃动</th>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>1</td>
+      <td>580.0</td>
+    </tr>
+    <tr>
+      <th rowspan="15" valign="middle">2022-09-28</th>
+      <th>TS-GSK漏装短轴</th>
+      <th>协助更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>2</td>
+      <td>419.0</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="middle">不在初始位</th>
+      <th>待更换</th>
+      <td>1</td>
+      <td>419.0</td>
+    </tr>
+    <tr>
+      <th>调节到初始位</th>
+      <td>8</td>
+      <td>419.0</td>
+    </tr>
+    <tr>
+      <th rowspan="3" valign="middle">滑动异音</th>
+      <th>待处理</th>
+      <td>2</td>
+      <td>419.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱</th>
+      <td>2</td>
+      <td>419.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>4</td>
+      <td>419.0</td>
+    </tr>
+    <tr>
+      <th rowspan="4" valign="middle">滑动晃动</th>
+      <th>待处理</th>
+      <td>8</td>
+      <td>419.0</td>
+    </tr>
+    <tr>
+      <th>撬L形支架</th>
+      <td>13</td>
+      <td>419.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱</th>
+      <td>1</td>
+      <td>419.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>9</td>
+      <td>419.0</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="middle">滑动震动</th>
+      <th>更换齿轮箱</th>
+      <td>2</td>
+      <td>419.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>4</td>
+      <td>419.0</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="middle">滑轨震动并且晃动</th>
+      <th>更换齿轮箱</th>
+      <td>5</td>
+      <td>419.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>5</td>
+      <td>419.0</td>
+    </tr>
+    <tr>
+      <th>震动/异音</th>
+      <th>待处理</th>
+      <td>4</td>
+      <td>419.0</td>
+    </tr>
+    <tr>
+      <th rowspan="8" valign="middle">2022-09-29</th>
+      <th>不在初始位</th>
+      <th>调节到初始位</th>
+      <td>2</td>
+      <td>570.0</td>
+    </tr>
+    <tr>
+      <th>滑动异音</th>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>4</td>
+      <td>570.0</td>
+    </tr>
+    <tr>
+      <th rowspan="3" valign="middle">滑动晃动</th>
+      <th>撬L形支架</th>
+      <td>4</td>
+      <td>570.0</td>
+    </tr>
+    <tr>
+      <th>更换滑轨</th>
+      <td>4</td>
+      <td>570.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>28</td>
+      <td>570.0</td>
+    </tr>
+    <tr>
+      <th>滑动震动</th>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>9</td>
+      <td>570.0</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="middle">滑轨震动并且晃动</th>
+      <th>更换齿轮箱</th>
+      <td>6</td>
+      <td>570.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>6</td>
+      <td>570.0</td>
+    </tr>
+    <tr>
+      <th rowspan="10" valign="middle">2022-09-30</th>
+      <th>不在初始位</th>
+      <th>调节到初始位</th>
+      <td>5</td>
+      <td>389.0</td>
+    </tr>
+    <tr>
+      <th>滑动异音</th>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>7</td>
+      <td>389.0</td>
+    </tr>
+    <tr>
+      <th rowspan="4" valign="middle">滑动晃动</th>
+      <th>撬L形支架</th>
+      <td>15</td>
+      <td>389.0</td>
+    </tr>
+    <tr>
+      <th>更换滑轨</th>
+      <td>8</td>
+      <td>389.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱</th>
+      <td>11</td>
+      <td>389.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>23</td>
+      <td>389.0</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="middle">滑动震动</th>
+      <th>更换齿轮箱</th>
+      <td>12</td>
+      <td>389.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>14</td>
+      <td>389.0</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="middle">滑轨震动并且晃动</th>
+      <th>撬L形支架,更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>17</td>
+      <td>389.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱</th>
+      <td>17</td>
+      <td>389.0</td>
+    </tr>
+    <tr>
+      <th rowspan="8" valign="middle">2022-10-04</th>
+      <th>滑动异音</th>
+      <th>更换齿轮箱</th>
+      <td>6</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th rowspan="4" valign="middle">滑动晃动</th>
+      <th>撬L形支架</th>
+      <td>1</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>更换滑轨</th>
+      <td>3</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>9</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>未修好</th>
+      <td>2</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>滑动晃动滑不动</th>
+      <th>未修好</th>
+      <td>7</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="middle">滑动震动</th>
+      <th>更换齿轮箱</th>
+      <td>2</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>3</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th rowspan="10" valign="middle">2022-10-05</th>
+      <th rowspan="2" valign="middle">滑动异音</th>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>1</td>
+      <td>240.0</td>
+    </tr>
+    <tr>
+      <th>涂油反复作动</th>
+      <td>2</td>
+      <td>240.0</td>
+    </tr>
+    <tr>
+      <th rowspan="3" valign="middle">滑动晃动</th>
+      <th>更换滑轨</th>
+      <td>2</td>
+      <td>240.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱</th>
+      <td>6</td>
+      <td>240.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>23</td>
+      <td>240.0</td>
+    </tr>
+    <tr>
+      <th rowspan="3" valign="middle">滑动震动</th>
+      <th>更换滑轨</th>
+      <td>3</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱</th>
+      <td>7</td>
+      <td>240.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>7</td>
+      <td>240.0</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="middle">滑轨震动并且晃动</th>
+      <th>撬L形支架,更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>1</td>
+      <td>240.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱</th>
+      <td>1</td>
+      <td>240.0</td>
+    </tr>
+    <tr>
+      <th rowspan="15" valign="middle">2022-10-06</th>
+      <th>无法作动到最前/后端</th>
+      <th>反复作动,撬L形支架</th>
+      <td>2</td>
+      <td>865.0</td>
+    </tr>
+    <tr>
+      <th rowspan="4" valign="middle">滑动异音</th>
+      <th>更换齿轮箱</th>
+      <td>1</td>
+      <td>865.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>11</td>
+      <td>865.0</td>
+    </tr>
+    <tr>
+      <th>涂油反复作动</th>
+      <td>1</td>
+      <td>865.0</td>
+    </tr>
+    <tr>
+      <th>调整/更换 短绕性轴</th>
+      <td>1</td>
+      <td>865.0</td>
+    </tr>
+    <tr>
+      <th rowspan="5" valign="middle">滑动晃动</th>
+      <th>撬L形支架</th>
+      <td>1</td>
+      <td>865.0</td>
+    </tr>
+    <tr>
+      <th>更换滑轨</th>
+      <td>1</td>
+      <td>865.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱</th>
+      <td>26</td>
+      <td>865.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>36</td>
+      <td>865.0</td>
+    </tr>
+    <tr>
+      <th>调整/更换 短绕性轴</th>
+      <td>3</td>
+      <td>865.0</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="middle">滑动震动</th>
+      <th>更换齿轮箱</th>
+      <td>6</td>
+      <td>865.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>16</td>
+      <td>865.0</td>
+    </tr>
+    <tr>
+      <th rowspan="3" valign="middle">滑轨震动并且晃动</th>
+      <th>更换滑轨</th>
+      <td>2</td>
+      <td>865.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱</th>
+      <td>12</td>
+      <td>865.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>12</td>
+      <td>865.0</td>
+    </tr>
+    <tr>
+      <th rowspan="17" valign="middle">2022-10-07</th>
+      <th rowspan="5" valign="middle">滑动异音</th>
+      <th>更换齿轮箱</th>
+      <td>7</td>
+      <td>635.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>19</td>
+      <td>635.0</td>
+    </tr>
+    <tr>
+      <th>未修好</th>
+      <td>1</td>
+      <td>635.0</td>
+    </tr>
+    <tr>
+      <th>涂油反复作动</th>
+      <td>1</td>
+      <td>635.0</td>
+    </tr>
+    <tr>
+      <th>调整/更换 短绕性轴</th>
+      <td>3</td>
+      <td>635.0</td>
+    </tr>
+    <tr>
+      <th rowspan="6" valign="middle">滑动晃动</th>
+      <th>撬L形支架</th>
+      <td>17</td>
+      <td>635.0</td>
+    </tr>
+    <tr>
+      <th>撬L形支架,更换齿轮箱</th>
+      <td>5</td>
+      <td>635.0</td>
+    </tr>
+    <tr>
+      <th>撬L形支架,更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>7</td>
+      <td>635.0</td>
+    </tr>
+    <tr>
+      <th>更换滑轨</th>
+      <td>1</td>
+      <td>635.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱</th>
+      <td>2</td>
+      <td>635.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>24</td>
+      <td>635.0</td>
+    </tr>
+    <tr>
+      <th>滑动途中卡死，无法再前后作动</th>
+      <th>更换滑轨</th>
+      <td>1</td>
+      <td>635.0</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="middle">滑动震动</th>
+      <th>更换齿轮箱</th>
+      <td>2</td>
+      <td>635.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>10</td>
+      <td>635.0</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="middle">滑轨震动并且晃动</th>
+      <th>撬L形支架,更换齿轮箱</th>
+      <td>5</td>
+      <td>635.0</td>
+    </tr>
+    <tr>
+      <th>撬L形支架,更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>5</td>
+      <td>635.0</td>
+    </tr>
+    <tr>
+      <th>齿轮箱破损</th>
+      <th>更换齿轮箱</th>
+      <td>1</td>
+      <td>635.0</td>
+    </tr>
+    <tr>
+      <th rowspan="10" valign="middle">2022-10-08</th>
+      <th rowspan="3" valign="middle">滑动异音</th>
+      <th>更换齿轮箱</th>
+      <td>5</td>
+      <td>750.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>12</td>
+      <td>750.0</td>
+    </tr>
+    <tr>
+      <th>调整/更换 短绕性轴</th>
+      <td>4</td>
+      <td>750.0</td>
+    </tr>
+    <tr>
+      <th rowspan="4" valign="middle">滑动晃动</th>
+      <th>撬L形支架</th>
+      <td>7</td>
+      <td>750.0</td>
+    </tr>
+    <tr>
+      <th>撬L形支架,更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>13</td>
+      <td>750.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱</th>
+      <td>3</td>
+      <td>750.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>21</td>
+      <td>750.0</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="middle">滑动震动</th>
+      <th>更换齿轮箱</th>
+      <td>11</td>
+      <td>750.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>15</td>
+      <td>750.0</td>
+    </tr>
+    <tr>
+      <th>滑轨震动并且晃动</th>
+      <th>撬L形支架,更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>4</td>
+      <td>750.0</td>
+    </tr>
+    <tr>
+      <th rowspan="5" valign="middle">2022-10-10</th>
+      <th>滑动异音</th>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>2</td>
+      <td>880.0</td>
+    </tr>
+    <tr>
+      <th rowspan="3" valign="middle">滑动晃动</th>
+      <th>撬L形支架</th>
+      <td>4</td>
+      <td>880.0</td>
+    </tr>
+    <tr>
+      <th>撬L形支架,更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>4</td>
+      <td>880.0</td>
+    </tr>
+    <tr>
+      <th>更换滑轨</th>
+      <td>1</td>
+      <td>880.0</td>
+    </tr>
+    <tr>
+      <th>滑动震动</th>
+      <th>更换齿轮箱</th>
+      <td>2</td>
+      <td>880.0</td>
+    </tr>
+    <tr>
+      <th rowspan="4" valign="middle">2022-10-11</th>
+      <th>滑动异音</th>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>21</td>
+      <td>822.0</td>
+    </tr>
+    <tr>
+      <th>滑动晃动</th>
+      <th>撬L形支架</th>
+      <td>2</td>
+      <td>822.0</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="middle">滑动震动</th>
+      <th>更换齿轮箱</th>
+      <td>1</td>
+      <td>822.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>5</td>
+      <td>822.0</td>
+    </tr>
+    <tr>
+      <th rowspan="3" valign="middle">2022-10-12</th>
+      <th>条码重复</th>
+      <th>更换条码</th>
+      <td>21</td>
+      <td>828.0</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="middle">滑动异音</th>
+      <th>更换齿轮箱</th>
+      <td>1</td>
+      <td>828.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>12</td>
+      <td>828.0</td>
+    </tr>
+    <tr>
+      <th rowspan="5" valign="middle">2022-10-13</th>
+      <th>TS-GSK漏装短轴</th>
+      <th>协助更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>2</td>
+      <td>692.0</td>
+    </tr>
+    <tr>
+      <th>条码重复</th>
+      <th>更换条码</th>
+      <td>50</td>
+      <td>692.0</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="middle">滑动异音</th>
+      <th>更换齿轮箱</th>
+      <td>6</td>
+      <td>692.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>11</td>
+      <td>692.0</td>
+    </tr>
+    <tr>
+      <th>滑动震动</th>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>1</td>
+      <td>692.0</td>
+    </tr>
+    <tr>
+      <th rowspan="9" valign="middle">2022-10-14</th>
+      <th>条码重复</th>
+      <th>更换条码</th>
+      <td>20</td>
+      <td>885.0</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="middle">滑动异音</th>
+      <th>更换齿轮箱</th>
+      <td>1</td>
+      <td>885.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>6</td>
+      <td>885.0</td>
+    </tr>
+    <tr>
+      <th rowspan="3" valign="middle">滑动晃动</th>
+      <th>撬L形支架,更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>1</td>
+      <td>885.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱</th>
+      <td>1</td>
+      <td>885.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>1</td>
+      <td>885.0</td>
+    </tr>
+    <tr>
+      <th rowspan="3" valign="middle">滑动震动</th>
+      <th>撬L形支架</th>
+      <td>3</td>
+      <td>885.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱</th>
+      <td>1</td>
+      <td>885.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>1</td>
+      <td>885.0</td>
+    </tr>
+    <tr>
+      <th rowspan="7" valign="middle">2022-10-15</th>
+      <th>条码重复</th>
+      <th>更换条码</th>
+      <td>16</td>
+      <td>805.0</td>
+    </tr>
+    <tr>
+      <th rowspan="3" valign="middle">滑动异音</th>
+      <th>更换齿轮箱</th>
+      <td>1</td>
+      <td>805.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>8</td>
+      <td>805.0</td>
+    </tr>
+    <tr>
+      <th>调整/更换 短绕性轴</th>
+      <td>2</td>
+      <td>805.0</td>
+    </tr>
+    <tr>
+      <th>滑动晃动</th>
+      <th>撬L形支架</th>
+      <td>3</td>
+      <td>805.0</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="middle">滑动震动</th>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>1</td>
+      <td>805.0</td>
+    </tr>
+    <tr>
+      <th>调整/更换 短绕性轴</th>
+      <td>1</td>
+      <td>805.0</td>
+    </tr>
+    <tr>
+      <th rowspan="5" valign="middle">2022-10-17</th>
+      <th>不在初始位</th>
+      <th>调节到初始位</th>
+      <td>1</td>
+      <td>890.0</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="middle">滑动异音</th>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>4</td>
+      <td>890.0</td>
+    </tr>
+    <tr>
+      <th>涂油反复作动</th>
+      <td>1</td>
+      <td>890.0</td>
+    </tr>
+    <tr>
+      <th>滑动震动</th>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>2</td>
+      <td>890.0</td>
+    </tr>
+    <tr>
+      <th>齿轮箱破损</th>
+      <th>更换齿轮箱</th>
+      <td>1</td>
+      <td>890.0</td>
+    </tr>
+    <tr>
+      <th rowspan="5" valign="middle">2022-10-18</th>
+      <th rowspan="2" valign="middle">滑动异音</th>
+      <th>更换齿轮箱</th>
+      <td>4</td>
+      <td>830.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>3</td>
+      <td>830.0</td>
+    </tr>
+    <tr>
+      <th>滑动晃动</th>
+      <th>更换滑轨</th>
+      <td>2</td>
+      <td>830.0</td>
+    </tr>
+    <tr>
+      <th>滑动震动</th>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>1</td>
+      <td>830.0</td>
+    </tr>
+    <tr>
+      <th>滑轨震动并且晃动</th>
+      <th>撬L形支架,更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>1</td>
+      <td>830.0</td>
+    </tr>
+    <tr>
+      <th rowspan="3" valign="middle">2022-10-19</th>
+      <th rowspan="2" valign="middle">滑动异音</th>
+      <th>更换齿轮箱</th>
+      <td>5</td>
+      <td>730.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>13</td>
+      <td>730.0</td>
+    </tr>
+    <tr>
+      <th>滑动震动</th>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>2</td>
+      <td>730.0</td>
+    </tr>
+    <tr>
+      <th rowspan="3" valign="middle">2022-10-20</th>
+      <th>滑动异音</th>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>6</td>
+      <td>657.0</td>
+    </tr>
+    <tr>
+      <th>滑动晃动</th>
+      <th>更换滑轨</th>
+      <td>2</td>
+      <td>657.0</td>
+    </tr>
+    <tr>
+      <th>滑动震动</th>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>2</td>
+      <td>657.0</td>
+    </tr>
+    <tr>
+      <th rowspan="3" valign="middle">2022-10-21</th>
+      <th rowspan="2" valign="middle">滑动异音</th>
+      <th>更换齿轮箱</th>
+      <td>9</td>
+      <td>730.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>8</td>
+      <td>730.0</td>
+    </tr>
+    <tr>
+      <th>齿轮箱破损</th>
+      <th>更换齿轮箱</th>
+      <td>1</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th rowspan="4" valign="middle">2022-10-22</th>
+      <th rowspan="2" valign="middle">滑动异音</th>
+      <th>更换齿轮箱</th>
+      <td>8</td>
+      <td>810.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>2</td>
+      <td>810.0</td>
+    </tr>
+    <tr>
+      <th>滑动震动</th>
+      <th>更换齿轮箱</th>
+      <td>1</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>连接板没有安装到位</th>
+      <th>重新安装连接板</th>
+      <td>1</td>
+      <td>810.0</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="middle">2022-10-24</th>
+      <th rowspan="2" valign="middle">滑动异音</th>
+      <th>更换齿轮箱</th>
+      <td>4</td>
+      <td>664.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>3</td>
+      <td>664.0</td>
+    </tr>
+    <tr>
+      <th rowspan="3" valign="middle">2022-10-25</th>
+      <th rowspan="2" valign="middle">滑动异音</th>
+      <th>更换齿轮箱</th>
+      <td>1</td>
+      <td>942.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>2</td>
+      <td>942.0</td>
+    </tr>
+    <tr>
+      <th>滑动晃动</th>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>1</td>
+      <td>942.0</td>
+    </tr>
+    <tr>
+      <th>2022-10-26</th>
+      <th>滑动异音</th>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>4</td>
+      <td>784.0</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="middle">2022-10-27</th>
+      <th>滑动异音</th>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>9</td>
+      <td>941.0</td>
+    </tr>
+    <tr>
+      <th>滑动晃动</th>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>4</td>
+      <td>941.0</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="middle">2022-10-28</th>
+      <th>滑动异音</th>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>3</td>
+      <td>609.0</td>
+    </tr>
+    <tr>
+      <th>滑动晃动</th>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>4</td>
+      <td>609.0</td>
+    </tr>
+    <tr>
+      <th rowspan="4" valign="middle">2022-10-29</th>
+      <th rowspan="2" valign="middle">滑动异音</th>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>2</td>
+      <td>635.0</td>
+    </tr>
+    <tr>
+      <th>调整/更换 短绕性轴</th>
+      <td>3</td>
+      <td>635.0</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="middle">滑动晃动</th>
+      <th>撬L形支架,更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>5</td>
+      <td>635.0</td>
+    </tr>
+    <tr>
+      <th>更换滑轨,更换齿轮箱</th>
+      <td>3</td>
+      <td>635.0</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="middle">2022-10-30</th>
+      <th>滑动异音</th>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>3</td>
+      <td>287.0</td>
+    </tr>
+    <tr>
+      <th>滑动晃动</th>
+      <th>撬L形支架,更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>3</td>
+      <td>287.0</td>
+    </tr>
+    <tr>
+      <th rowspan="5" valign="middle">2022-10-31</th>
+      <th>条码脏污/破损，无法识别</th>
+      <th>更换条码</th>
+      <td>1</td>
+      <td>788.0</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="middle">滑动异音</th>
+      <th>更换齿轮箱</th>
+      <td>1</td>
+      <td>788.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>1</td>
+      <td>788.0</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="middle">滑动晃动</th>
+      <th>更换滑轨</th>
+      <td>2</td>
+      <td>788.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>10</td>
+      <td>788.0</td>
+    </tr>
+    <tr>
+      <th rowspan="4" valign="middle">2022-11-01</th>
+      <th>滑动异音</th>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>2</td>
+      <td>180.0</td>
+    </tr>
+    <tr>
+      <th rowspan="3" valign="middle">滑动晃动</th>
+      <th>撬L形支架,更换齿轮箱</th>
+      <td>3</td>
+      <td>180.0</td>
+    </tr>
+    <tr>
+      <th>撬L形支架,更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>3</td>
+      <td>180.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>4</td>
+      <td>180.0</td>
+    </tr>
+    <tr>
+      <th rowspan="8" valign="middle">2022-11-02</th>
+      <th>不在初始位</th>
+      <th>调节到初始位</th>
+      <td>1</td>
+      <td>849.0</td>
+    </tr>
+    <tr>
+      <th rowspan="3" valign="middle">滑动异音</th>
+      <th>更换齿轮箱</th>
+      <td>1</td>
+      <td>849.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱,涂油反复作动</th>
+      <td>1</td>
+      <td>849.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>5</td>
+      <td>849.0</td>
+    </tr>
+    <tr>
+      <th>滑动晃动</th>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>3</td>
+      <td>849.0</td>
+    </tr>
+    <tr>
+      <th>滑动震动</th>
+      <th>更换齿轮箱</th>
+      <td>1</td>
+      <td>849.0</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="middle">滑轨震动并且晃动</th>
+      <th>更换齿轮箱</th>
+      <td>1</td>
+      <td>849.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>1</td>
+      <td>849.0</td>
+    </tr>
+    <tr>
+      <th rowspan="4" valign="middle">2022-11-03</th>
+      <th rowspan="3" valign="middle">滑动异音</th>
+      <th>更换齿轮箱</th>
+      <td>1</td>
+      <td>450.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>2</td>
+      <td>450.0</td>
+    </tr>
+    <tr>
+      <th>调整/更换 短绕性轴</th>
+      <td>1</td>
+      <td>450.0</td>
+    </tr>
+    <tr>
+      <th>滑动晃动</th>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>5</td>
+      <td>450.0</td>
+    </tr>
+    <tr>
+      <th rowspan="4" valign="middle">2022-11-04</th>
+      <th rowspan="2" valign="middle">滑动异音</th>
+      <th>更换齿轮箱</th>
+      <td>1</td>
+      <td>619.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>4</td>
+      <td>619.0</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="middle">滑动晃动</th>
+      <th>更换齿轮箱</th>
+      <td>3</td>
+      <td>619.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>8</td>
+      <td>619.0</td>
+    </tr>
+    <tr>
+      <th rowspan="8" valign="middle">2022-11-07</th>
+      <th>无法作动到最前/后端</th>
+      <th>取出焊渣</th>
+      <td>1</td>
+      <td>778.0</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="middle">滑动异音</th>
+      <th>更换齿轮箱</th>
+      <td>3</td>
+      <td>778.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>1</td>
+      <td>778.0</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="middle">滑动晃动</th>
+      <th>撬L形支架</th>
+      <td>1</td>
+      <td>778.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>11</td>
+      <td>778.0</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="middle">滑动震动</th>
+      <th>更换齿轮箱</th>
+      <td>1</td>
+      <td>778.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>2</td>
+      <td>778.0</td>
+    </tr>
+    <tr>
+      <th>齿轮箱破损</th>
+      <th>更换齿轮箱</th>
+      <td>1</td>
+      <td>778.0</td>
+    </tr>
+    <tr>
+      <th rowspan="4" valign="middle">2022-11-08</th>
+      <th>滑动异音</th>
+      <th>调整/更换 短绕性轴</th>
+      <td>1</td>
+      <td>642.0</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="middle">滑动晃动</th>
+      <th>更换滑轨</th>
+      <td>1</td>
+      <td>642.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>2</td>
+      <td>642.0</td>
+    </tr>
+    <tr>
+      <th>滑动震动</th>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>2</td>
+      <td>642.0</td>
+    </tr>
+    <tr>
+      <th rowspan="8" valign="middle">2022-11-09</th>
+      <th rowspan="3" valign="middle">滑动异音</th>
+      <th>更换齿轮箱</th>
+      <td>2</td>
+      <td>944.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>2</td>
+      <td>944.0</td>
+    </tr>
+    <tr>
+      <th>涂油反复作动</th>
+      <td>4</td>
+      <td>944.0</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="middle">滑动晃动</th>
+      <th>更换齿轮箱</th>
+      <td>1</td>
+      <td>944.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>3</td>
+      <td>944.0</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="middle">滑动震动</th>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>3</td>
+      <td>944.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱,调整/更换 长绕性轴</th>
+      <td>1</td>
+      <td>944.0</td>
+    </tr>
+    <tr>
+      <th>端盖破损</th>
+      <th>更换端盖</th>
+      <td>1</td>
+      <td>944.0</td>
+    </tr>
+    <tr>
+      <th rowspan="6" valign="middle">2022-11-10</th>
+      <th>条码脏污/破损，无法识别</th>
+      <th>更换条码</th>
+      <td>1</td>
+      <td>874.0</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="middle">滑动异音</th>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>6</td>
+      <td>874.0</td>
+    </tr>
+    <tr>
+      <th>涂油反复作动</th>
+      <td>3</td>
+      <td>874.0</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="middle">滑动晃动</th>
+      <th>更换齿轮箱</th>
+      <td>1</td>
+      <td>874.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>7</td>
+      <td>874.0</td>
+    </tr>
+    <tr>
+      <th>滑动震动</th>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>1</td>
+      <td>874.0</td>
+    </tr>
+    <tr>
+      <th rowspan="6" valign="middle">2022-11-11</th>
+      <th>滑动异音</th>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>5</td>
+      <td>984.0</td>
+    </tr>
+    <tr>
+      <th rowspan="3" valign="middle">滑动晃动</th>
+      <th>撬L形支架,更换齿轮箱</th>
+      <td>6</td>
+      <td>984.0</td>
+    </tr>
+    <tr>
+      <th>撬L形支架,更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>1</td>
+      <td>984.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>12</td>
+      <td>984.0</td>
+    </tr>
+    <tr>
+      <th>滑动震动</th>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>1</td>
+      <td>984.0</td>
+    </tr>
+    <tr>
+      <th>滑轨无法作动</th>
+      <th>撬L形支架,更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>1</td>
+      <td>984.0</td>
+    </tr>
+    <tr>
+      <th rowspan="7" valign="middle">2022-11-14</th>
+      <th>不在初始位</th>
+      <th>调节到初始位</th>
+      <td>1</td>
+      <td>941.0</td>
+    </tr>
+    <tr>
+      <th>条码脏污/破损，无法识别</th>
+      <th>更换条码</th>
+      <td>1</td>
+      <td>941.0</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="middle">滑动异音</th>
+      <th>更换齿轮箱</th>
+      <td>1</td>
+      <td>941.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>5</td>
+      <td>941.0</td>
+    </tr>
+    <tr>
+      <th>滑动晃动</th>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>10</td>
+      <td>941.0</td>
+    </tr>
+    <tr>
+      <th>滑动震动</th>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>2</td>
+      <td>941.0</td>
+    </tr>
+    <tr>
+      <th>齿轮箱破损</th>
+      <th>更换齿轮箱</th>
+      <td>1</td>
+      <td>941.0</td>
+    </tr>
+    <tr>
+      <th rowspan="6" valign="middle">2022-11-15</th>
+      <th>滑动异音</th>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>9</td>
+      <td>855.0</td>
+    </tr>
+    <tr>
+      <th rowspan="5" valign="middle">滑动晃动</th>
+      <th>撬L形支架</th>
+      <td>1</td>
+      <td>855.0</td>
+    </tr>
+    <tr>
+      <th>撬L形支架,更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>5</td>
+      <td>855.0</td>
+    </tr>
+    <tr>
+      <th>更换滑轨</th>
+      <td>1</td>
+      <td>855.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱</th>
+      <td>1</td>
+      <td>855.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>1</td>
+      <td>855.0</td>
+    </tr>
+    <tr>
+      <th rowspan="7" valign="middle">2022-11-16</th>
+      <th rowspan="3" valign="middle">滑动异音</th>
+      <th>更换齿轮箱</th>
+      <td>3</td>
+      <td>931.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱，更换滑动电机</th>
+      <td>1</td>
+      <td>931.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>5</td>
+      <td>931.0</td>
+    </tr>
+    <tr>
+      <th rowspan="4" valign="middle">滑动晃动</th>
+      <th>撬L形支架,更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>9</td>
+      <td>931.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱</th>
+      <td>2</td>
+      <td>931.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>5</td>
+      <td>931.0</td>
+    </tr>
+    <tr>
+      <th>调整/更换 短绕性轴</th>
+      <td>1</td>
+      <td>931.0</td>
+    </tr>
+    <tr>
+      <th rowspan="5" valign="middle">2022-11-17</th>
+      <th>滑动异音</th>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>3</td>
+      <td>965.0</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="middle">滑动晃动</th>
+      <th>撬L形支架,更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>9</td>
+      <td>965.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>4</td>
+      <td>965.0</td>
+    </tr>
+    <tr>
+      <th>滑动晃动，多次调整，无法作动</th>
+      <th>撬L形支架,更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>1</td>
+      <td>965.0</td>
+    </tr>
+    <tr>
+      <th>滑轨震动并且晃动</th>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>4</td>
+      <td>965.0</td>
+    </tr>
+    <tr>
+      <th rowspan="7" valign="middle">2022-11-18</th>
+      <th rowspan="2" valign="middle">滑动异音</th>
+      <th>更换齿轮箱,涂油反复作动</th>
+      <td>3</td>
+      <td>264.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>2</td>
+      <td>746.0</td>
+    </tr>
+    <tr>
+      <th rowspan="3" valign="middle">滑动晃动</th>
+      <th>撬L形支架</th>
+      <td>2</td>
+      <td>746.0</td>
+    </tr>
+    <tr>
+      <th>撬L形支架,更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>7</td>
+      <td>746.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>6</td>
+      <td>264.0</td>
+    </tr>
+    <tr>
+      <th>滑动震动</th>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>3</td>
+      <td>264.0</td>
+    </tr>
+    <tr>
+      <th>齿轮箱破损</th>
+      <th>更换齿轮箱</th>
+      <td>1</td>
+      <td>746.0</td>
+    </tr>
+    <tr>
+      <th rowspan="6" valign="middle">2022-11-19</th>
+      <th>条码脏污/破损，无法识别</th>
+      <th>更换条码</th>
+      <td>1</td>
+      <td>891.0</td>
+    </tr>
+    <tr>
+      <th>滑动异音</th>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>3</td>
+      <td>891.0</td>
+    </tr>
+    <tr>
+      <th rowspan="3" valign="middle">滑动晃动</th>
+      <th>撬L形支架,更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>7</td>
+      <td>891.0</td>
+    </tr>
+    <tr>
+      <th>撬L形支架,调整/更换 短绕性轴</th>
+      <td>1</td>
+      <td>891.0</td>
+    </tr>
+    <tr>
+      <th>更换滑轨</th>
+      <td>1</td>
+      <td>891.0</td>
+    </tr>
+    <tr>
+      <th>齿轮箱破损</th>
+      <th>更换齿轮箱</th>
+      <td>1</td>
+      <td>891.0</td>
+    </tr>
+    <tr>
+      <th rowspan="7" valign="middle">2022-11-21</th>
+      <th>不在初始位</th>
+      <th>调节到初始位</th>
+      <td>1</td>
+      <td>704.0</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="middle">滑动异音</th>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>3</td>
+      <td>704.0</td>
+    </tr>
+    <tr>
+      <th>涂油反复作动</th>
+      <td>2</td>
+      <td>704.0</td>
+    </tr>
+    <tr>
+      <th rowspan="4" valign="middle">滑动晃动</th>
+      <th>撬L形支架</th>
+      <td>2</td>
+      <td>704.0</td>
+    </tr>
+    <tr>
+      <th>撬L形支架,更换滑轨,更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>5</td>
+      <td>704.0</td>
+    </tr>
+    <tr>
+      <th>撬L形支架,更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>7</td>
+      <td>704.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>3</td>
+      <td>704.0</td>
+    </tr>
+    <tr>
+      <th rowspan="3" valign="middle">2022-11-22</th>
+      <th>滑动异音</th>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>4</td>
+      <td>54.0</td>
+    </tr>
+    <tr>
+      <th>滑动晃动</th>
+      <th>撬L形支架</th>
+      <td>1</td>
+      <td>277.0</td>
+    </tr>
+    <tr>
+      <th>齿轮箱破损</th>
+      <th>更换齿轮箱</th>
+      <td>2</td>
+      <td>54.0</td>
+    </tr>
+    <tr>
+      <th rowspan="4" valign="middle">2022-11-23</th>
+      <th>滑动异音</th>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>3</td>
+      <td>320.0</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="middle">滑动晃动</th>
+      <th>撬L形支架</th>
+      <td>3</td>
+      <td>149.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>1</td>
+      <td>149.0</td>
+    </tr>
+    <tr>
+      <th>滑动震动</th>
+      <th>更换滑轨</th>
+      <td>1</td>
+      <td>320.0</td>
+    </tr>
+    <tr>
+      <th>2022-11-25</th>
+      <th>滑动晃动</th>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>3</td>
+      <td>307.0</td>
+    </tr>
+    <tr>
+      <th rowspan="5" valign="middle">2022-12-02</th>
+      <th>滑动异音</th>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>2</td>
+      <td>213.0</td>
+    </tr>
+    <tr>
+      <th rowspan="3" valign="middle">滑动晃动</th>
+      <th>撬L形支架</th>
+      <td>3</td>
+      <td>213.0</td>
+    </tr>
+    <tr>
+      <th>撬L形支架,更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>4</td>
+      <td>213.0</td>
+    </tr>
+    <tr>
+      <th>更换滑轨</th>
+      <td>1</td>
+      <td>213.0</td>
+    </tr>
+    <tr>
+      <th>滑动震动</th>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>4</td>
+      <td>213.0</td>
+    </tr>
+    <tr>
+      <th rowspan="4" valign="middle">2022-12-05</th>
+      <th rowspan="2" valign="middle">滑动异音</th>
+      <th>更换齿轮箱</th>
+      <td>1</td>
+      <td>548.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>1</td>
+      <td>548.0</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="middle">滑动晃动</th>
+      <th>撬L形支架</th>
+      <td>4</td>
+      <td>548.0</td>
+    </tr>
+    <tr>
+      <th>更换滑轨</th>
+      <td>1</td>
+      <td>548.0</td>
+    </tr>
+    <tr>
+      <th>2022-12-06</th>
+      <th>滑动晃动</th>
+      <th>撬L形支架</th>
+      <td>3</td>
+      <td>365.0</td>
+    </tr>
+    <tr>
+      <th rowspan="4" valign="middle">2022-12-07</th>
+      <th rowspan="3" valign="middle">滑动晃动</th>
+      <th>撬L形支架</th>
+      <td>4</td>
+      <td>450.0</td>
+    </tr>
+    <tr>
+      <th>撬L形支架,更换齿轮箱</th>
+      <td>1</td>
+      <td>450.0</td>
+    </tr>
+    <tr>
+      <th>撬L形支架,更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>1</td>
+      <td>450.0</td>
+    </tr>
+    <tr>
+      <th>滑轨震动并且晃动</th>
+      <th>更换滑轨,更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>2</td>
+      <td>450.0</td>
+    </tr>
+    <tr>
+      <th rowspan="4" valign="middle">2022-12-08</th>
+      <th>TS-GSK漏装短轴</th>
+      <th>协助更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>1</td>
+      <td>535.0</td>
+    </tr>
+    <tr>
+      <th>条码脏污/破损，无法识别</th>
+      <th>更换条码</th>
+      <td>1</td>
+      <td>535.0</td>
+    </tr>
+    <tr>
+      <th>滑动晃动</th>
+      <th>撬L形支架,更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>3</td>
+      <td>535.0</td>
+    </tr>
+    <tr>
+      <th>滑动途中卡死，无法再前后作动</th>
+      <th>重新装配</th>
+      <td>1</td>
+      <td>535.0</td>
+    </tr>
+    <tr>
+      <th rowspan="4" valign="middle">2022-12-09</th>
+      <th>滑动异音</th>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>1</td>
+      <td>535.0</td>
+    </tr>
+    <tr>
+      <th rowspan="3" valign="middle">滑动晃动</th>
+      <th>撬L形支架</th>
+      <td>9</td>
+      <td>535.0</td>
+    </tr>
+    <tr>
+      <th>撬L形支架,更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>1</td>
+      <td>535.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>1</td>
+      <td>535.0</td>
+    </tr>
+    <tr>
+      <th rowspan="4" valign="middle">2022-12-10</th>
+      <th>滑动异音</th>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>3</td>
+      <td>581.0</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="middle">滑动晃动</th>
+      <th>撬L形支架</th>
+      <td>5</td>
+      <td>581.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>1</td>
+      <td>581.0</td>
+    </tr>
+    <tr>
+      <th>滑动震动</th>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>1</td>
+      <td>581.0</td>
+    </tr>
+    <tr>
+      <th rowspan="3" valign="middle">2022-12-12</th>
+      <th>滑动异音</th>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>1</td>
+      <td>634.0</td>
+    </tr>
+    <tr>
+      <th>滑动晃动</th>
+      <th>撬L形支架</th>
+      <td>30</td>
+      <td>634.0</td>
+    </tr>
+    <tr>
+      <th>滑动震动</th>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>2</td>
+      <td>634.0</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="middle">2022-12-13</th>
+      <th rowspan="2" valign="middle">滑动晃动</th>
+      <th>撬L形支架,更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>7</td>
+      <td>644.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>6</td>
+      <td>644.0</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="middle">2022-12-14</th>
+      <th>滑动异音</th>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>1</td>
+      <td>436.0</td>
+    </tr>
+    <tr>
+      <th>滑动晃动</th>
+      <th>撬L形支架,更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>4</td>
+      <td>436.0</td>
+    </tr>
+    <tr>
+      <th rowspan="3" valign="middle">2022-12-15</th>
+      <th>上导轨支架变形</th>
+      <th>更换滑轨</th>
+      <td>1</td>
+      <td>185.0</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="middle">滑动晃动</th>
+      <th>撬L形支架</th>
+      <td>1</td>
+      <td>185.0</td>
+    </tr>
+    <tr>
+      <th>撬L形支架,更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>1</td>
+      <td>185.0</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="middle">2022-12-16</th>
+      <th>滑动异音</th>
+      <th>更换齿轮箱</th>
+      <td>2</td>
+      <td>330.0</td>
+    </tr>
+    <tr>
+      <th>滑动晃动</th>
+      <th>撬L形支架</th>
+      <td>2</td>
+      <td>330.0</td>
+    </tr>
+    <tr>
+      <th>2022-12-20</th>
+      <th>滑动晃动</th>
+      <th>更换滑轨</th>
+      <td>2</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="middle">2022-12-22</th>
+      <th>滑动异音</th>
+      <th>调整/更换 短绕性轴</th>
+      <td>1</td>
+      <td>490.0</td>
+    </tr>
+    <tr>
+      <th>滑动晃动</th>
+      <th>撬L形支架</th>
+      <td>1</td>
+      <td>490.0</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="middle">2022-12-23</th>
+      <th>滑动异音</th>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>1</td>
+      <td>290.0</td>
+    </tr>
+    <tr>
+      <th>滑动晃动</th>
+      <th>撬L形支架</th>
+      <td>2</td>
+      <td>290.0</td>
+    </tr>
+    <tr>
+      <th>2022-12-26</th>
+      <th>滑动晃动</th>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>1</td>
+      <td>270.0</td>
+    </tr>
+    <tr>
+      <th rowspan="6" valign="middle">2022-12-27</th>
+      <th>滑动异音</th>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>2</td>
+      <td>600.0</td>
+    </tr>
+    <tr>
+      <th rowspan="3" valign="middle">滑动晃动</th>
+      <th>撬L形支架</th>
+      <td>2</td>
+      <td>600.0</td>
+    </tr>
+    <tr>
+      <th>撬L形支架,更换齿轮箱</th>
+      <td>1</td>
+      <td>600.0</td>
+    </tr>
+    <tr>
+      <th>撬L形支架,更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>3</td>
+      <td>600.0</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="middle">滑动震动</th>
+      <th>更换齿轮箱</th>
+      <td>1</td>
+      <td>600.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>1</td>
+      <td>600.0</td>
+    </tr>
+    <tr>
+      <th rowspan="6" valign="middle">2022-12-28</th>
+      <th>不在初始位</th>
+      <th>调节到初始位</th>
+      <td>1</td>
+      <td>902.0</td>
+    </tr>
+    <tr>
+      <th>滑动异音</th>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>2</td>
+      <td>902.0</td>
+    </tr>
+    <tr>
+      <th rowspan="3" valign="middle">滑动晃动</th>
+      <th>撬L形支架</th>
+      <td>3</td>
+      <td>902.0</td>
+    </tr>
+    <tr>
+      <th>撬L形支架,更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>4</td>
+      <td>902.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>2</td>
+      <td>902.0</td>
+    </tr>
+    <tr>
+      <th>滑动震动</th>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>2</td>
+      <td>902.0</td>
+    </tr>
+    <tr>
+      <th rowspan="6" valign="middle">2022-12-29</th>
+      <th rowspan="4" valign="middle">滑动异音</th>
+      <th>撬L形支架,更换齿轮箱</th>
+      <td>1</td>
+      <td>805.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱</th>
+      <td>2</td>
+      <td>805.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱,涂油反复作动</th>
+      <td>1</td>
+      <td>805.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>1</td>
+      <td>805.0</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="middle">滑动晃动</th>
+      <th>撬L形支架</th>
+      <td>2</td>
+      <td>805.0</td>
+    </tr>
+    <tr>
+      <th>更换滑轨</th>
+      <td>1</td>
+      <td>805.0</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="middle">2022-12-30</th>
+      <th rowspan="2" valign="middle">滑动晃动</th>
+      <th>撬L形支架,更换齿轮箱</th>
+      <td>1</td>
+      <td>168.0</td>
+    </tr>
+    <tr>
+      <th>撬L形支架,更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>2</td>
+      <td>168.0</td>
+    </tr>
+    <tr>
+      <th rowspan="4" valign="middle">2023-01-03</th>
+      <th>滑动异音</th>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>1</td>
+      <td>753.0</td>
+    </tr>
+    <tr>
+      <th rowspan="3" valign="middle">滑动晃动</th>
+      <th>撬L形支架</th>
+      <td>1</td>
+      <td>753.0</td>
+    </tr>
+    <tr>
+      <th>撬L形支架,更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>2</td>
+      <td>753.0</td>
+    </tr>
+    <tr>
+      <th>更换滑轨</th>
+      <td>1</td>
+      <td>753.0</td>
+    </tr>
+    <tr>
+      <th rowspan="6" valign="middle">2023-01-04</th>
+      <th>不在初始位</th>
+      <th>调节到初始位</th>
+      <td>1</td>
+      <td>395.0</td>
+    </tr>
+    <tr>
+      <th>滑动异音</th>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>1</td>
+      <td>395.0</td>
+    </tr>
+    <tr>
+      <th rowspan="3" valign="middle">滑动晃动</th>
+      <th>撬L形支架</th>
+      <td>3</td>
+      <td>395.0</td>
+    </tr>
+    <tr>
+      <th>撬L形支架,更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>2</td>
+      <td>395.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>1</td>
+      <td>395.0</td>
+    </tr>
+    <tr>
+      <th>滑动震动</th>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>1</td>
+      <td>395.0</td>
+    </tr>
+    <tr>
+      <th rowspan="4" valign="middle">2023-01-05</th>
+      <th rowspan="2" valign="middle">滑动异音</th>
+      <th>更换齿轮箱,涂油反复作动</th>
+      <td>1</td>
+      <td>540.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>1</td>
+      <td>540.0</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="middle">滑动晃动</th>
+      <th>撬L形支架</th>
+      <td>2</td>
+      <td>540.0</td>
+    </tr>
+    <tr>
+      <th>撬L形支架,更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>3</td>
+      <td>540.0</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="middle">2023-01-06</th>
+      <th>滑动异音</th>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>2</td>
+      <td>660.0</td>
+    </tr>
+    <tr>
+      <th>滑动晃动</th>
+      <th>撬L形支架</th>
+      <td>2</td>
+      <td>660.0</td>
+    </tr>
+    <tr>
+      <th rowspan="4" valign="middle">2023-01-07</th>
+      <th>滑动异音</th>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>1</td>
+      <td>420.0</td>
+    </tr>
+    <tr>
+      <th rowspan="3" valign="middle">滑动晃动</th>
+      <th>撬L形支架</th>
+      <td>1</td>
+      <td>420.0</td>
+    </tr>
+    <tr>
+      <th>撬L形支架,更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>2</td>
+      <td>420.0</td>
+    </tr>
+    <tr>
+      <th>更换滑轨</th>
+      <td>1</td>
+      <td>420.0</td>
+    </tr>
+    <tr>
+      <th rowspan="4" valign="middle">2023-01-09</th>
+      <th>滑动异音</th>
+      <th>更换齿轮箱</th>
+      <td>4</td>
+      <td>392.0</td>
+    </tr>
+    <tr>
+      <th>滑动晃动</th>
+      <th>撬L形支架</th>
+      <td>3</td>
+      <td>392.0</td>
+    </tr>
+    <tr>
+      <th>滑动震动</th>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>1</td>
+      <td>307.0</td>
+    </tr>
+    <tr>
+      <th>齿轮箱没有挂钩</th>
+      <th>更换齿轮箱</th>
+      <td>1</td>
+      <td>392.0</td>
+    </tr>
+    <tr>
+      <th rowspan="3" valign="middle">2023-01-10</th>
+      <th>滑动异音</th>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>2</td>
+      <td>508.0</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="middle">滑动晃动</th>
+      <th>撬L形支架</th>
+      <td>2</td>
+      <td>508.0</td>
+    </tr>
+    <tr>
+      <th>撬L形支架,更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>5</td>
+      <td>508.0</td>
+    </tr>
+    <tr>
+      <th rowspan="3" valign="middle">2023-01-11</th>
+      <th>滑动异音</th>
+      <th>调整/更换 短绕性轴</th>
+      <td>1</td>
+      <td>660.0</td>
+    </tr>
+    <tr>
+      <th>滑轨震动并且晃动</th>
+      <th>撬L形支架,更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>2</td>
+      <td>660.0</td>
+    </tr>
+    <tr>
+      <th>齿轮箱破损</th>
+      <th>更换齿轮箱</th>
+      <td>2</td>
+      <td>660.0</td>
+    </tr>
+    <tr>
+      <th rowspan="3" valign="middle">2023-01-12</th>
+      <th>滑动异音</th>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>5</td>
+      <td>490.0</td>
+    </tr>
+    <tr>
+      <th>滑动晃动</th>
+      <th>撬L形支架</th>
+      <td>4</td>
+      <td>490.0</td>
+    </tr>
+    <tr>
+      <th>齿轮箱破损</th>
+      <th>更换齿轮箱</th>
+      <td>2</td>
+      <td>490.0</td>
+    </tr>
+    <tr>
+      <th rowspan="6" valign="middle">2023-01-13</th>
+      <th>不在初始位</th>
+      <th>调节到初始位</th>
+      <td>6</td>
+      <td>625.0</td>
+    </tr>
+    <tr>
+      <th rowspan="3" valign="middle">滑动异音</th>
+      <th>更换齿轮箱</th>
+      <td>2</td>
+      <td>625.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>4</td>
+      <td>625.0</td>
+    </tr>
+    <tr>
+      <th>调整/更换 短绕性轴</th>
+      <td>1</td>
+      <td>625.0</td>
+    </tr>
+    <tr>
+      <th>滑动晃动</th>
+      <th>撬L形支架</th>
+      <td>2</td>
+      <td>625.0</td>
+    </tr>
+    <tr>
+      <th>齿轮箱破损</th>
+      <th>更换齿轮箱</th>
+      <td>1</td>
+      <td>625.0</td>
+    </tr>
+    <tr>
+      <th rowspan="4" valign="middle">2023-01-14</th>
+      <th>滑动异音</th>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>5</td>
+      <td>703.0</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="middle">滑动晃动</th>
+      <th>撬L形支架</th>
+      <td>5</td>
+      <td>703.0</td>
+    </tr>
+    <tr>
+      <th>更换滑轨</th>
+      <td>1</td>
+      <td>703.0</td>
+    </tr>
+    <tr>
+      <th>滑动震动</th>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>1</td>
+      <td>703.0</td>
+    </tr>
+    <tr>
+      <th rowspan="5" valign="middle">2023-01-16</th>
+      <th>不在初始位</th>
+      <th>调节到初始位</th>
+      <td>2</td>
+      <td>692.0</td>
+    </tr>
+    <tr>
+      <th>滑动异音</th>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>19</td>
+      <td>692.0</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="middle">滑动晃动</th>
+      <th>撬L形支架</th>
+      <td>8</td>
+      <td>692.0</td>
+    </tr>
+    <tr>
+      <th>更换滑轨</th>
+      <td>1</td>
+      <td>692.0</td>
+    </tr>
+    <tr>
+      <th>滑轨震动并且晃动</th>
+      <th>撬L形支架</th>
+      <td>3</td>
+      <td>692.0</td>
+    </tr>
+    <tr>
+      <th rowspan="5" valign="middle">2023-01-17</th>
+      <th rowspan="3" valign="middle">滑动异音</th>
+      <th>更换齿轮箱</th>
+      <td>2</td>
+      <td>730.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>8</td>
+      <td>730.0</td>
+    </tr>
+    <tr>
+      <th>调整/更换 短绕性轴</th>
+      <td>2</td>
+      <td>730.0</td>
+    </tr>
+    <tr>
+      <th>滑动晃动</th>
+      <th>撬L形支架</th>
+      <td>3</td>
+      <td>730.0</td>
+    </tr>
+    <tr>
+      <th>滑轨震动并且晃动</th>
+      <th>撬L形支架,更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>5</td>
+      <td>730.0</td>
+    </tr>
+    <tr>
+      <th rowspan="6" valign="middle">2023-01-18</th>
+      <th>TS-GSK漏装短轴</th>
+      <th>协助更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>1</td>
+      <td>760.0</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="middle">滑动异音</th>
+      <th>更换齿轮箱,涂油反复作动</th>
+      <td>10</td>
+      <td>760.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>11</td>
+      <td>760.0</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="middle">滑动晃动</th>
+      <th>撬L形支架</th>
+      <td>4</td>
+      <td>760.0</td>
+    </tr>
+    <tr>
+      <th>撬L形支架,更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>2</td>
+      <td>760.0</td>
+    </tr>
+    <tr>
+      <th>滑轨震动并且晃动</th>
+      <th>撬L形支架,更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>2</td>
+      <td>760.0</td>
+    </tr>
+    <tr>
+      <th rowspan="5" valign="middle">2023-01-29</th>
+      <th>不在初始位</th>
+      <th>调节到初始位</th>
+      <td>1</td>
+      <td>180.0</td>
+    </tr>
+    <tr>
+      <th>滑动异音</th>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>7</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="middle">滑动晃动</th>
+      <th>撬L形支架</th>
+      <td>1</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>撬L形支架,更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>1</td>
+      <td>180.0</td>
+    </tr>
+    <tr>
+      <th>滑轨震动并且晃动</th>
+      <th>撬L形支架</th>
+      <td>4</td>
+      <td>180.0</td>
+    </tr>
+    <tr>
+      <th rowspan="7" valign="middle">2023-01-30</th>
+      <th>不在初始位</th>
+      <th>调节到初始位</th>
+      <td>1</td>
+      <td>660.0</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="middle">滑动异音</th>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>18</td>
+      <td>660.0</td>
+    </tr>
+    <tr>
+      <th>涂油反复作动,调整/更换 短绕性轴</th>
+      <td>6</td>
+      <td>660.0</td>
+    </tr>
+    <tr>
+      <th rowspan="4" valign="middle">滑动晃动</th>
+      <th>撬L形支架</th>
+      <td>3</td>
+      <td>660.0</td>
+    </tr>
+    <tr>
+      <th>撬L形支架,更换齿轮箱</th>
+      <td>1</td>
+      <td>660.0</td>
+    </tr>
+    <tr>
+      <th>撬L形支架,更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>5</td>
+      <td>660.0</td>
+    </tr>
+    <tr>
+      <th>更换滑轨</th>
+      <td>3</td>
+      <td>660.0</td>
+    </tr>
+    <tr>
+      <th rowspan="5" valign="middle">2023-01-31</th>
+      <th>滑动异音</th>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>15</td>
+      <td>720.0</td>
+    </tr>
+    <tr>
+      <th rowspan="4" valign="middle">滑动晃动</th>
+      <th>撬L形支架</th>
+      <td>3</td>
+      <td>720.0</td>
+    </tr>
+    <tr>
+      <th>撬L形支架,更换齿轮箱</th>
+      <td>3</td>
+      <td>720.0</td>
+    </tr>
+    <tr>
+      <th>撬L形支架,更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>4</td>
+      <td>720.0</td>
+    </tr>
+    <tr>
+      <th>更换滑轨</th>
+      <td>2</td>
+      <td>720.0</td>
+    </tr>
+    <tr>
+      <th rowspan="4" valign="middle">2023-02-01</th>
+      <th rowspan="2" valign="middle">滑动异音</th>
+      <th>更换齿轮箱</th>
+      <td>3</td>
+      <td>407.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>42</td>
+      <td>407.0</td>
+    </tr>
+    <tr>
+      <th>滑动晃动</th>
+      <th>撬L形支架</th>
+      <td>4</td>
+      <td>407.0</td>
+    </tr>
+    <tr>
+      <th>齿轮箱轴孔异常</th>
+      <th>更换滑轨</th>
+      <td>1</td>
+      <td>407.0</td>
+    </tr>
+    <tr>
+      <th rowspan="4" valign="middle">2023-02-02</th>
+      <th rowspan="2" valign="middle">滑动异音</th>
+      <th>更换齿轮箱</th>
+      <td>11</td>
+      <td>560.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>27</td>
+      <td>560.0</td>
+    </tr>
+    <tr>
+      <th>滑动晃动</th>
+      <th>撬L形支架</th>
+      <td>2</td>
+      <td>560.0</td>
+    </tr>
+    <tr>
+      <th>滑轨震动并且晃动</th>
+      <th>撬L形支架,更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>2</td>
+      <td>560.0</td>
+    </tr>
+    <tr>
+      <th rowspan="4" valign="middle">2023-02-03</th>
+      <th>滑动异音</th>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>36</td>
+      <td>760.0</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="middle">滑动晃动</th>
+      <th>撬L形支架</th>
+      <td>2</td>
+      <td>760.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>31</td>
+      <td>760.0</td>
+    </tr>
+    <tr>
+      <th>滑轨震动并且晃动</th>
+      <th>保留解析，更换滑轨</th>
+      <td>1</td>
+      <td>760.0</td>
+    </tr>
+    <tr>
+      <th rowspan="3" valign="middle">2023-02-04</th>
+      <th rowspan="2" valign="middle">滑动异音</th>
+      <th>更换齿轮箱</th>
+      <td>2</td>
+      <td>540.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>15</td>
+      <td>540.0</td>
+    </tr>
+    <tr>
+      <th>滑动晃动</th>
+      <th>撬L形支架</th>
+      <td>1</td>
+      <td>540.0</td>
+    </tr>
+    <tr>
+      <th rowspan="6" valign="middle">2023-02-06</th>
+      <th>不在初始位</th>
+      <th>调节到初始位</th>
+      <td>1</td>
+      <td>660.0</td>
+    </tr>
+    <tr>
+      <th rowspan="3" valign="middle">滑动异音</th>
+      <th>更换滑轨</th>
+      <td>1</td>
+      <td>660.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱</th>
+      <td>5</td>
+      <td>660.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>14</td>
+      <td>660.0</td>
+    </tr>
+    <tr>
+      <th>滑动晃动</th>
+      <th>撬L形支架,更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>3</td>
+      <td>660.0</td>
+    </tr>
+    <tr>
+      <th>滑动震动</th>
+      <th>更换滑轨</th>
+      <td>2</td>
+      <td>660.0</td>
+    </tr>
+    <tr>
+      <th rowspan="6" valign="middle">2023-02-07</th>
+      <th>不在初始位</th>
+      <th>调节到初始位</th>
+      <td>2</td>
+      <td>718.0</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="middle">滑动异音</th>
+      <th>更换齿轮箱</th>
+      <td>4</td>
+      <td>718.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>33</td>
+      <td>718.0</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="middle">滑动晃动</th>
+      <th>撬L形支架</th>
+      <td>2</td>
+      <td>718.0</td>
+    </tr>
+    <tr>
+      <th>撬L形支架,更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>2</td>
+      <td>718.0</td>
+    </tr>
+    <tr>
+      <th>滑动震动</th>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>1</td>
+      <td>718.0</td>
+    </tr>
+    <tr>
+      <th rowspan="4" valign="middle">2023-02-08</th>
+      <th>不在初始位</th>
+      <th>调节到初始位</th>
+      <td>2</td>
+      <td>630.0</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="middle">滑动异音</th>
+      <th>更换齿轮箱</th>
+      <td>5</td>
+      <td>630.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>11</td>
+      <td>630.0</td>
+    </tr>
+    <tr>
+      <th>滑动震动</th>
+      <th>撬上导轨</th>
+      <td>1</td>
+      <td>630.0</td>
+    </tr>
+    <tr>
+      <th rowspan="5" valign="middle">2023-02-09</th>
+      <th>不在初始位</th>
+      <th>调节到初始位</th>
+      <td>2</td>
+      <td>580.0</td>
+    </tr>
+    <tr>
+      <th>滑动异音</th>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>26</td>
+      <td>580.0</td>
+    </tr>
+    <tr>
+      <th>滑动晃动</th>
+      <th>撬L形支架</th>
+      <td>2</td>
+      <td>580.0</td>
+    </tr>
+    <tr>
+      <th>滑轨在前端打啃</th>
+      <th>撬上导轨</th>
+      <td>1</td>
+      <td>580.0</td>
+    </tr>
+    <tr>
+      <th>齿轮箱破损</th>
+      <th>更换齿轮箱</th>
+      <td>1</td>
+      <td>580.0</td>
+    </tr>
+    <tr>
+      <th rowspan="7" valign="middle">2023-02-10</th>
+      <th>不在初始位</th>
+      <th>调节到初始位</th>
+      <td>5</td>
+      <td>757.0</td>
+    </tr>
+    <tr>
+      <th rowspan="3" valign="middle">滑动异音</th>
+      <th>撬L形支架,更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>1</td>
+      <td>757.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱</th>
+      <td>3</td>
+      <td>757.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>21</td>
+      <td>757.0</td>
+    </tr>
+    <tr>
+      <th>滑动途中卡死，无法再前后作动</th>
+      <th>更换齿轮箱</th>
+      <td>1</td>
+      <td>757.0</td>
+    </tr>
+    <tr>
+      <th>滑动震动</th>
+      <th>保留</th>
+      <td>1</td>
+      <td>757.0</td>
+    </tr>
+    <tr>
+      <th>滑轨震动并且晃动</th>
+      <th>撬L形支架,更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>1</td>
+      <td>757.0</td>
+    </tr>
+    <tr>
+      <th rowspan="5" valign="middle">2023-02-13</th>
+      <th>不在初始位</th>
+      <th>调节到初始位</th>
+      <td>1</td>
+      <td>658.0</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="middle">滑动异音</th>
+      <th>更换齿轮箱</th>
+      <td>14</td>
+      <td>658.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>15</td>
+      <td>658.0</td>
+    </tr>
+    <tr>
+      <th>滑动震动</th>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>5</td>
+      <td>658.0</td>
+    </tr>
+    <tr>
+      <th>滑轨震动并且晃动</th>
+      <th>撬L形支架,更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>19</td>
+      <td>658.0</td>
+    </tr>
+    <tr>
+      <th rowspan="4" valign="middle">2023-02-14</th>
+      <th>不在初始位</th>
+      <th>调节到初始位</th>
+      <td>1</td>
+      <td>730.0</td>
+    </tr>
+    <tr>
+      <th>条码脏污/破损，无法识别</th>
+      <th>更换条码</th>
+      <td>1</td>
+      <td>730.0</td>
+    </tr>
+    <tr>
+      <th>滑动异音</th>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>12</td>
+      <td>730.0</td>
+    </tr>
+    <tr>
+      <th>滑动震动</th>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>3</td>
+      <td>730.0</td>
+    </tr>
+    <tr>
+      <th rowspan="4" valign="middle">2023-02-15</th>
+      <th>滑动异音</th>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>8</td>
+      <td>730.0</td>
+    </tr>
+    <tr>
+      <th>滑动晃动</th>
+      <th>撬L形支架</th>
+      <td>1</td>
+      <td>730.0</td>
+    </tr>
+    <tr>
+      <th>滑动震动</th>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>5</td>
+      <td>730.0</td>
+    </tr>
+    <tr>
+      <th>滑轨内有多余的滑块碎片</th>
+      <th>更换滑轨</th>
+      <td>1</td>
+      <td>730.0</td>
+    </tr>
+    <tr>
+      <th rowspan="5" valign="middle">2023-02-16</th>
+      <th>不在初始位</th>
+      <th>调节到初始位</th>
+      <td>1</td>
+      <td>630.0</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="middle">滑动异音</th>
+      <th>更换齿轮箱</th>
+      <td>6</td>
+      <td>630.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>4</td>
+      <td>630.0</td>
+    </tr>
+    <tr>
+      <th>滑动震动</th>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>14</td>
+      <td>630.0</td>
+    </tr>
+    <tr>
+      <th>齿轮箱破损</th>
+      <th>更换齿轮箱</th>
+      <td>1</td>
+      <td>630.0</td>
+    </tr>
+    <tr>
+      <th rowspan="4" valign="middle">2023-02-17</th>
+      <th>不在初始位</th>
+      <th>调节到初始位</th>
+      <td>5</td>
+      <td>790.0</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="middle">滑动异音</th>
+      <th>更换齿轮箱</th>
+      <td>3</td>
+      <td>790.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>6</td>
+      <td>790.0</td>
+    </tr>
+    <tr>
+      <th>滑动震动</th>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>3</td>
+      <td>790.0</td>
+    </tr>
+    <tr>
+      <th rowspan="3" valign="middle">2023-02-24</th>
+      <th rowspan="3" valign="middle">滑动异音</th>
+      <th>更换齿轮箱</th>
+      <td>3</td>
+      <td>405.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>2</td>
+      <td>405.0</td>
+    </tr>
+    <tr>
+      <th>调整短绕性轴</th>
+      <td>51</td>
+      <td>405.0</td>
+    </tr>
+    <tr>
+      <th rowspan="5" valign="middle">2023-02-27</th>
+      <th rowspan="3" valign="middle">滑动异音</th>
+      <th>更换齿轮箱</th>
+      <td>2</td>
+      <td>858.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>21</td>
+      <td>858.0</td>
+    </tr>
+    <tr>
+      <th>调整/更换 短绕性轴</th>
+      <td>7</td>
+      <td>858.0</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="middle">滑动震动</th>
+      <th>更换齿轮箱</th>
+      <td>17</td>
+      <td>858.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>18</td>
+      <td>858.0</td>
+    </tr>
+    <tr>
+      <th rowspan="3" valign="middle">2023-02-28</th>
+      <th>不在初始位</th>
+      <th>调节到初始位</th>
+      <td>1</td>
+      <td>650.0</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="middle">滑动异音</th>
+      <th>更换齿轮箱</th>
+      <td>4</td>
+      <td>650.0</td>
+    </tr>
+    <tr>
+      <th>更换齿轮箱,调整/更换 短绕性轴</th>
+      <td>9</td>
+      <td>650.0</td>
+    </tr>
+  </tbody>
+</table>
+  </body>
+</html>.

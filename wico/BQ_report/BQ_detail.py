@@ -33,11 +33,10 @@ start_date365=datetime.datetime.strftime(start_date365, "%Y-%m-%d")
 
 
 
-sqlcmd='''CALL custom_feedback.dataframe2("{}")'''.format(end_date)
+sqlcmd='''CALL custom_feedback.dataframe("{}")'''.format(end_date)
 #df_table=sql.read_sql(sqlcmd,mariadb_conn)
 #df_table=df_table.set_index(["车型","零件类型","不良内容","维修方法"])
-df1=sql.read_sql(sqlcmd,mariadb_conn,coerce_float=False)
-#df1.loc[:,["NG数量","产量"]]=df1.loc[:,["NG数量","产量"]].astype("int",errors='ignore')
+df1=sql.read_sql(sqlcmd,mariadb_conn)
 df2=df1.groupby(["车型"]).aggregate({'NG数量':np.sum})
 df2.rename(columns={'NG数量':'合计1'}, inplace = True)
 
@@ -56,7 +55,7 @@ df_table=df1.set_index(["车型","合计1","零件类型","合计2","不良内�
 
 
 #df_table.to_html('assets/test.html',header=True, index=True, justify='justify-all',bold_rows=True,col_space='280px')
-table_html=df_table.to_html(classes='mystyle',header=True, index=True, justify='justify-all',bold_rows=True)
+table_html=df_table.to_html(classes='mystyle',header=True, index=True, justify='justify-all',bold_rows=True,col_space='180px')
 table_html=table_html.replace("top","middle")
 pd.set_option('colheader_justify', 'center')   # FOR TABLE <th>
 html_string = '''
@@ -116,7 +115,7 @@ fig_trend_30.update_layout(
     legend=dict(orientation="h",yanchor="bottom",y=1.07,xanchor="right",x=1),
     title=dict(x=0.05, y=0.85)
     )
-
+fig_trend_30.update_xaxes(dtick="D1")
 
 #365日不良趋势
 sqlcmd='''CALL custom_feedback.不良趋势("{}","{}",{})'''.format(start_date365,end_date,10)
@@ -210,29 +209,28 @@ app.layout = html.Div(
         dbc.Row(
             [
                 #dbc.Col(dbc.Table.from_dataframe(df_table, striped=True, hover=True,index=True), width=12, style={'margin-top': '30px','overflow': 'auto','font-size':'26px'})
-                dbc.Col(html.Iframe(src="assets/test.html",style={"height": "{}px".format((df_table.shape[0]+2)*57), "width": "100%"}),width=6),
-                dbc.Col([
-                    dbc.Row([
-                        dbc.Col(dcc.Graph(id = '所有不良分布',figure=fig_distribution,style={"height": "100%", "width": "100%"}), width=6,style={'background-color': 'lightskyblue'}),
-                        dbc.Col(dcc.Graph(id = 'WICO各生产线不良分布',figure=fig_distribution2,style={"height": "100%", "width": "100%"}), width=6,style={'background-color': 'lightskyblue'})
-                        ]),
-                    dbc.Col(dcc.Graph(id = '产量',figure=fig_volume,style={"height": "100%", "width": "100%"}), width=12, style={'background-color': 'lightskyblue'})
-                    ],width=6)
-
-   
+                html.Iframe(src="assets/test.html",style={"height": "{}px".format((df_table.shape[0]+2)*50), "width": "100%"})
+                
                 
             ]
         ),
 
+        dbc.Row(
+            [
+                dbc.Col(complain, width=2),
+                dbc.Col(dcc.Graph(id = '所有不良分布',figure=fig_distribution,style={"height": "100%", "width": "100%"}), width=3,style={'background-color': 'lightskyblue'}),
+                dbc.Col(dcc.Graph(id = 'WICO各生产线不良分布',figure=fig_distribution2,style={"height": "100%", "width": "100%"}), width=3,style={'background-color': 'lightskyblue'}),
+                dbc.Col(dcc.Graph(id = '产量',figure=fig_volume,style={"height": "100%", "width": "100%"}), width=4, style={'background-color': 'lightskyblue'})
+            ]
+        ),
         
         html.Hr(), # 水平分割线
         
         #所谓的网格系统指的是每个Row()部件内部分成宽度相等的12份，传入的Col()部件具有参数width可以传入整数来分配对应数量的宽度
         dbc.Row(
             [
-                dbc.Col(complain, width=2),
-                dbc.Col(dcc.Graph(id = '30day',figure=fig_trend_30), width=5, style={'background-color': 'lightskyblue'}),
-                dbc.Col(dcc.Graph(id = '365day',figure=fig_trend_365), width=5, style={'background-color': 'lightskyblue'})
+                dbc.Col(dcc.Graph(id = '30day',figure=fig_trend_30), width=6, style={'background-color': 'lightskyblue'}),
+                dbc.Col(dcc.Graph(id = '365day',figure=fig_trend_365), width=6, style={'background-color': 'lightskyblue'})
             ]
         )
     ]

@@ -116,7 +116,7 @@ fig_trend_30.update_layout(
     legend=dict(orientation="h",yanchor="bottom",y=1.07,xanchor="right",x=1),
     title=dict(x=0.05, y=0.85)
     )
-
+fig_trend_30.update_xaxes(dtick="D1")
 
 #365日不良趋势
 sqlcmd='''CALL pyytest.不良趋势("{}","{}",{})'''.format(start_date365,end_date,10)

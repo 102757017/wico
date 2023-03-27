@@ -4,11 +4,11 @@ from kivymd.app import MDApp
 from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager
 from pprint import pprint
-from search import *
+
 import os
 import sys
 from functools import partial
-from synch import sync_all
+
 from kivy.logger import Logger
 from pathlib import Path
 from kivy.core.window import WindowBase
@@ -16,11 +16,10 @@ import threading
 from kivy.config import Config
 from kivy.clock import Clock
 from kivy.clock import mainthread
-from android_permissions import AndroidPermissions
 import sentry_sdk
 import ssl
 import certifi
-from font import font_definitions
+
 
 
 sentry_sdk.init(
@@ -57,6 +56,10 @@ KV_DIR = f"{os.environ['WICO_ROOT']}"
 sys.path.append(KV_DIR)
 Logger.info("Main_KV_DIR:"+KV_DIR)
 
+from search import *
+from synch import sync_all
+from android_permissions import AndroidPermissions
+from font import font_definitions
 
 from kivy.utils import platform
 if platform == "android":
