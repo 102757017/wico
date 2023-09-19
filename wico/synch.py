@@ -245,9 +245,11 @@ def sync_all():
         t4=datetime.datetime.now()
         sync_seatlist(sqlite_conn,mariadb_conn)
         #print("座椅-部品信息已同步完成")
+        
         t5=datetime.datetime.now()
         sync_ngtype(sqlite_conn,mariadb_conn)
         #print("不良类型及维修方法已同步完成")
+        
         t6=datetime.datetime.now()
         Logger.info("ngrecord:{},volume:{},partlist:{},seatlist:{},ngtype:{}".format(t2-t1,t3-t2,t4-t3,t5-t4,t6-t5))
         return True
