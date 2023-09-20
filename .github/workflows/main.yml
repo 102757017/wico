@@ -21,6 +21,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4.0.0
 
+      - name: Setup environment
+        run: |
+          sudo apt update
+          sudo apt install -y Cython
+          export PATH=$PATH:~/.local/bin/
+          pip install --upgrade Cython
 
       - name: Build with Buildozer
         uses: ArtemSBulgakov/buildozer-action@v1.1.3
