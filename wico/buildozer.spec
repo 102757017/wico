@@ -53,7 +53,7 @@ requirements = python3, \
                pillow, \
                sqlite3, \
                #sdl2_ttf==2.0.15, \
-               android, \
+               #android, \
                certifi, \
                openssl, \
                #opencv-python, \
