@@ -45,9 +45,11 @@ p4a.local_recipes = ./p4a-recipes
 # comma separated e.g. requirements = sqlite3,kivy
 #python的小版本对app有影响，如果用错了版本，虽然apk会生成成功，但是会闪崩。
 #指定版本时需要明确完整版本号，例如python3==3.8.10,python3=3.8，python3>=3.8.10都是不行的
+#在hostpython3 是 Python 3 的一个特殊版本，用于在构建 Android 应用程序时充当主机的 Python 解释器。Buildozer 使用此主机 Python 解释器来执行与构建过程相关的任务，例如编译 Cython 代码、管理依赖项和准备应用程序文件。
 #这里只能放入纯python的模块，如果有依赖C的模块，要看recipe清单中有无支持(https://github.com/kivy/python-for-android/tree/develop/pythonforandroid/recipes)，
 #将对应的项目拷贝到./p4a-recipes文件夹后再在requirements中添加依赖
 requirements = python3==3.8.6, \
+               hostpython3==3.8.6, \
                kivy==2.1.0, \
                KivyMD, \
                pillow, \
