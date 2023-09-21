@@ -13,8 +13,9 @@ jobs:
   # This workflow contains a single job called "build"
   build-and-deploy:
     name: Build for Android
-    # The type of runner that the job will run on
-    runs-on: ubuntu-20.04
+    # Ubuntu 20.04 LTS： 默认 Python 版本是 Python 3.8。此版本同时提供了 Python 2.7 和 Python 3.8。
+    # Ubuntu 21.04： 默认 Python 版本是 Python 3.9。这是一个非常新的 Ubuntu 版本，它将 Python 3.9 作为默认版本。
+    runs-on: ubuntu-21.04
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
