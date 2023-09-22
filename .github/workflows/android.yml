@@ -1,0 +1,56 @@
+on:
+ #手动触发工作流程运行
+ workflow_dispatch:
+ 
+env:
+ PYTHONFORANDROID_PREREQUISITES_INSTALL_INTERACTIVE: 0
+
+name: Android
+jobs:
+ Integration:
+   runs-on: ubuntu-latest
+   steps:
+   - name: Setup python
+     uses: actions/setup-python@v4
+     with:
+       python-version: '3.9'
+
+   - uses: actions/checkout@v4
+
+   - name: Setup environment
+     run: |
+       sudo apt update
+       sudo apt install -y git zip unzip openjdk-17-jdk python3-pip autoconf libtool pkg-config zlib1g-dev libncurses5-dev libncursesw5-dev libtinfo5 cmake libffi-dev libssl-dev
+       pip install Cython==0.29.36
+       pip install --user buildozer
+       export PATH=$PATH:~/.local/bin/
+
+   - run: buildozer --help
+
+   - run: buildozer init
+
+   - name: SDK, NDK and p4a download
+     run: |
+       sed -i.bak "s/# android.accept_sdk_license = False/android.accept_sdk_license = True/" buildozer.spec
+       sed -i.bak "s/#p4a.branch = master/p4a.branch = develop/" buildozer.spec
+       buildozer android p4a -- --help
+
+   # Install Linux dependencies
+   - name: Install Linux dependencies
+     run: sudo apt -y install automake
+
+   - uses: actions/cache@v2
+     with:
+       path: wico/.buildozer
+       key: sfsdf4exgretzghr5rhju65y77mkfmt5ryhye59
+
+   - name: Build with Buildozer
+     id: buildozer
+     run: buildozer android debug
+     working-directory: wico
+
+   - name: Upload artifacts
+     uses: actions/upload-artifact@v3
+     with:
+       name: package
+       path: ${{ steps.buildozer.outputs.filename }}
