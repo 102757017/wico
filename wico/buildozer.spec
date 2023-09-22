@@ -92,7 +92,7 @@ android.archs = arm64-v8a
 android.release_artifact = apk
 
 # (str) python-for-android branch to use, defaults to master
-p4a.branch = master
+p4a.branch = develop
 
 # (str) Filename to the hook for p4a
 p4a.hook = camerax_provider/gradle_options.py
