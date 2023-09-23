@@ -13,6 +13,7 @@ jobs:
    - name: Setup python
      uses: actions/setup-python@v4
      with:
+       #宿主机的python版本必须与buildozer.spec中requirements中使用的python大版本要一致，若不一致交叉编译时会找不到编译器
        python-version: '3.x'
 
    - uses: actions/checkout@v4
@@ -21,8 +22,10 @@ jobs:
      run: |
        sudo apt update
        sudo apt install -y git zip unzip openjdk-17-jdk python3-pip autoconf libtool pkg-config zlib1g-dev libncurses5-dev libncursesw5-dev libtinfo5 cmake libffi-dev libssl-dev
+       # 1.5.0的buildozer必须要使用0.29.36的Cython，高版本的Cython会编译出错
        pip install Cython==0.29.36
-       pip install --user buildozer
+       #1.5.0的buildozer编译libzbar会找不到recipe，所以要用1.4版的。
+       pip install --user buildozer==1.4.0
        export PATH=$PATH:~/.local/bin/
 
    - run: buildozer --help
@@ -45,7 +48,6 @@ jobs:
        key: sfsdf4exgretzghr5rhju65y77mkfmt5ryhye59
 
    - name: Build with Buildozer
-     id: buildozer
      run: buildozer android debug
      working-directory: wico
 
@@ -53,4 +55,4 @@ jobs:
      uses: actions/upload-artifact@v3
      with:
        name: package
-       path: ${{ steps.buildozer.outputs.filename }}
+       path: bin/*.apk

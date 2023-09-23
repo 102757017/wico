@@ -13,8 +13,6 @@ jobs:
   # This workflow contains a single job called "build"
   build-and-deploy:
     name: Build for Android
-    # Ubuntu 20.04 LTS： 默认 Python 版本是 Python 3.8。此版本同时提供了 Python 2.7 和 Python 3.8。
-    # Ubuntu 21.04： 默认 Python 版本是 Python 3.9。这是一个非常新的 Ubuntu 版本，它将 Python 3.9 作为默认版本。
     runs-on: ubuntu-latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
@@ -28,7 +26,8 @@ jobs:
         with:
           command: buildozer android debug
           workdir: wico
-          buildozer_version: stable
+          #1.5.0的buildozer编译libzbar会找不到recipe，所以要用1.4版的。
+          buildozer_version: 1.4.0
          
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
