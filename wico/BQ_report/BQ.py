@@ -33,7 +33,7 @@ start_date365=datetime.datetime.strftime(start_date365, "%Y-%m-%d")
 
 
 
-sqlcmd='''CALL custom_feedback.dataframe2("{}")'''.format(end_date)
+sqlcmd='''CALL custom_feedback.dataframe3("{}")'''.format(end_date)
 #df_table=sql.read_sql(sqlcmd,mariadb_conn)
 #df_table=df_table.set_index(["车型","零件类型","不良内容","维修方法"])
 df1=sql.read_sql(sqlcmd,mariadb_conn,coerce_float=False)
@@ -51,8 +51,10 @@ df1=pd.merge(df1, df2, how='left', on="车型")
 df1=pd.merge(df1, df3, how='left', on=["车型","零件类型"])
 df1=pd.merge(df1, df4, how='left', on=["车型","零件类型","不良内容"])
 
-df_table=df1.set_index(["车型","合计1","零件类型","合计2","不良内容","合计3","维修方法"])
+df_table=df1.set_index(["客户","车型","合计1","零件类型","合计2","不良内容","合计3","维修方法"])
 #df_table=df1.groupby(["车型","合计1","零件类型","合计2","不良内容","合计3","维修方法"]).aggregate({'NG数量':np.sum})
+
+
 
 
 #df_table.to_html('assets/test.html',header=True, index=True, justify='justify-all',bold_rows=True,col_space='280px')
@@ -71,6 +73,9 @@ html_string = '''
 # OUTPUT AN HTML FILE
 with open('assets/test.html', 'w', encoding="utf-8") as f:
     f.write(html_string.format(table=table_html))
+
+
+
 
 
 sqlcmd='''CALL custom_feedback.日内不良("{}")'''.format(end_date)
@@ -131,6 +136,18 @@ fig_trend_365.update_layout(
     legend=dict(orientation="h",yanchor="bottom",y=1.07,xanchor="right",x=1),
     title=dict(x=0.05, y=0.85)
     )
+
+
+
+#365日不良条形图
+sqlcmd='''select * from 年度top10不良'''
+df=sql.read_sql(sqlcmd,mariadb_conn)
+df["nginfo"]=df["supplier"]+"-"+df["parttype"]+"-"+df["nginfo"]
+fig_bar_365 = px.bar(df, x='nginfo', y='不良数量',text='不良数量',title='年度不良-TOP10', labels={'nginfo': '不良类型', '不良数量': '不良数量'})
+# 设置标签位置
+fig_bar_365.update_traces(texttemplate='%{text}', textposition='inside')
+
+
 
 
 #不良批次分布
@@ -233,7 +250,7 @@ app.layout = html.Div(
             [
                 dbc.Col(complain, width=2),
                 dbc.Col(dcc.Graph(id = '30day',figure=fig_trend_30), width=5, style={'background-color': 'lightskyblue'}),
-                dbc.Col(dcc.Graph(id = '365day',figure=fig_trend_365), width=5, style={'background-color': 'lightskyblue'})
+                dbc.Col(dcc.Graph(id = '365day',figure=fig_bar_365), width=5, style={'background-color': 'lightskyblue'})
             ]
         )
     ]
