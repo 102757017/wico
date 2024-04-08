@@ -1,16 +1,29 @@
+# -*- coding: UTF-8 -*-
 import mariadb
+import numpy as np
 import pandas.io.sql as sql
+import pandas as pd
 import plotly.express as px
-from dash import Dash
+from dash import Dash,dcc,html
 import dash_bootstrap_components as dbc
-from dash import dcc
-from dash import html
 import datetime
 from datetime import timedelta
 import pprint
 import webbrowser
-import pandas as pd
-import numpy as np
+from pathlib import Path
+import sys
+import os
+import re
+
+if getattr(sys, "frozen", False):  # bundle mode with PyInstaller
+    os.environ["WICO_ROOT"] = sys._MEIPASS
+else:
+    os.environ["WICO_ROOT"] = str(Path(__file__).parent)
+
+KV_DIR = f"{os.environ['WICO_ROOT']}"
+sys.path.append(KV_DIR)
+os.chdir(KV_DIR)
+
 
 
 print(dbc.__version__)
@@ -165,16 +178,15 @@ WHERE
 	and ComplainDate >= "{}-01-01"
 ORDER BY
 	ComplainDate DESC
-'''.format(end_date,end_date[:4])
+'''.format(end_date,end_date[:4]) #end_date[:4] 则用来获取该日期的年份部分
 df=sql.read_sql(sqlcmd,mariadb_conn)
+
+# 计算最近一次客诉发生时间与查询结束日期之间的差值（delta）
 if len(df)==0:
     firstday="{}-01-01".format(end_date[:4])
     delta=datetime.datetime.strptime(end_date, "%Y-%m-%d")-datetime.datetime.strptime(firstday, "%Y-%m-%d")
-    lastng_date="无"
-    
 else:
-    lastng_date=df.iloc[0][0]
-    lastng_date=datetime.datetime.strftime(lastng_date, "%Y-%m-%d")
+    lastng_date=str(df["ComplainDate"][0])
     delta=datetime.datetime.strptime(end_date, "%Y-%m-%d")-datetime.datetime.strptime(lastng_date, "%Y-%m-%d")
 
 sqlcmd='''
@@ -191,6 +203,21 @@ GROUP BY
 df=sql.read_sql(sqlcmd,mariadb_conn)
 #月度达成客诉0件的次数
 times=datetime.datetime.strptime(end_date, "%Y-%m-%d").month-len(df)
+
+
+sqlcmd='''
+SELECT
+	ComplainDate
+FROM
+	complain
+ORDER BY
+	ComplainDate DESC
+'''
+df=sql.read_sql(sqlcmd,mariadb_conn)
+lastng_date=df.iloc[0][0]
+# 获取最近一次客诉日期
+lastng_date=datetime.datetime.strftime(lastng_date, "%Y-%m-%d")
+
 
 
 print(type(delta),delta)
@@ -216,19 +243,42 @@ app = Dash(
     __name__,
     # 从国内可顺畅访问的cdn获取所需的原生bootstrap对应css
     #external_stylesheets=['https://cdn.staticfile.org/twitter-bootstrap/4.5.2/css/bootstrap.min.css']
-    external_stylesheets=['https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.css']
-
+    external_stylesheets=['https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.css','[9](https://codepen.io/chriddyp/pen/bWLwgP.css)']
 )
 
 
+if df_table.shape[0]>20:
+    font_size = round(15/(df_table.shape[0] + 2) / 57 * 800*1.64, 1)
+else:
+    font_size=15
+print("css字体大小：",font_size)
+# 读取文件内容
+with open("assets/df_style.css", 'r') as file:
+    css_content = file.read()
+
+# 替换字体大小
+new_css_content = re.sub(r'font-size: ([\d.]+)pt;', 'font-size: {}pt;'.format(font_size), css_content)
+print(new_css_content)
+
+# 写回文件
+with open("assets/df_style.css", 'w') as file:
+    file.write(new_css_content)
+
+
+
 app.layout = html.Div(
-    [
-        html.H1(end_date,style={'textAlign': 'center'}),
+    style={
+        'width': '630mm',  # A3纸张的宽度
+        'height': '446mm',  # A3纸张的高度
+        'margin': 'auto',  # 居中显示
+    },
+    children=[
+        html.H1(end_date,id='title',style={'textAlign': 'center'}),
         #html.Hr(), # 水平分割线
         dbc.Row(
             [
                 #dbc.Col(dbc.Table.from_dataframe(df_table, striped=True, hover=True,index=True), width=12, style={'margin-top': '30px','overflow': 'auto','font-size':'26px'})
-                dbc.Col(html.Iframe(src="assets/test.html",style={"height": "{}px".format((df_table.shape[0]+2)*57), "width": "100%"}),width=6),
+                dbc.Col(html.Iframe(id='myFrame',src="assets/test.html",style={"height":  "100%", "width": "100%"}),width=6),
                 dbc.Col([
                     dbc.Row([
                         dbc.Col(dcc.Graph(id = '所有不良分布',figure=fig_distribution,style={"height": "100%", "width": "100%"}), width=6,style={'background-color': 'lightskyblue'}),
@@ -255,6 +305,23 @@ app.layout = html.Div(
         )
     ]
 )
+
+from dash.dependencies import Input, Output
+@app.callback(
+  Output('myFrame', 'style'),
+  Input('myFrame', 'n_clicks')
+)
+def adjust_font_size(n_clicks):
+  if n_clicks is None:
+    return {'height': '1067px', 'width': '100%'}
+  else:
+    frame = document.getElementById('myFrame')
+    body = frame.contentWindow.document.querySelector('body')
+    height = frame.style.height
+    font_size = int(height) / 50 # adjust this ratio as needed
+    return {'height': height, 'width': '100%', 'font-size': f'{font_size}px'}
+
+
 
 #pprint.pprint(dir())
 
