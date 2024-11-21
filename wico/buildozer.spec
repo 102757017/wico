@@ -72,8 +72,15 @@ orientation = portrait
 # (bool) Indicate if the application should be fullscreen or not
 fullscreen = 0
 
+#Android 的 API 级别、SDK 和 NDK 之间存在对应关系
 # (int) Target Android API, should be as high as possible.
 android.api = 34
+
+# (int) Android SDK version to use
+android.sdk = 34
+
+# (str) Android NDK version to use
+android.ndk = 26b
 
 # (bool) If True, then skip trying to update the Android sdk
 # This can be useful to avoid excess Internet downloads or save time
