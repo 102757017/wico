@@ -26,8 +26,8 @@ jobs:
         with:
           command: buildozer android debug
           workdir: wico
-          #1.5.0的buildozer编译libzbar会找不到recipe，所以要用1.4版的。
-          buildozer_version: 1.4.0
+          #1.5.0的buildozer编译libzbar会找不到recipe，所以要用1.5以下版本的。Camera4Kivy 依赖于 Buildozer 的“主”版本。现在1.2.0.dev0
+          buildozer_version: 1.2.0
          
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
