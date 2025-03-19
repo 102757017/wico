@@ -35,7 +35,9 @@ left join `volume` on
 WHERE
 	cast(`ngrecord`.`NgTime` as date)>"2022-08-24" AND 
 	`ngrecord`.`CarModel`="2YC" AND
-	`ngrecord`.`PartType`="电动滑轨"
+	`ngrecord`.`PartType`="电动滑轨" AND
+	`ngrecord`.`Supplier`="WICO"
+	
 group by
 	cast(`ngrecord`.`NgTime` as date),
 	`ngrecord`.`CarModel`,
@@ -100,7 +102,8 @@ left join `volume` on
 WHERE
 	cast(`ngrecord`.`NgTime` as date)>"2022-08-24" AND 
 	`ngrecord`.`CarModel`="2YC" AND
-	`ngrecord`.`PartType`="前升降电动支架"
+	`ngrecord`.`PartType`="前升降电动支架" AND
+	`ngrecord`.`Supplier`="WICO"
 group by
 	cast(`ngrecord`.`NgTime` as date),
 	`ngrecord`.`CarModel`,
@@ -161,7 +164,8 @@ left join `volume` on
 WHERE
 	cast(`ngrecord`.`NgTime` as date)>"2022-08-24" AND 
 	`ngrecord`.`CarModel`="2YC" AND
-	`ngrecord`.`PartType`="后升降电动支架"
+	`ngrecord`.`PartType`="后升降电动支架" AND
+	`ngrecord`.`Supplier`="WICO"
 group by
 	cast(`ngrecord`.`NgTime` as date),
 	`ngrecord`.`CarModel`,
@@ -216,7 +220,8 @@ select
 from
 	`ngrecord`
 WHERE
-	`ngrecord`.`CarModel`="2YC"
+	`ngrecord`.`CarModel`="2YC" AND
+	`ngrecord`.`Supplier`="WICO"
 group by
 	`ngrecord`.`CarModel`,
 	`ngrecord`.`PartType`,
