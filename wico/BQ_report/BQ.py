@@ -111,9 +111,12 @@ df["SeatModel"]=df["CarModel"]+df["SeatModel"]
 df=df.drop(["Sync",'CarModel'],axis=1)
 df=pd.melt(df,id_vars=['C_M_Date','SeatModel'],var_name='班次',value_name='产量')
 fig_volume = px.bar(df,x="SeatModel",y="产量",color="班次",text="产量",title="{} 客户产量".format(end_date))
-fig_volume.update_traces(texttemplate='%{text:.2s}', # 显示的整数位数：示例为2位
+fig_volume.update_traces(texttemplate='%{text}', # 显示的整数位数：示例为2位
                          textfont=dict(family=['Arial Black', 'Arial'],size=[15]),
                          textposition='auto')   # 文本显示位置：['inside', 'outside', 'auto', 'none']
+#缩放图表，最多显示14列
+fig_volume.update_xaxes(range=[-1, 14])
+
 #设置图形边距
 fig_volume.update_layout(
     margin=dict(l=0, r=0, t=30, b=30),
@@ -242,8 +245,8 @@ complain=dbc.Container([
 app = Dash(
     __name__,
     # 从国内可顺畅访问的cdn获取所需的原生bootstrap对应css
-    #external_stylesheets=['https://cdn.staticfile.org/twitter-bootstrap/4.5.2/css/bootstrap.min.css']
-    external_stylesheets=['https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.css','[9](https://codepen.io/chriddyp/pen/bWLwgP.css)']
+    #external_stylesheets=['https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css']
+    external_stylesheets=['https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css','[9](https://codepen.io/chriddyp/pen/bWLwgP.css)']
 )
 
 
