@@ -156,7 +156,15 @@ def generate_dashboard_layout(target_date_str):
         plot_bgcolor='rgba(0,0,0,0)',
     )
     
-    red_palette = ['#B22222', '#DC143C', '#FF4500', '#CD5C5C', '#8B0000', '#F08080', '#FF6347']
+    red_palette = [
+        '#2C0000',       # 极暗（起始）
+        '#FF6B6B',       # 极亮（最大对比）
+        '#8B0000',       # 暗（切换回暗色）
+        '#FF4500',       # 亮橙红（再次对比）
+        '#4B0082',       # 靛蓝紫（引入冷调）*
+        '#FF0000',       # 纯红（回归核心色）
+        '#800080'        # 紫色（扩展色域边界）
+    ]
 
     # 1. 供应商分布 (横向条形图)
     if not df_dist1.empty:
