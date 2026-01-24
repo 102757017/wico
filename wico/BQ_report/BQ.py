@@ -4,18 +4,19 @@ import numpy as np
 import pandas.io.sql as sql
 import pandas as pd
 import plotly.express as px
-from dash import Dash,dcc,html
+from dash import Dash, dcc, html
 import dash_bootstrap_components as dbc
 import datetime
 from datetime import timedelta
-import pprint
 import webbrowser
 from pathlib import Path
 import sys
 import os
-import re
 
-if getattr(sys, "frozen", False):  # bundle mode with PyInstaller
+# -----------------------------------------------------------------------------
+# 1. 环境与数据库设置
+# -----------------------------------------------------------------------------
+if getattr(sys, "frozen", False):
     os.environ["WICO_ROOT"] = sys._MEIPASS
 else:
     os.environ["WICO_ROOT"] = str(Path(__file__).parent)
@@ -24,312 +25,307 @@ KV_DIR = f"{os.environ['WICO_ROOT']}"
 sys.path.append(KV_DIR)
 os.chdir(KV_DIR)
 
-
-
-print(dbc.__version__)
-mariadb_conn = mariadb.connect( 
-user="imasenwh", 
-password="596bf648aa7f80d8", 
-host="mysql.sqlpub.com", 
-port=3306, 
-database="custom_feedback" )
-
-t=datetime.datetime.strftime(datetime.datetime.now()-timedelta(days=1), "%Y-%m-%d")
-end_date=input("直接回车查询昨天的日报，如需指定日期，请输入查询日报的日期（例:{}）：".format(t))
-if end_date=="":
-    end_date=t
-t=datetime.datetime.strptime(end_date, "%Y-%m-%d")
-start_date30=t-timedelta(days=30)
-start_date30=datetime.datetime.strftime(start_date30, "%Y-%m-%d")
-start_date365=t-timedelta(days=365)
-start_date365=datetime.datetime.strftime(start_date365, "%Y-%m-%d")
-
-
-
-sqlcmd='''CALL custom_feedback.dataframe3("{}")'''.format(end_date)
-#df_table=sql.read_sql(sqlcmd,mariadb_conn)
-#df_table=df_table.set_index(["车型","零件类型","不良内容","维修方法"])
-df1=sql.read_sql(sqlcmd,mariadb_conn,coerce_float=False)
-#df1.loc[:,["NG数量","产量"]]=df1.loc[:,["NG数量","产量"]].astype("int",errors='ignore')
-df2=df1.groupby(["车型"]).aggregate({'NG数量':np.sum})
-df2.rename(columns={'NG数量':'合计1'}, inplace = True)
-
-df3=df1.groupby(["车型","零件类型"]).aggregate({'NG数量':np.sum})
-df3.rename(columns={'NG数量':'合计2'}, inplace = True)
-
-df4=df1.groupby(["车型","零件类型","不良内容"]).aggregate({'NG数量':np.sum})
-df4.rename(columns={'NG数量':'合计3'}, inplace = True)
-
-df1=pd.merge(df1, df2, how='left', on="车型")
-df1=pd.merge(df1, df3, how='left', on=["车型","零件类型"])
-df1=pd.merge(df1, df4, how='left', on=["车型","零件类型","不良内容"])
-
-df_table=df1.set_index(["客户","车型","合计1","零件类型","合计2","不良内容","合计3","维修方法"])
-#df_table=df1.groupby(["车型","合计1","零件类型","合计2","不良内容","合计3","维修方法"]).aggregate({'NG数量':np.sum})
-
-
-
-
-#df_table.to_html('assets/test.html',header=True, index=True, justify='justify-all',bold_rows=True,col_space='280px')
-table_html=df_table.to_html(classes='mystyle',header=True, index=True, justify='justify-all',bold_rows=True)
-table_html=table_html.replace("top","middle")
-pd.set_option('colheader_justify', 'center')   # FOR TABLE <th>
-html_string = '''
-<html>
-  <head><title>HTML Pandas Dataframe with CSS</title></head>
-  <link rel="stylesheet" type="text/css" href="df_style.css"/>
-  <body>
-    {table}
-  </body>
-</html>.
-'''
-# OUTPUT AN HTML FILE
-with open('assets/test.html', 'w', encoding="utf-8") as f:
-    f.write(html_string.format(table=table_html))
-
-
-
-
-
-sqlcmd='''CALL custom_feedback.日内不良("{}")'''.format(end_date)
-df=sql.read_sql(sqlcmd,mariadb_conn)
-fig_distribution = px.sunburst(df, path=['供应商', '零件类型', '不良内容'], values='不良数',title="{} 所有不良分布情况".format(end_date))
-#设置图形边距
-fig_distribution.update_layout(margin=dict(l=30, r=30, t=30, b=30))
-
-
-sqlcmd='''CALL custom_feedback.按生产线分类("{}")'''.format(end_date)
-df=sql.read_sql(sqlcmd,mariadb_conn)
-fig_distribution2 = px.sunburst(df, path=['生产线' ,'车型', '不良内容'], values='不良数',title="{} WICO各生产线不良分布".format(end_date))
-#设置图形边距
-fig_distribution2.update_layout(margin=dict(l=30, r=30, t=30, b=30)) 
-
-
-sqlcmd='''SELECT * FROM volume WHERE C_M_Date = "{}" ORDER BY CarModel,SeatModel'''.format(end_date)
-df=sql.read_sql(sqlcmd,mariadb_conn)
-df["SeatModel"]=df["CarModel"]+df["SeatModel"]
-df=df.drop(["Sync",'CarModel'],axis=1)
-df=pd.melt(df,id_vars=['C_M_Date','SeatModel'],var_name='班次',value_name='产量')
-fig_volume = px.bar(df,x="SeatModel",y="产量",color="班次",text="产量",title="{} 客户产量".format(end_date))
-fig_volume.update_traces(texttemplate='%{text}', # 显示的整数位数：示例为2位
-                         textfont=dict(family=['Arial Black', 'Arial'],size=[15]),
-                         textposition='auto')   # 文本显示位置：['inside', 'outside', 'auto', 'none']
-#缩放图表，最多显示14列
-fig_volume.update_xaxes(range=[-1, 14])
-
-#设置图形边距
-fig_volume.update_layout(
-    margin=dict(l=0, r=0, t=30, b=30),
-    uniformtext_mode='show'
+try:
+    mariadb_conn = mariadb.connect(
+        user="imasenwh",
+        password="596bf648aa7f80d8",
+        host="mysql.sqlpub.com",
+        port=3306,
+        database="custom_feedback"
     )
+except mariadb.Error as e:
+    print(f"Error connecting to MariaDB Platform: {e}")
+    sys.exit(1)
 
+# -----------------------------------------------------------------------------
+# 2. 数据获取逻辑
+# -----------------------------------------------------------------------------
+t = datetime.datetime.strftime(datetime.datetime.now() - timedelta(days=1), "%Y-%m-%d")
+end_date = input("直接回车查询昨天的日报，如需指定日期，请输入查询日报的日期（例:{}）：".format(t))
+if end_date == "":
+    end_date = t
 
+t_obj = datetime.datetime.strptime(end_date, "%Y-%m-%d")
+start_date30 = datetime.datetime.strftime(t_obj - timedelta(days=30), "%Y-%m-%d")
+start_date7 = datetime.datetime.strftime(t_obj - timedelta(days=7), "%Y-%m-%d")
+start_date365 = datetime.datetime.strftime(t_obj - timedelta(days=365), "%Y-%m-%d")
 
-#30日不良趋势
-sqlcmd='''CALL custom_feedback.不良趋势("{}","{}",{})'''.format(start_date30,end_date,5)
-df=sql.read_sql(sqlcmd,mariadb_conn)
-df["nginfo"]=df["supplier"]+"-"+df["parttype"]+"-"+df["nginfo"]
-fig_trend_30 = px.line(df,x="ngdate",y="不良率",color="nginfo",title="近30日内不良发展趋势（TOP5）",markers=True,symbol = "nginfo")
-#设置y轴为百分比
-fig_trend_30.update_layout(
-    yaxis_tickformat='0%',
-    margin=dict(l=0, r=30, t=30, b=0),
-    legend=dict(orientation="h",yanchor="bottom",y=1.07,xanchor="right",x=1),
-    title=dict(x=0.05, y=0.85)
-    )
-fig_trend_30.update_xaxes(dtick="D1")
+print(f"正在生成 {end_date} 的报表...")
 
+# --- 表格数据 ---
+sqlcmd = '''CALL custom_feedback.dataframe3("{}")'''.format(end_date)
+df1 = sql.read_sql(sqlcmd, mariadb_conn, coerce_float=False)
 
-#365日不良趋势
-sqlcmd='''CALL custom_feedback.不良趋势("{}","{}",{})'''.format(start_date365,end_date,10)
-df=sql.read_sql(sqlcmd,mariadb_conn)
-df["nginfo"]=df["supplier"]+"-"+df["parttype"]+"-"+df["nginfo"]
-fig_trend_365 = px.line(df,x="ngdate",y="不良率",color="nginfo",title="年度不良发展趋势（TOP10）",markers=True,symbol = "nginfo")
-#设置y轴为百分比
-fig_trend_365.update_layout(
-    yaxis_tickformat='0%',
-    margin=dict(l=0, r=30, t=30, b=0),
-    legend=dict(orientation="h",yanchor="bottom",y=1.07,xanchor="right",x=1),
-    title=dict(x=0.05, y=0.85)
-    )
+df2 = df1.groupby(["车型"]).aggregate({'NG数量': np.sum}).rename(columns={'NG数量': '合计1'})
+df3 = df1.groupby(["车型", "零件类型"]).aggregate({'NG数量': np.sum}).rename(columns={'NG数量': '合计2'})
+df4 = df1.groupby(["车型", "零件类型", "不良内容"]).aggregate({'NG数量': np.sum}).rename(columns={'NG数量': '合计3'})
 
+df1 = pd.merge(df1, df2, how='left', on="车型")
+df1 = pd.merge(df1, df3, how='left', on=["车型", "零件类型"])
+df1 = pd.merge(df1, df4, how='left', on=["车型", "零件类型", "不良内容"])
 
+df_table = df1.set_index(["客户", "车型", "合计1", "零件类型", "合计2", "不良内容", "合计3", "维修方法"])
+table_html = df_table.to_html(
+    classes='table table-bordered table-sm table-hover text-center align-middle',
+    header=True, index=True, justify='center', border=0
+)
 
-#365日不良条形图
-sqlcmd='''select * from 年度top10不良'''
-df=sql.read_sql(sqlcmd,mariadb_conn)
-df["nginfo"]=df["supplier"]+"-"+df["parttype"]+"-"+df["nginfo"]
-fig_bar_365 = px.bar(df, x='nginfo', y='不良数量',text='不良数量',title='年度不良-TOP10', labels={'nginfo': '不良类型', '不良数量': '不良数量'})
-# 设置标签位置
-fig_bar_365.update_traces(texttemplate='%{text}', textposition='inside')
+# --- 分布图数据 ---
+sqlcmd = '''CALL custom_feedback.日内不良("{}")'''.format(end_date)
+df_dist1 = sql.read_sql(sqlcmd, mariadb_conn)
 
+sqlcmd = '''CALL custom_feedback.按生产线分类("{}")'''.format(end_date)
+df_dist2 = sql.read_sql(sqlcmd, mariadb_conn)
 
+# --- 产量数据 ---
+sqlcmd = '''SELECT * FROM volume WHERE C_M_Date = "{}" ORDER BY CarModel,SeatModel'''.format(end_date)
+df_volume = sql.read_sql(sqlcmd, mariadb_conn)
+if not df_volume.empty:
+    df_volume["SeatModel"] = df_volume["CarModel"] + df_volume["SeatModel"]
+    df_volume = df_volume.drop(["Sync", 'CarModel'], axis=1)
+    df_volume = pd.melt(df_volume, id_vars=['C_M_Date', 'SeatModel'], var_name='班次', value_name='产量')
 
+# --- 趋势数据 ---
+def get_trend_data(start, end, limit):
+    sqlcmd = '''CALL custom_feedback.不良趋势("{}","{}",{})'''.format(start, end, limit)
+    df = sql.read_sql(sqlcmd, mariadb_conn)
+    if not df.empty:
+        df["nginfo"] = df["supplier"] + "-" + df["parttype"] + "-" + df["nginfo"]
+    return df
 
-#不良批次分布
-sqlcmd='''CALL custom_feedback.不良批次分布("{}","{}")'''.format("2311-550-120","%焊穿%")
-df=sql.read_sql(sqlcmd,mariadb_conn)
+df_trend_7 = get_trend_data(start_date7, end_date, 5)
+df_trend_30 = get_trend_data(start_date30, end_date, 5)
+df_trend_365 = get_trend_data(start_date365, end_date, 10)
 
+# --- 年度TOP10 ---
+sqlcmd = '''select * from 年度top10不良'''
+df_top10 = sql.read_sql(sqlcmd, mariadb_conn)
+if not df_top10.empty:
+    df_top10["nginfo"] = df_top10["supplier"] + "-" + df_top10["parttype"] + "-" + df_top10["nginfo"]
 
-sqlcmd='''
-SELECT
-	ComplainDate
-FROM
-	complain
-WHERE
-	ComplainDate <= "{}"
-	and ComplainDate >= "{}-01-01"
-ORDER BY
-	ComplainDate DESC
-'''.format(end_date,end_date[:4]) #end_date[:4] 则用来获取该日期的年份部分
-df=sql.read_sql(sqlcmd,mariadb_conn)
+# --- KPI 数据 ---
+sqlcmd = '''SELECT ComplainDate FROM complain WHERE ComplainDate <= "{}" AND ComplainDate >= "{}-01-01" ORDER BY ComplainDate DESC'''.format(end_date, end_date[:4])
+df_complain = sql.read_sql(sqlcmd, mariadb_conn)
 
-# 计算最近一次客诉发生时间与查询结束日期之间的差值（delta）
-if len(df)==0:
-    firstday="{}-01-01".format(end_date[:4])
-    delta=datetime.datetime.strptime(end_date, "%Y-%m-%d")-datetime.datetime.strptime(firstday, "%Y-%m-%d")
+sqlcmd_last = '''SELECT ComplainDate FROM complain ORDER BY ComplainDate DESC LIMIT 1'''
+df_last_complain = sql.read_sql(sqlcmd_last, mariadb_conn)
+
+if df_last_complain.empty:
+    lastng_date_str = "无记录"
+    delta_days = 0
 else:
-    lastng_date=str(df["ComplainDate"][0])
-    delta=datetime.datetime.strptime(end_date, "%Y-%m-%d")-datetime.datetime.strptime(lastng_date, "%Y-%m-%d")
+    last_date = df_last_complain.iloc[0][0]
+    if isinstance(last_date, str):
+         last_date = datetime.datetime.strptime(last_date, "%Y-%m-%d").date()
+    elif isinstance(last_date, pd.Timestamp):
+         last_date = last_date.date()
+    elif isinstance(last_date, datetime.datetime):
+         last_date = last_date.date()
+    query_date = t_obj.date()
+    delta_days = (query_date - last_date).days
+    lastng_date_str = last_date.strftime("%Y-%m-%d")
 
-sqlcmd='''
-SELECT
-	SUBSTRING(COMPLAINDATE, 6, 2) AS 月份
-FROM
-	complain
-WHERE
-	COMPLAINDATE <= "{}"
-	AND COMPLAINDATE >= "{}-01-01"
-GROUP BY 
-    SUBSTRING(COMPLAINDATE, 6, 2)
-'''.format(end_date,end_date[:4])
-df=sql.read_sql(sqlcmd,mariadb_conn)
-#月度达成客诉0件的次数
-times=datetime.datetime.strptime(end_date, "%Y-%m-%d").month-len(df)
+current_month = t_obj.month
+unique_complain_months = df_complain['ComplainDate'].astype(str).str.slice(5, 7).unique()
+times_achieved = current_month - len(unique_complain_months)
 
+# -----------------------------------------------------------------------------
+# 3. 图表生成 (旭日图 -> 横向条形图优化)
+# -----------------------------------------------------------------------------
+common_layout = dict(
+    template='plotly_white',
+    margin=dict(l=10, r=10, t=30, b=10),
+    font=dict(family="Microsoft YaHei, Arial", size=11),
+    paper_bgcolor='rgba(0,0,0,0)',
+    plot_bgcolor='rgba(0,0,0,0)',
+)
 
-sqlcmd='''
-SELECT
-	ComplainDate
-FROM
-	complain
-ORDER BY
-	ComplainDate DESC
-'''
-df=sql.read_sql(sqlcmd,mariadb_conn)
-lastng_date=df.iloc[0][0]
-# 获取最近一次客诉日期
-lastng_date=datetime.datetime.strftime(lastng_date, "%Y-%m-%d")
+# 【自定义红色系调色板】用于区分不同不良，但整体保持警示色
+red_palette = [
+    '#B22222', # FireBrick (深砖红)
+    '#DC143C', # Crimson (猩红)
+    '#FF4500', # OrangeRed (橙红)
+    '#CD5C5C', # IndianRed (印度红)
+    '#8B0000', # DarkRed (深红)
+    '#F08080', # LightCoral (浅珊瑚)
+    '#FF6347', # Tomato (番茄红)
+]
 
+# 优化 1: 供应商分布 (红色条形图 + 粗大数字)
+if not df_dist1.empty:
+    # 组合标签：供应商 + 零件类型
+    df_dist1['Label'] = df_dist1['供应商'] + " - " + df_dist1['零件类型']
+    fig_dist1 = px.bar(
+        df_dist1, 
+        y="Label",          
+        x="不良数",         
+        color="不良内容",    
+        color_discrete_sequence=red_palette, # 使用自定义红色系
+        orientation='h',    
+        text="不良数",      
+        title=f"{end_date} 不良统计（按产品类型汇总）"
+    )
+    fig_dist1.update_layout(**common_layout)
+    fig_dist1.update_layout(
+        yaxis={'categoryorder':'total ascending',
+               'tickfont': dict(size=20, family='Microsoft YaHei')}, 
+        legend=dict(orientation="h", y=-0.2),      
+        xaxis_title=""
+    )
+    # 字体加大、加粗(Arial Black)、颜色纯白
+    fig_dist1.update_traces(
+        textposition='inside', 
+        insidetextanchor='middle',
+        textfont=dict(size=28, family='Arial Black', color='white') 
+    )
+else:
+    fig_dist1 = px.bar(title="今日无供应商不良数据")
 
+# 优化 2: 产线分布 (红色条形图 + 粗大数字)
+if not df_dist2.empty:
+    # 组合标签：产线 + 车型
+    df_dist2['Label'] = df_dist2['生产线'] + " " + df_dist2['车型']
+    fig_dist2 = px.bar(
+        df_dist2, 
+        y="Label", 
+        x="不良数", 
+        color="不良内容",
+        color_discrete_sequence=red_palette, # 使用自定义红色系
+        orientation='h',
+        text="不良数",
+        title=f"{end_date} 不良统计（按产线汇总）"
+    )
+    fig_dist2.update_layout(**common_layout)
+    fig_dist2.update_layout(
+        yaxis={'categoryorder':'total ascending',
+               'tickfont': dict(size=20, family='Microsoft YaHei')},
+        legend=dict(orientation="h", y=-0.2),
+        xaxis_title=""
+    )
+    # 字体加大、加粗(Arial Black)、颜色纯白
+    fig_dist2.update_traces(
+        textposition='inside', 
+        insidetextanchor='middle',
+        textfont=dict(size=28, family='Arial Black', color='white')
+    )
+else:
+    fig_dist2 = px.bar(title="今日无产线不良数据")
 
-print(type(delta),delta)
-complain=dbc.Container([
-        html.H2(html.Strong("{}年度客户投诉0件达成情况".format(end_date[:4])),style={'textAlign': 'center'}),
-        html.Hr(),
-        html.H3('上次客诉发生',style={'textAlign': 'center'}),
-        html.H5(html.Strong("{}".format(lastng_date)),style={'textAlign': 'center'}),
-        html.Hr(),
-        html.H3('客诉0件达成持续天数',style={'textAlign': 'center'}),
-        html.H5(html.Strong('第{}天'.format(delta.days)),style={'textAlign': 'center'}),
-        html.Hr(),
-        html.H3('客诉0件达成持续月数',style={'textAlign': 'center'}),
-        html.H5(html.Strong('{}个月'.format(int(delta.days//30))),style={'textAlign': 'center'}),
-        html.Hr(),
-        html.H4('月度达成客诉0件的次数',style={'textAlign': 'center'}),
-        html.H5(html.Strong('{}个月'.format(times)),style={'textAlign': 'center'})
-        ])
+# 产量图
+fig_vol = px.bar(df_volume, x="SeatModel", y="产量", color="班次", text="产量", title=f"{end_date} 客户产量")
+fig_vol.update_traces(textposition='inside')
+fig_vol.update_layout(**common_layout)
+fig_vol.update_layout(legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1))
+
+# 趋势图通用样式
+def style_line_chart(fig, title):
+    fig.update_layout(**common_layout)
+    fig.update_layout(
+        title=title,
+        yaxis_tickformat='0%',
+        legend=dict(orientation="h", y=-0.2),
+        margin=dict(b=20, l=40)
+    )
+    fig.update_yaxes(range=[0, 0.05])
+    return fig
+
+fig_tr7 = px.line(df_trend_7, x="ngdate", y="不良率", color="nginfo", markers=True, symbol="nginfo")
+style_line_chart(fig_tr7, "近7日不良趋势 (Top 5)")
+
+fig_tr30 = px.line(df_trend_30, x="ngdate", y="不良率", color="nginfo", markers=True, symbol="nginfo")
+style_line_chart(fig_tr30, "近30日不良趋势 (Top 5)")
+
+fig_bar = px.bar(df_top10, x='nginfo', y='不良数量', text='不良数量', labels={'nginfo': '类型'}, title='年度不良 Top 10')
+fig_bar.update_traces(textposition='inside', marker_color='#d9534f')
+fig_bar.update_layout(**common_layout)
+fig_bar.update_xaxes(tickangle=15, tickfont=dict(size=9))
+
+# -----------------------------------------------------------------------------
+# 4. 页面布局
+# -----------------------------------------------------------------------------
+app = Dash(__name__, external_stylesheets=[dbc.themes.SPACELAB, dbc.icons.BOOTSTRAP])
+
+def create_kpi_card(title, value, color):
+    return dbc.Card(
+        dbc.CardBody([
+            html.H6(title, className="card-subtitle text-muted mb-2", style={'fontSize': '0.9rem'}),
+            html.H2(value, className=f"text-{color} fw-bold mb-0"),
+        ]),
+        className="h-100 shadow-sm border-0 d-flex flex-column justify-content-center"
+    )
+
+def create_graph_card(fig):
+    return dbc.Card(
+        dcc.Graph(figure=fig, config={'displayModeBar': False}, style={'height': '100%'}),
+        className="h-100 shadow-sm border-0",
+        style={'overflow': 'hidden'}
+    )
+
+custom_css = '''
+<style>
+    body { background-color: #f0f2f5; font-family: 'Microsoft YaHei', sans-serif; }
+    .table-container { font-size: 0.75rem; overflow-y: auto; height: 100%; }
+    .table thead th { position: sticky; top: 0; background-color: #e9ecef; z-index: 1; vertical-align: middle;}
+    .table td { vertical-align: middle; padding: 0.25rem !important; }
     
+    @media print {
+        @page { size: A3 landscape; margin: 5mm; }
+        body { background-color: white; -webkit-print-color-adjust: exact; }
+        .card { box-shadow: none !important; border: 1px solid #ddd !important; break-inside: avoid; }
+        .no-print { display: none; }
+        .js-plotly-plot .plotly .bg { fill-opacity: 0 !important; }
+    }
+</style>
+'''
 
+app.layout = html.Div([
+    html.Div([dcc.Markdown(custom_css, dangerously_allow_html=True)]),
+    
+    dbc.Container([
+        # --- 标题栏 ---
+        dbc.Row([
+            dbc.Col(html.H3(f"WICO 质量日报监控看板 - {end_date}", className="text-center fw-bold my-3"), width=12)
+        ]),
 
-app = Dash(
-    __name__,
-    # 从国内可顺畅访问的cdn获取所需的原生bootstrap对应css
-    #external_stylesheets=['https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css']
-    external_stylesheets=['https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css','[9](https://codepen.io/chriddyp/pen/bWLwgP.css)']
-)
+        # --- 第一行：KPI 指标 ---
+        dbc.Row([
+            dbc.Col(create_kpi_card("上次客诉发生日", lastng_date_str, "danger"), width=3),
+            dbc.Col(create_kpi_card("客诉0件持续天数", f"{delta_days} 天", "success"), width=3),
+            dbc.Col(create_kpi_card("客诉0件持续月数", f"{int(delta_days // 30)} 个月", "primary"), width=3),
+            dbc.Col(create_kpi_card(f"{end_date[:4]}年月度达成次数", f"{times_achieved} 次", "warning"), width=3),
+        ], className="mb-3 g-3"),
 
+        # --- 第二行：趋势分析 ---
+        dbc.Row([
+            dbc.Col(create_graph_card(fig_tr7), width=4, style={'height': '280px'}),
+            dbc.Col(create_graph_card(fig_tr30), width=4, style={'height': '280px'}),
+            dbc.Col(create_graph_card(fig_bar), width=4, style={'height': '280px'}),
+        ], className="mb-3 g-3"),
 
-if df_table.shape[0]>20:
-    font_size = round(15/(df_table.shape[0] + 2) / 57 * 800*1.64, 1)
-else:
-    font_size=15
-print("css字体大小：",font_size)
-# 读取文件内容
-with open("assets/df_style.css", 'r') as file:
-    css_content = file.read()
+        # --- 第三行：不良分布 (改为了横向条形图 - 红色系 + 大字体) ---
+        dbc.Row([
+            dbc.Col(create_graph_card(fig_dist2), width=6, style={'height': '350px'}),
+            dbc.Col(create_graph_card(fig_dist1), width=6, style={'height': '350px'}), 
+        ], className="mb-3 g-3"),
 
-# 替换字体大小
-new_css_content = re.sub(r'font-size: ([\d.]+)pt;', 'font-size: {}pt;'.format(font_size), css_content)
-print(new_css_content)
+        # --- 第四行：表格 & 产量 ---
+        dbc.Row([
+            dbc.Col(
+                dbc.Card([
+                    dbc.CardHeader("今日不良明细", className="fw-bold bg-light py-2"),
+                    html.Div(
+                        dcc.Markdown(table_html, dangerously_allow_html=True), 
+                        className="table-container p-2"
+                    )
+                ], className="h-100 shadow-sm border-0"),
+                width=6, style={'height': '400px'}
+            ),
+            dbc.Col(create_graph_card(fig_vol), width=6, style={'height': '400px'})
+        ], className="mb-4 g-3")
 
-# 写回文件
-with open("assets/df_style.css", 'w') as file:
-    file.write(new_css_content)
-
-
-
-app.layout = html.Div(
-    style={
-        'width': '630mm',  # A3纸张的宽度
-        'height': '446mm',  # A3纸张的高度
-        'margin': 'auto',  # 居中显示
-    },
-    children=[
-        html.H1(end_date,id='title',style={'textAlign': 'center'}),
-        #html.Hr(), # 水平分割线
-        dbc.Row(
-            [
-                #dbc.Col(dbc.Table.from_dataframe(df_table, striped=True, hover=True,index=True), width=12, style={'margin-top': '30px','overflow': 'auto','font-size':'26px'})
-                dbc.Col(html.Iframe(id='myFrame',src="assets/test.html",style={"height":  "100%", "width": "100%"}),width=6),
-                dbc.Col([
-                    dbc.Row([
-                        dbc.Col(dcc.Graph(id = '所有不良分布',figure=fig_distribution,style={"height": "100%", "width": "100%"}), width=6,style={'background-color': 'lightskyblue'}),
-                        dbc.Col(dcc.Graph(id = 'WICO各生产线不良分布',figure=fig_distribution2,style={"height": "100%", "width": "100%"}), width=6,style={'background-color': 'lightskyblue'})
-                        ]),
-                    dbc.Col(dcc.Graph(id = '产量',figure=fig_volume,style={"height": "100%", "width": "100%"}), width=12, style={'background-color': 'lightskyblue'})
-                    ],width=6)
-
-   
-                
-            ]
-        ),
-
-        
-        html.Hr(), # 水平分割线
-        
-        #所谓的网格系统指的是每个Row()部件内部分成宽度相等的12份，传入的Col()部件具有参数width可以传入整数来分配对应数量的宽度
-        dbc.Row(
-            [
-                dbc.Col(complain, width=2),
-                dbc.Col(dcc.Graph(id = '30day',figure=fig_trend_30), width=5, style={'background-color': 'lightskyblue'}),
-                dbc.Col(dcc.Graph(id = '365day',figure=fig_bar_365), width=5, style={'background-color': 'lightskyblue'})
-            ]
-        )
-    ]
-)
-
-from dash.dependencies import Input, Output
-@app.callback(
-  Output('myFrame', 'style'),
-  Input('myFrame', 'n_clicks')
-)
-def adjust_font_size(n_clicks):
-  if n_clicks is None:
-    return {'height': '1067px', 'width': '100%'}
-  else:
-    frame = document.getElementById('myFrame')
-    body = frame.contentWindow.document.querySelector('body')
-    height = frame.style.height
-    font_size = int(height) / 50 # adjust this ratio as needed
-    return {'height': height, 'width': '100%', 'font-size': f'{font_size}px'}
-
-
-
-#pprint.pprint(dir())
+    ], fluid=True, style={'maxWidth': '1800px'})
+])
 
 if __name__ == "__main__":
     webbrowser.open(r"http://127.0.0.1:8050/")
-    app.run_server()
-
-
+    app.run_server(debug=False, port=8050)
