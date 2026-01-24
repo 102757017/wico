@@ -197,7 +197,7 @@ def generate_dashboard_layout(target_date_str):
     # 3. 产量图
     if not df_volume.empty:
         fig_vol = px.bar(df_volume, x="SeatModel", y="产量", color="班次", text="产量", title=f"{target_date_str} 客户产量")
-        fig_vol.update_traces(textposition='inside')
+        fig_vol.update_traces(textposition='inside',textangle=0, insidetextanchor='middle', textfont=dict(size=28, family='Arial Black', color='white'))
         fig_vol.update_layout(**common_layout)
         fig_vol.update_layout(legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1))
     else:
@@ -314,16 +314,14 @@ default_date = datetime.datetime.now() - timedelta(days=1)
 app.layout = html.Div([
     dcc.Markdown(custom_css, dangerously_allow_html=True),
     
-    # --- 顶部导航栏 / 标题区域 (修改后：居中显示) ---
+    # --- 1. 顶部导航栏 (修改点：添加 d-print-none) ---
     dbc.Navbar(
         dbc.Container([
             dbc.Row([
-                # 标题列
                 dbc.Col([
                     html.H3("WICO 质量日报监控看板", className="text-white fw-bold mb-0"),
                 ], width="auto", className="d-flex align-items-center"),
                 
-                # 日期选择器列 (ms-3 表示左边距 margin-start 为 3，拉开一点距离)
                 dbc.Col([
                     dcc.DatePickerSingle(
                         id='date-picker',
@@ -336,20 +334,23 @@ app.layout = html.Div([
                     )
                 ], width="auto", className="d-flex align-items-center ms-3")
             ], 
-            align="center",     # 垂直居中
-            justify="center",   # 【关键修改】水平居中
-            className="w-100"   # 让行占满宽度，从而实现居中
+            align="center",
+            justify="center",
+            className="w-100"
             ),
         ], fluid=True),
         color="dark",
         dark=True,
-        className="mb-3 py-2 no-print" # 打印时隐藏黑色导航条
+        # 【关键修改】这里添加了 "d-print-none"，打印时整个黑条和日期选择器都会消失
+        className="mb-3 py-2 d-print-none" 
     ),
 
-    # 为了打印优化，加一个仅打印时显示的标题 (本来就是居中的 text-center)
+    # --- 2. 打印专用标题 (保持不变：d-none d-print-block) ---
+    # d-none: 屏幕上不显示
+    # d-print-block: 打印时显示
     html.H2(id='print-title', className="text-center d-none d-print-block fw-bold mb-3"),
 
-    # 内容区域 (带有 Loading 加载动画)
+    # 内容区域
     dcc.Loading(
         id="loading-spinner",
         type="circle",
