@@ -20,17 +20,17 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4.0.0
 
-      - name: Build with Buildozer
-        uses: 102757017/buildozer-action@v1
-        id: buildozer
-        with:
-          command: buildozer android debug
-          workdir: wico
-          #Buildozer 1.5.0+ 支持 Android API 36 和 NDK 27c
-          buildozer_version: 1.6.0
-         
+      - name: Build APK with Buildozer
+        run: |
+          docker run --rm \
+            -v ${{ github.workspace }}:/home/user/hostcwd \
+            -w /home/user/hostcwd/wico \
+            -e DOCKER=true \
+            kivy/buildozer:latest \
+            bash -c "pip3 install Cython==0.29.33 && buildozer android debug"
+
       - name: Upload artifacts
-        uses: actions/upload-artifact@v5.0.0
+        uses: actions/upload-artifact@v4
         with:
           name: package
-          path: ${{ steps.buildozer.outputs.filename }}
+          path: bin/*.apk
