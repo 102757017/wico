@@ -91,7 +91,7 @@ android.ndk = 27c
 # agreements. This is intended for automation only. If set to False,
 # the default, you will be shown the license when first running
 # buildozer.
-#android.accept_sdk_license = True
+android.accept_sdk_license = True
 
 # (str) The Android arch to build for, choices: armeabi-v7a, arm64-v8a, x86, x86_64
 android.archs = arm64-v8a
