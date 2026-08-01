@@ -30,7 +30,7 @@ jobs:
           buildozer_version: 1.6.0
          
       - name: Upload artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v5.0.0
         with:
           name: package
           path: ${{ steps.buildozer.outputs.filename }}
