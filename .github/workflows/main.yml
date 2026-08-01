@@ -28,7 +28,7 @@ jobs:
             -w /home/user/hostcwd/wico \
             -e DOCKER=true \
             kivy/buildozer:latest \
-            -c "yes | sdkmanager --licenses && buildozer android debug"
+            -c "yes | buildozer android debug"
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
